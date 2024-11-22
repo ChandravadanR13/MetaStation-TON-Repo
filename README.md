@@ -1,29 +1,37 @@
 # MetaStation
+<p align="center">
+  <img src="https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/deb487c0997e76340e1f3883a03a2911236a32bd/src/assets/meta-station.png" />
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
 
-## Development server
+## Access MetaStation MiniApp
+[MetaStation Telegram MiniApp Bot Link](https://t.me/MetaStationBot "MetaStation Telegram MiniApp Bot Link")
+Signup or Login using Telegram icon ![](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/telegram-icon-login.png) in the app
+## Install & Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run in local - 
+`npm install --force`
+`ng serve`
+Navigate to `http://localhost:4200/`
+Login with the following credentials for test account
+> Email : arunak@mailinator.com
+Password: Arun@6399
 
-## Code scaffolding
+## App Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![Home Page](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/App%20Screenshots/Home.jpg "Home Page")
 
-## Build
+![Market](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/App%20Screenshots/Market.jpg "Market")
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![Trading Window](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/App%20Screenshots/Trading%20Window.jpg "Trading Window")
 
-## Running unit tests
+![Trading Panel - Basic](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/App%20Screenshots/Trading%20Panel%20-%20Basic.jpg "Trading Panel - Basic")
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Trading Panel - Pro](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/App%20Screenshots/Trading%20Panel%20-%20Pro.jpg "Trading Panel - Pro")
 
-## Running end-to-end tests
+![Wallet Balance](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/App%20Screenshots/Wallet%20-%20Balance.jpg "Wallet Balance")
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![Wallet - Deposit](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/App%20Screenshots/Wallet%20-%20Deposit.jpg "Wallet - Deposit")
 
-## Further help
+![Wallet - Withdraw](https://github.com/ChandravadanR13/MetaStation-TON-Repo/blob/cae8a305a0bb4bc2cd5096a9789b8c48a5a211a2/src/assets/App%20Screenshots/Wallet%20-%20Withdraw.jpg "Wallet - Withdraw")
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-https://xd.adobe.com/view/00ea7576-825e-4acf-a24b-29f8f2f10be3-55b9/screen/76116efa-3082-40f1-8039-e9c0fa13099d/specs/
-https://www.figma.com/file/cBP4drLyi9RB8rMPTshSyu/Meta-Station?type=design&node-id=115-270&t=cGQ8fQXZ7OqDe0Mo-0
