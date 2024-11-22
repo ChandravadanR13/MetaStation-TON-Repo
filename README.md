@@ -81,6 +81,7 @@ Login with the following credentials for test account
 > Email : arunak@mailinator.com
 Password: Arun@6399
 
+Access the web version - [MetaStation Web](https://metastation.fi "MetaStation Web")
 Note - Select a ticker at trading Window to load trading panel.
 
 
