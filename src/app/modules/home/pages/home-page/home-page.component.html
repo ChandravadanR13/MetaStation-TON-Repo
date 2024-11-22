@@ -1,0 +1,757 @@
+<div id="resposive-tab-view-style-homepage" class="display-none-desktop">
+
+    <div class="card" style="padding-bottom: 0;">
+    
+        <div class="coins-mine">
+            <div class="coins-mine-select">
+                <div class="coins-mine-select-left">
+                    Your Coins
+                </div>
+                <div class="coins-mine-select-right">
+                    Select Chain <div class="coins-mine-select-right-img" (click)="openModal()"><img src="../../../../../assets/dropdown-icon.png" alt=""></div>
+                </div>
+            </div>
+            <div class="coins-mine-selection-lists">
+                <div class="coins-mine-selection-list">
+                    <div class="coins-mine-selection-list-inner">
+                        <div class="coins-mine-selection-list-inner-top">
+                            <div class="coins-mine-selection-list-inner-top-left">
+                                <div class="coins-mine-selection-list-img"><img src="../../../../../assets/BTC.png" alt=""></div>
+                                <label for="">Bitcoin Holdings</label>
+                            </div>
+                            <div class="coins-mine-selection-list-inner-top-right">
+                                <span>...</span>
+                            </div>
+                        </div>
+                        <div class="coins-mine-selection-list-inner-bottom mt-2">
+                            <div class="coins-mine-selection-list-inner-bottom-left">
+                                <strong>$125678.89</strong>
+                                <label for="">Available Holdings</label>
+                            </div>
+                            <div class="coins-mine-selection-list-inner-bottom-right">
+                                <div class="coins-mine-selection-list-inner-bottom-right-inner"><img src="../../../../../assets/status-icon.png" alt="status-icon" class="chart-user-img status-icon-img"><span>+217.8%</span></div>
+                                <label for="">Last 7 days</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="coins-mine-selection-list">
+                    <div class="coins-mine-selection-list-inner">
+                        <div class="coins-mine-selection-list-inner-top">
+                            <div class="coins-mine-selection-list-inner-top-left">
+                                <div class="coins-mine-selection-list-img"><img src="../../../../../assets/BTC.png" alt=""></div>
+                                <label for="">Bitcoin Holdings</label>
+                            </div>
+                            <div class="coins-mine-selection-list-inner-top-right">
+                                <span>...</span>
+                            </div>
+                        </div>
+                        <div class="coins-mine-selection-list-inner-bottom mt-2">
+                            <div class="coins-mine-selection-list-inner-bottom-left">
+                                <strong>$125678.89</strong>
+                                <label for="">Available Holdings</label>
+                            </div>
+                            <div class="coins-mine-selection-list-inner-bottom-right">
+                                <div class="coins-mine-selection-list-inner-bottom-right-inner"><img src="../../../../../assets/status-icon.png" alt="status-icon" class="chart-user-img status-icon-img"><span>+217.8%</span></div>
+                                <label for="">Last 7 days</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="coins-mine-selection-list">
+                    <div class="coins-mine-selection-list-inner">
+                        <div class="coins-mine-selection-list-inner-top">
+                            <div class="coins-mine-selection-list-inner-top-left">
+                                <div class="coins-mine-selection-list-img"><img src="../../../../../assets/BTC.png" alt=""></div>
+                                <label for="">Bitcoin Holdings</label>
+                            </div>
+                            <div class="coins-mine-selection-list-inner-top-right">
+                                <span>...</span>
+                            </div>
+                        </div>
+                        <div class="coins-mine-selection-list-inner-bottom mt-2">
+                            <div class="coins-mine-selection-list-inner-bottom-left">
+                                <strong>$125678.89</strong>
+                                <label for="">Available Holdings</label>
+                            </div>
+                            <div class="coins-mine-selection-list-inner-bottom-right">
+                                <div class="coins-mine-selection-list-inner-bottom-right-inner"><img src="../../../../../assets/status-icon.png" alt="status-icon" class="chart-user-img status-icon-img"><span>+217.8%</span></div>
+                                <label for="">Last 7 days</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card Top-Performers-card p-3">
+            <div class="card-header">
+                <p>Top Performers</p>
+                <a href="#">More</a>
+            </div>
+            <div class="tabs top-performer-tabs-tables">
+                <button
+                  *ngFor="let tab of tabstopperformer; let i = index"
+                  [class.active]="i === activeTabtopperformer"
+                  (click)="selectTab(i)"
+                >
+                  {{ tab.label }}
+                </button>
+              </div>
+              
+              <div class="tab-content tab-content-top-performer" *ngIf="activeTabtopperformer !== null">
+                <table *ngIf="tabstopperformer[activeTabtopperformer].data">
+                  <thead>
+                    <tr>
+                      <th>Trading pairs</th>
+                      <th>Price</th>
+                      <th>24h Change</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of tabstopperformer[activeTabtopperformer].data">
+                        <td class="trading-pair-val">{{ row.Pairs }} <span>/ {{ row.Second }}</span></td>
+                        <td>{{ row.Price }}</td>
+                        <td [ngClass]="{'positive': isPositive(row.change24h), 'negative': isNegative(row.change24h)}">
+                          <span>{{ row.change24h }}</span>
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+        <div class="earn-more-block">
+          <div class="earn-more-block-inner">
+            <label>Want to earn more?</label>
+            <p>You have $2.33K in crypto assets
+                available to stake and earn.</p>
+            <a href="#">Earn more</a>
+          </div>
+        </div>
+        <div class="navigation-sidebar" style="display:none !important">
+            <div class="navigation-sidebar-inner" routerLink="/app/dashboard">
+                <div class="navigation-sidebar-inner-img"><img src="../../../../../assets/dashboard.png" alt=""></div>
+                <div class="navigation-sidebar-inner-label">Dashboard</div>
+            </div>
+            <div class="navigation-sidebar-inner" routerLink="./marketplace/fundmain">
+                <div class="navigation-sidebar-inner-img"><img src="../../../../../assets/fund-manager.png" alt=""></div>
+                <div class="navigation-sidebar-inner-label">fund manager</div>
+            </div>
+            <!-- <div class="navigation-sidebar-inner">
+                <div class="navigation-sidebar-inner-img"><img src="../../../../../assets/order.png" alt=""></div>
+                <div class="navigation-sidebar-inner-label">order</div>
+            </div> -->
+            <div class="navigation-sidebar-inner" routerLink="./marketplace/main-trading">
+                <div class="navigation-sidebar-inner-img"><img src="../../../../../assets/copy-trade.png" alt=""></div>
+                <div class="navigation-sidebar-inner-label">copy trade</div>
+            </div>
+            <!-- <div class="navigation-sidebar-inner" routerLink="./marketplace/main-signle">
+                <div class="navigation-sidebar-inner-img"><img src="../../../../../assets/signal-provider.png" alt=""></div>
+                <div class="navigation-sidebar-inner-label">signal provider</div>
+            </div> -->
+            <!-- <div class="navigation-sidebar-inner">
+                <div class="navigation-sidebar-inner-img"><img src="../../../../../assets/marketplace.png" alt=""></div>
+                <div class="navigation-sidebar-inner-label">marketplace</div>
+            </div> -->
+        </div>
+        <div class="card-header" style="display:none !important">
+            <p>Top Ratings</p>
+        </div>
+        <div class="Top-Ratings-block-app-oter" style="display:none !important">
+            <div class="grid p-3 Top-Ratings-block-app">
+    
+                <div class="col-12 sm:col-4">
+                    <div class="mini-chart-container">
+                        <div class="mini-chart-header">
+                            <img class="chart-user-img" src="../../../../../assets/mini-user.png"/>
+                            <div class="display-none-desktop">
+                                <p class="chart-bottom-lbl2">$ 398K</p>
+                                <p class="chart-bottom-lbl2" style="color: #00C75B;"><img class="chart-user-img status-icon-img" src="../../../../../assets/status-icon.png" alt="status-icon"/>10.72%</p>
+                            </div>
+                        </div>
+                        <div class="chart-user-container">
+                            <p class="display-none-desktop">SNX Debt Mirror</p>
+                            <p class="chart-username">Chandravardan Raut</p>
+                        </div>
+                        <div class="divChart">
+                        <!-- <canvas id="MyChart" height="100%">{{ chart }}</canvas> -->
+                        <img class="chart-user-img" src="../../../../../assets/chart-app-1.png"/>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-12 sm:col-4">
+                    <div class="mini-chart-container">
+                        <div class="mini-chart-header">
+                            <img class="chart-user-img" src="../../../../../assets/mini-user.png"/>
+                            <div class="display-none-desktop">
+                                <p class="chart-bottom-lbl2">$ 398K</p>
+                                <p class="chart-bottom-lbl2" style="color: #00C75B;">10.72%</p>
+                            </div>
+                        </div>
+                        <div class="chart-user-container">
+                            <p class="display-none-desktop">SNX Debt Mirror</p>
+                            <p class="chart-username">Chandravardan Raut</p>
+                        </div>
+                        <div class="divChart">
+                        <!-- <canvas id="MyChart" height="100%">{{ chart }}</canvas> -->
+                        <img class="chart-user-img" src="../../../../../assets/chart-app-2.png"/>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-12 sm:col-4">
+                    <div class="mini-chart-container">
+                        <div class="mini-chart-header">
+                            <img class="chart-user-img" src="../../../../../assets/mini-user.png"/>
+                            <div class="display-none-desktop">
+                                <p class="chart-bottom-lbl2">$ 398K</p>
+                                <p class="chart-bottom-lbl2" style="color: #00C75B;">10.72%</p>
+                            </div>
+                        </div>
+                        <div class="chart-user-container">
+                            <p class="display-none-desktop">SNX Debt Mirror</p>
+                            <p class="chart-username">Chandravardan Raut</p>
+                        </div>
+                        <div class="divChart">
+                        <!-- <canvas id="MyChart" height="100%">{{ chart }}</canvas> -->
+                        <img class="chart-user-img" src="../../../../../assets/chart-app-1.png"/>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+        <!-- Top Rating End -->
+    
+        <!-- <div class="card">
+            <div class="card-header">
+                <p>Top Performers</p>
+            </div>
+            <app-common-table [cols]="cols" [data]="data"> </app-common-table>
+        </div> -->
+    
+        <!-- Table top performance -->
+    
+        <div class="card Top-Performers-card p-3" style="display:none !important">
+            <div class="card-header">
+                <p>Top Performers</p>
+            </div>
+            <div class="Top-Performers-card-outter">    
+                <div class="Top-Performers-card-inner">
+                    
+                        <p-table [value]="product">
+                            <ng-template pTemplate="header">
+                            <tr class="desktop-view-login">
+                                <th class="top-performer-table-head" pSortableColumn="Score"><span>Score</span>  <p-sortIcon field="Score" style="color: green;"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="Assets"><span>Assets</span> <p-sortIcon field="Assets"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="ManagersName"><span>Managers Name</span><p-sortIcon field="ManagersName"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="Product"><span>Product</span><p-sortIcon field="Product"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="1 D"><span>1 D </span><p-sortIcon field="1 D"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="1 W"><span>1 W</span> <p-sortIcon field="1 W"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="1 M"><span>1 M </span><p-sortIcon field="1 M"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="6 M"><span>6 M</span> <p-sortIcon field="6 M"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="1 Y" ><span>1 Y </span><p-sortIcon field="1 Y"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="Total"><span>Total </span><p-sortIcon field="Total"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="Managed"><span>Managed</span><p-sortIcon field="Managed"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="Risk"><span>Risk </span><p-sortIcon field="Risk"></p-sortIcon></th>
+                                <th class="top-performer-table-head" pSortableColumn="Fee"><span>Fee </span><p-sortIcon field="Fee"></p-sortIcon></th>
+                            </tr>
+                            </ng-template>
+                            
+                                <ng-template class="top-performer-table-tbody" pTemplate="body" let-product>
+                                    <tr class="top-performer-table-body">
+                                        <td class="display-none-desktop">
+                                            <strong>{{ product.Assets }}</strong>
+                                            <strong>{{ product.ManagersName }}</strong>
+                                        </td>
+    
+                                        <td class="padding-td-0px">
+                                            <div class="flex align-items-center">
+                                                <img [src]=product.imageUrl1 class="mr-1 left-absolute">
+                                                <div class="display-none-responsive">{{ product.Assets }}</div>
+                                            </div>
+                                        </td>
+    
+                                        <td class="padding-td-0px">
+                                            <div class="flex align-items-center">
+                                                <img [src]=product.imageUrl class="mr-1 right-absolute">
+                                                <div class="display-none-responsive">{{ product.ManagersName }}</div>
+                                            </div>
+    
+                                        </td>
+                                        
+                                        <td class="eth-managed-style">{{ product.Product }}</td>
+                                        <td id="oneday-id-style" [ngClass]="{'green-chart-text': product.isAscending==true, 'red-chart-text': product.isAscending==false}">{{ product.oneD}}</td>
+                                        
+                                        <td class="display-none-responsive">{{ product.oneW}}</td>
+    
+                                        <td class="display-none-responsive"><i class="pi pi-arrow-up mr-1"></i>{{ product.oneM}}</td>
+                                        <td class="display-none-responsive"><i class="pi pi-arrow-up mr-1"></i>{{ product.sixM}}</td>
+                                        <td class="display-none-responsive"><i class="pi pi-arrow-up mr-1"></i>{{ product.oneY}}</td>
+                                        <td class="for-responsive-view jsb-border-right"><label for="Total">Total</label><div class="jsb-border-right-inner"><span>%</span> {{ product.Total}}</div></td>
+                                        <td class="for-responsive-view jsb-border-right"><label for="Managed">Managed</label><div class="jsb-border-right-inner no-gradient-color">{{ product.Managed}}</div></td>
+    
+                                        <td class="dflex-col"><label>Score</label>{{ product.Score}}</td>
+                                        <td class="display-none-responsive">{{ product.Risk}}</td>
+                                        <td class="display-none-responsive">{{ product.Fee}}</td>
+    
+                                    </tr>
+                                </ng-template>
+                        </p-table>
+                  
+                </div>
+            </div>
+    
+        </div>
+        <!-- Table top performance end -->
+    
+        <!-- <div class="card">
+            <div class="card-header">
+                <p>200+ Assets Supported</p>
+            </div>
+            <div>
+                <p-carousel [value]="swiperData" [numVisible]="8" [numScroll]="1" [circular]="true" [showIndicators]="false">
+                    <ng-template let-product pTemplate="item">
+                        <div class="product-item">
+                            <div class="product-item-content" style="display: flex; align-items: center; flex-direction: column;">
+                                <div class="mb-3 p-3">
+                                    <img src="../../../../../assets/{{product.image}}" [alt]="product.name" class="product-image" />
+                                </div>
+                                <div>
+                                    {{product.name}}                            
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+        </div> -->
+    </div>
+    
+    
+    <div class="desktop-view-login">
+    
+        <div class="card" style="padding-bottom: 0;">
+        
+            <div class="card-header">
+                <p>Top Ratings</p>
+            </div>
+            <div class="grid p-3">
+        
+              <div class="col-12 sm:col-4">
+                <div class="mini-chart-container">
+                    <div class="mini-chart-header">
+                        <p>SNX Debt Mirror
+                            <button class="mini-chart-button">
+                                Open
+                            </button>
+                        </p>
+                    </div>
+                    <div class="chart-user-container">
+                        <p class="chart-username"><img class="chart-user-img" src="../../../../../assets/mini-user.png"/>Chandravardan Raut</p>
+                    </div>
+                    <div id="divChart">
+                      <canvas id="MyChart" height="100%">{{ chart }}</canvas>
+                    </div>
+                    <div class="chart-bottom-conatiner">
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Value Managed</p>
+                            <p class="chart-bottom-lbl2">$ 398K</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">3 Month Return</p>
+                            <p class="chart-bottom-lbl2" style="color: #00C75B;">10.72%</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Risk Factor</p>
+                            <p class="chart-bottom-lbl2" style="color: #D24E4E;">4/5</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Rewards</p>
+                            <p class="chart-bottom-lbl2">20.29%</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        
+              <div class="col-12 sm:col-4">
+                <div class="mini-chart-container">
+                    <div class="mini-chart-header">
+                        <p>SNX Debt Mirror
+                            <button class="mini-chart-button">
+                                Open
+                            </button>
+                        </p>
+                    </div>
+                    <div class="chart-user-container">
+                        <p class="chart-username"><img class="chart-user-img" src="../../../../../assets/mini-user.png"/>Chandravardan Raut</p>
+                    </div>
+                    <div id="divChart">
+                      <canvas id="MyChart2" height="100%">{{ chart2 }}</canvas>
+                    </div>
+                    <div class="chart-bottom-conatiner">
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Value Managed</p>
+                            <p class="chart-bottom-lbl2">$ 398K</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">3 Month Return</p>
+                            <p class="chart-bottom-lbl2" style="color: #00C75B;">10.72%</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Risk Factor</p>
+                            <p class="chart-bottom-lbl2" style="color: #00C75B;">4/5</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Rewards</p>
+                            <p class="chart-bottom-lbl2">20.29%</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        
+              <div class="col-12 sm:col-4">
+                <div class="mini-chart-container">
+                    <div class="mini-chart-header">
+                        <p>SNX Debt Mirror
+                            <button class="mini-chart-button">
+                                Open
+                            </button>
+                        </p>
+                    </div>
+                    <div class="chart-user-container">
+                        <p class="chart-username"><img class="chart-user-img" src="../../../../../assets/mini-user.png"/>Chandravardan Raut</p>
+                    </div>
+                    <div id="divChart">
+                      <canvas id="MyChart3" height="100%">{{ chart3 }}</canvas>
+                    </div>
+                    <div class="chart-bottom-conatiner">
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Value Managed</p>
+                            <p class="chart-bottom-lbl2">$ 398K</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">3 Month Return</p>
+                            <p class="chart-bottom-lbl2" style="color: #00C75B;">10.72%</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Risk Factor</p>
+                            <p class="chart-bottom-lbl2" style="color: #D24E4E">4/5</p>
+                        </div>
+                        <div class="chart-bottom-data-continer">
+                            <p class="chart-bottom-lbl1">Rewards</p>
+                            <p class="chart-bottom-lbl2">20.29%</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+            <!-- Top Rating End -->
+        
+            <!-- <div class="card">
+                <div class="card-header">
+                    <p>Top Performers</p>
+                </div>
+                <app-common-table [cols]="cols" [data]="data"> </app-common-table>
+            </div> -->
+        
+            <!-- Table top performance -->
+        
+            <div class="card Top-Performers-card">
+                <div class="card-header">
+                    <p>Top Performers</p>
+                </div>
+        
+                    <p-table [value]="product">
+                        <ng-template pTemplate="header">
+                          <tr>
+                            <th class="top-performer-table-head" pSortableColumn="Score"><span>Score</span>  <p-sortIcon field="Score" style="color: green;"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="Assets"><span>Assets</span> <p-sortIcon field="Assets"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="ManagersName"><span>Managers Name</span><p-sortIcon field="ManagersName"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="Product"><span>Product</span><p-sortIcon field="Product"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="1 D"><span>1 D </span><p-sortIcon field="1 D"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="1 W"><span>1 W</span> <p-sortIcon field="1 W"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="1 M"><span>1 M </span><p-sortIcon field="1 M"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="6 M"><span>6 M</span> <p-sortIcon field="6 M"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="1 Y" ><span>1 Y </span><p-sortIcon field="1 Y"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="Total"><span>Total </span><p-sortIcon field="Total"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="Managed"><span>Managed</span><p-sortIcon field="Managed"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="Risk"><span>Risk </span><p-sortIcon field="Risk"></p-sortIcon></th>
+                            <th class="top-performer-table-head" pSortableColumn="Fee"><span>Fee </span><p-sortIcon field="Fee"></p-sortIcon></th>
+                          </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product>
+                          <tr class="top-performer-table-body">
+                            <td>{{ product.Score}}</td>
+        
+                            <td>
+                                <div class="flex align-items-center">
+                                    <img [src]=product.imageUrl1 class="mr-1">
+                                    {{ product.Assets }}
+                                </div>
+                            </td>
+        
+                            <td>
+                                <div class="flex align-items-center">
+                                    <img [src]=product.imageUrl class="mr-1">
+                                {{ product.ManagersName }}
+                                </div>
+        
+                            </td>
+        
+                            <td>{{ product.Product }}</td>
+                            <td [ngClass]="{'green-chart-text': product.isAscending==true, 'red-chart-text': product.isAscending==false}"><i *ngIf="product.isAscending==true" class="pi pi-arrow-up mr-1 icon-success-chart"></i>
+                                <i *ngIf="product.isAscending==false" class="pi pi-arrow-down mr-1 icon-error-chart"></i>{{ product.oneD}}</td>
+                            
+                            <td>{{ product.oneW}}</td>
+        
+                            <td ><i class="pi pi-arrow-up mr-1"></i>{{ product.oneM}}</td>
+                            <td><i class="pi pi-arrow-up mr-1"></i>{{ product.sixM}}</td>
+                            <td><i class="pi pi-arrow-up mr-1"></i>{{ product.oneY}}</td>
+                            <td><i class="pi pi-arrow-up mr-1"></i>{{ product.Total}}</td>
+                            <td>{{ product.Managed}}</td>
+                            <td>{{ product.Risk}}</td>
+                            <td>{{ product.Fee}}</td>
+        
+                          </tr>
+                        </ng-template>
+                      </p-table>
+        
+            </div>
+            <!-- Table top performance end -->
+        
+            <div class="card">
+                <div class="card-header">
+                    <p>200+ Assets Supported</p>
+                </div>
+                <div>
+                    <p-carousel [value]="swiperData" [numVisible]="8" [numScroll]="1" [circular]="true" [showIndicators]="false">
+                        <ng-template let-product pTemplate="item">
+                            <div class="product-item">
+                                <div class="product-item-content" style="display: flex; align-items: center; flex-direction: column;">
+                                    <div class="mb-3 p-3">
+                                        <img src="../../../../../assets/{{product.image}}" [alt]="product.name" class="product-image" />
+                                    </div>
+                                    <div>
+                                        {{product.name}}                            
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-carousel>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- The Modal -->
+        <div id="myModal" class="modal" *ngIf="showpopup">
+         
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close" (click)="closeModel()">&times;</span>
+            <div class="grid">
+                <div class="col-12 md:col-2 pr-2 justify-content-center align-item-center">
+                    <img src="../../../assets/succes.svg" width="130%"  style="max-width: 100px;"/>
+                </div>
+                <div class="col-12 md:col-10 justify-content-center align-item-center">
+                    <h3>Sign in Successful</h3>
+                    <p>You have successfully signed into your account.</p>
+                </div>
+              </div>
+          </div>
+        
+        </div>
+        
+    
+    
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal" *ngIf="showpopup">
+     
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" (click)="closeModel()">&times;</span>
+        <div class="grid">
+            <div class="col-12 md:col-2 pr-2 justify-content-center align-item-center">
+                <img src="../../../assets/succes.svg" width="130%"  style="max-width: 100px;"/>
+            </div>
+            <div class="col-12 md:col-10 justify-content-center align-item-center">
+                <h3>Sign in Successful</h3>
+                <p>You have successfully signed into your account.</p>
+            </div>
+          </div>
+      </div>
+    
+    </div>
+    
+    
+    <div class="modal select-coin" *ngIf="isModalOpen">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="wallet-for-app market-for-app card mt-4">
+                <div class="flex flex-column wallet-for-app-inner">
+                  <div>
+                    <!-- btn end -->
+                    <div class="grid">
+              
+                      <div class="Crypto-actives-block" id="resposive-tab-view-style-homepage">
+                        <div class="right-arrow-icon-close-pop-up-outer">
+                        <button (click)="closeModal()" class="right-arrow-icon-close-pop-up">
+                            <img src="../../../../../assets/right-arrow-icon.png" alt="right-arrow-icon">
+                        </button>
+                    </div>
+                        <div class="Crypto-actives-block-lists">
+                          <div class="Crypto-actives-block-list">
+                            <div class="Crypto-actives-block-list-clickable">
+                               <div class="Crypto-actives-block-list-1">
+                                    <div class="Crypto-actives-block-list-left">
+                                      <img src="../../../../../assets/coincurr-1.png" alt="coincurr-1">
+                                    </div>
+                                    <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                                        <label for="">BTC</label>
+                                        <span>Bitcoin</span>
+                                    </div>
+                               </div>
+                             
+                               <div class="Crypto-actives-block-list-3">
+                                    <div class="common-text-style-Crypto-actives-block-list">
+                                      <label for="">0.01912343</label>
+                                      <span class="high-rate-market">$10,234.23</span>
+                                    </div>
+                               </div>
+                            </div>
+                               <div class="Crypto-actives-block-list-4 Crypto-actives-block-list-4-left-select-coin-outer">
+                                <div class="Crypto-actives-block-list-4-left Crypto-actives-block-list-4-left-select-coin"><button class="call-btn">Long</button><button class="put-btn">Short</button></div>
+                                </div>
+                          </div>
+                          <div class="Crypto-actives-block-list">
+                            <div class="Crypto-actives-block-list-clickable">
+                            <div class="Crypto-actives-block-list-1">
+                                 <div class="Crypto-actives-block-list-left">
+                                   <img src="../../../../../assets/coincurr-1.png" alt="coincurr-1">
+                                 </div>
+                                 <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                                     <label for="">LTC</label>
+                                     <span>Litecoin</span>
+                                 </div>
+                            </div>
+                            <div class="Crypto-actives-block-list-3">
+                                 <div class="common-text-style-Crypto-actives-block-list">
+                                   <label for="">0.01912343</label>
+                                   <span class="high-rate-market">$10,234.23</span>
+                                 </div>
+                            </div>
+                        </div>
+                            <div class="Crypto-actives-block-list-4 Crypto-actives-block-list-4-left-select-coin-outer">
+                                <div class="Crypto-actives-block-list-4-left Crypto-actives-block-list-4-left-select-coin"><button class="call-btn">Long</button><button class="put-btn">Short</button></div>
+                            </div>
+                       </div>
+                       <div class="Crypto-actives-block-list">
+                        <div class="Crypto-actives-block-list-clickable">
+                        <div class="Crypto-actives-block-list-1">
+                             <div class="Crypto-actives-block-list-left">
+                               <img src="../../../../../assets/coincurr-2.png" alt="coincurr-1">
+                             </div>
+                             <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                                 <label for="">TRX</label>
+                                 <span>Tron</span>
+                             </div>
+                        </div>
+                        <div class="Crypto-actives-block-list-3">
+                             <div class="common-text-style-Crypto-actives-block-list">
+                               <label for="">0.01912343</label>
+                               <span class="low-rate-market">$10,234.23</span>
+                             </div>
+                        </div>
+                    </div>
+                        <div class="Crypto-actives-block-list-4 Crypto-actives-block-list-4-left-select-coin-outer">
+                            <div class="Crypto-actives-block-list-4-left Crypto-actives-block-list-4-left-select-coin"><button class="call-btn">Long</button><button class="put-btn">Short</button></div>
+                        </div>
+                   </div>
+                   <div class="Crypto-actives-block-list">
+                    <div class="Crypto-actives-block-list-clickable">
+                    <div class="Crypto-actives-block-list-1">
+                         <div class="Crypto-actives-block-list-left">
+                           <img src="../../../../../assets/coincurr-3.png" alt="coincurr-1">
+                         </div>
+                         <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                             <label for="">ETH</label>
+                             <span>Ethereum</span>
+                         </div>
+                    </div>
+                    <div class="Crypto-actives-block-list-3">
+                         <div class="common-text-style-Crypto-actives-block-list">
+                           <label for="">0.01912343</label>
+                           <span class="high-rate-market">$10,234.23</span>
+                         </div>
+                    </div>
+                </div>
+                    <div class="Crypto-actives-block-list-4 Crypto-actives-block-list-4-left-select-coin-outer">
+                        <div class="Crypto-actives-block-list-4-left Crypto-actives-block-list-4-left-select-coin"><button class="call-btn">Long</button><button class="put-btn">Short</button></div>
+                    </div>
+               </div>
+               <div class="Crypto-actives-block-list">
+                <div class="Crypto-actives-block-list-clickable">
+                <div class="Crypto-actives-block-list-1">
+                     <div class="Crypto-actives-block-list-left">
+                       <img src="../../../../../assets/coincurr-4.png" alt="coincurr-1">
+                     </div>
+                     <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                         <label for="">Sol</label>
+                         <span>Solana</span>
+                     </div>
+                </div>
+                <div class="Crypto-actives-block-list-3">
+                     <div class="common-text-style-Crypto-actives-block-list">
+                       <label for="">0.01912343</label>
+                       <span class="low-rate-market">$10,234.23</span>
+                     </div>
+                </div>
+                </div>
+                <div class="Crypto-actives-block-list-4 Crypto-actives-block-list-4-left-select-coin-outer">
+                    <div class="Crypto-actives-block-list-4-left Crypto-actives-block-list-4-left-select-coin"><button class="call-btn">Long</button><button class="put-btn">Short</button></div>
+                </div>
+              </div>
+              <div class="Crypto-actives-block-list">
+                <div class="Crypto-actives-block-list-clickable">
+                <div class="Crypto-actives-block-list-1">
+                     <div class="Crypto-actives-block-list-left">
+                       <img src="../../../../../assets/coincurr-6.png" alt="coincurr-1">
+                     </div>
+                     <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                         <label for="">Tet</label>
+                         <span>Tether</span>
+                     </div>
+                </div>
+    
+                <div class="Crypto-actives-block-list-3">
+                     <div class="common-text-style-Crypto-actives-block-list">
+                       <label for="">0.01912343</label>
+                       <span class="high-rate-market">$10,234.23</span>
+                     </div>
+                </div>
+                </div>
+                <div class="Crypto-actives-block-list-4 Crypto-actives-block-list-4-left-select-coin-outer">
+                    <div class="Crypto-actives-block-list-4-left Crypto-actives-block-list-4-left-select-coin"><button class="call-btn">Long</button><button class="put-btn">Short</button></div>
+                </div>
+              </div>
+                        </div>
+                      </div>
+              
+            
+                    </div>
+                  </div>
+                </div>
+            </div>
+              
+         
+        </div>
+      </div>
+    

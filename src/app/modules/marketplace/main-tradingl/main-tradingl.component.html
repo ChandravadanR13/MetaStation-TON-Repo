@@ -1,0 +1,88 @@
+<div class="card marketplace-card-block">
+    <div class="card-header card-header-copy-trading">
+      <span class="flex align-items-center">
+        <img style="margin: 8px" src="../../../../../assets/copy-trading.svg" />
+        Copy Trading
+      </span>
+      <span>
+          <p-button
+          label="Add New"  [routerLink]="['/app/marketplace/copy-trading']"
+          class="common-bg-color common-button-radius"
+        ></p-button>
+      </span>
+    </div>
+
+    <div class="table-dflex-column common-table-style card Top-Performers-card">
+      <div class="Top-Performers-card-outter">    
+        <div class="Top-Performers-card-inner copy-trading-top-performer-table-tbody">
+    <p-table
+      [value]="summury"
+      [rows]="3"
+      [showFirstLastIcon]="false"
+      [paginator]="true"
+    >
+      <ng-template pTemplate="header">
+        <tr class="desktop-view-login">
+          <th class="signal-provider-table-head">Rank<p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">Account name<p-sortIcon icon="pi pi-fw pi-sort"></p-sortIcon></th>
+          <th class="signal-provider-table-head">Market <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">Broker <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">Assets <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">1D <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">1W <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">1M <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">1Y <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">Total <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">Rewards <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">Risks <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">Subcriber Count <p-sortIcon></p-sortIcon></th>
+          <th class="signal-provider-table-head">Subcriber Fees <p-sortIcon></p-sortIcon></th>
+        </tr>
+      </ng-template>
+      <ng-template class="top-performer-table-tbody" pTemplate="body" let-tableData>
+        <tr class="top-performer-table-body" (click)="onClickAction()">
+          <td class="desktop-view-login">{{ tableData.rank }}</td>
+          <td class="desktop-view-login">{{ tableData.telegramusername }}</td>
+          <td class="desktop-view-login">{{ tableData.market }}</td>
+          <td class="display-none-desktop">
+            <strong>{{ tableData.Assets }}</strong>
+            <strong>{{ tableData.telegramusername }}</strong>
+          </td>
+          <td class="padding-td-0px display-none-desktop">
+            <div class="flex align-items-center">
+                <img style="width: 30px" src="../../../../../assets/bnb.png" class="mr-1 left-absolute">
+                <div class="display-none-responsive">{{ tableData.Assets }}</div>
+            </div>
+        </td>
+          <td class="desktop-view-login">
+            <div>
+              <img style="width: 20px" src="../../../../../assets/bnb.png" />
+            </div>
+          </td>
+          <td class="eth-managed-style display-none-desktop">
+            <!-- {{ tableData.Product }} -->
+              ETH Managed...
+          </td>
+          <td class="desktop-view-login">{{ tableData.Assets }}</td>
+          <td class="display-none-desktop" id="oneday-id-style" [ngClass]="{'green-chart-text': tableData.isAscending==true, 'red-chart-text': tableData.isAscending==false}">{{ tableData.d}}</td>
+          <td class="display-none-responsive">{{ tableData.d }}</td>
+          <td class="display-none-responsive">{{ tableData.w }}</td>
+          <td class="display-none-responsive">{{ tableData.m }}</td>
+          <td class="display-none-responsive">{{ tableData.y }}</td>
+          <td class="for-responsive-view jsb-border-right"><label for="Total">Total</label><div class="jsb-border-right-inner"><span>%</span> {{ tableData.Rewards}}</div></td>
+            <td class="for-responsive-view jsb-border-right"><label for="Managed">Managed</label><div class="jsb-border-right-inner no-gradient-color">{{ tableData.Managed}}</div></td>
+
+            <td class="dflex-col display-none-desktop-new"><label>Rank</label>{{ tableData.rank}}</td>
+          <td class="display-none-responsive">{{ tableData.Rewards }}</td>
+          <td class="display-none-responsive">{{ tableData.Subscribercount }}</td>
+          <td class="display-none-responsive">{{ tableData.Risks }}</td>
+          <td class="display-none-responsive">{{ tableData.Subscribercount }}</td>
+          <td class="display-none-responsive">{{ tableData.Subcriberfess }}</td>
+        </tr>
+      </ng-template>
+      
+    </p-table>
+    </div>
+    </div>
+  </div>
+  </div>

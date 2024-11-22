@@ -1,0 +1,973 @@
+<section class="market-page desktop-view-login">
+    <section class="common-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 content-right-part">
+                    <div class="content-right-part-inner">
+
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+
+                              <div class="market-tab">
+                              <div class="market-tab-inner">
+                              <!-- Main Tabs -->
+                              <div class="tab-content" id="mainTabContent">
+                              <div class="tab-pane fade show active" id="main-content-1" role="tabpanel" aria-labelledby="main-tab-1">
+                              <div class="favorites-gainer">
+                              <div class="row">
+                              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                              <div class="top-gainer">
+                              <h3>Top Gainers</h3>
+                              <div class="table-gainer">
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Pairs</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">24H Change</th>
+                              </tr>
+                              </thead>
+                              <tbody *ngFor="let trade of market_top">
+                              
+
+                              
+
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                      <img [src]="'/assets/images/color/' + trade.coinone?.toLowerCase() + '.svg'" width="30" height="30" class="coinlisticon"
+                        alt="crypto-coin" (error)="onImageError($event)">
+                              </div>
+                              <div class="gain-name">
+                              <span>{{ trade.symbol }}</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>{{ trade.highprice }}</td>
+                              <td><span [class.green-text]="trade.hrchange > 0" [class.red-text]="trade.hrchange < 0">{{ trade.hrchange }}%</span>
+                              </td>
+                              </tr>
+
+
+                              </tbody>
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+
+                              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                              <div class="top-gainer">
+                              <h3>Newly Listed</h3>
+                              <div class="table-gainer">
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Pairs</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">24H Change</th>
+
+
+                              </tr>
+                              </thead>
+                              <tbody *ngFor="let trade of newListings">
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                            <img [src]="'/assets/images/color/' + trade.coinone?.toLowerCase() + '.svg'" width="30" height="30" class="coinlisticon"
+                              alt="crypto-coin" (error)="onImageError($event)">
+                              </div>
+                              <div class="gain-name">
+                              <span>{{ trade.symbol }}</span>
+                              </div>
+                              </div>
+                              </td>
+                                                            <td>{{ trade.highprice }}</td>
+                                                            <td><span [class.green-text]="trade.hrchange > 0" [class.red-text]="trade.hrchange < 0">{{ trade.hrchange }}%</span>
+
+
+                              </tr>
+
+                              </tbody>
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+
+
+                              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                              <div class="top-gainer">
+                              <h3>Trending</h3>
+                              <div class="table-gainer">
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Pairs</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">24H Change</th>
+
+
+                              </tr>
+                              </thead>
+                              <tbody *ngFor="let trade of trendingPairs">
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                        <img [src]="'/assets/images/color/' + trade.coinone?.toLowerCase() + '.svg'" width="30" height="30" class="coinlisticon"
+                          alt="crypto-coin" (error)="onImageError($event)">
+                              </div>
+                              <div class="gain-name">
+                              <span>{{ trade.symbol }}</span>
+                              </div>
+                              </div>
+                              </td>
+                                                                                        <td>{{ trade.highprice }}</td>
+                                                                                        <td><span [class.green-text]="trade.hrchange > 0" [class.red-text]="trade.hrchange < 0">{{ trade.hrchange }}%</span>
+
+
+                              </tr>
+ </tbody>
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+
+
+
+                              </div>
+                              </div>
+                              <!-- Nested Tabs -->
+                              <ul class="nav nav-tabs" id="nestedTab1" role="tablist">
+                              <li class="nav-item" role="presentation">
+                              <button class="nav-link active" id="nested-tab-1-1" data-bs-toggle="tab" data-bs-target="#nested-content-1-1" type="button" role="tab" aria-controls="nested-content-1-1" aria-selected="true">All</button>
+                              </li>
+                              <!-- <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="nested-tab-1-2" data-bs-toggle="tab" data-bs-target="#nested-content-1-2" type="button" role="tab" aria-controls="nested-content-1-2" aria-selected="false">USDT</button>
+                              </li> -->
+                              </ul>
+                              <div class="tab-content" id="nestedTabContent1">
+                              <div class="tab-pane fade show active" id="nested-content-1-1" role="tabpanel" aria-labelledby="nested-tab-1-1">
+
+
+                              <div class="deposit-table">
+                              <div class="coin-table">
+                              <div class="table-data">
+
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Trading Pairs</th>
+                              <th scope="col">Last Price</th>
+                              <th scope="col">24H Change %</th>
+                              <th scope="col">24H High</th>
+                              <th scope="col">24H Low</th>
+                              <th scope="col">24H Trading Volume</th>
+                              <!-- <th scope="col">Charts
+                              </th> -->
+                              <th scope="col">Trade</th>
+                              </tr>
+                              </thead>
+
+                              <tbody *ngFor="let trade of trades">
+                              <tr>
+                              <td>
+                              <div class="coin-name-btc coin-image-size">
+                              <div class="bitcoin">
+                              <!-- <img [src]="'/assets/images/color/' + trade.coinone.toLowerCase() + '.svg'" width="30" height="30" class="coinlisticon"
+                                alt="crypto-coin"> -->
+<img [src]="'/assets/images/color/' + trade.coinone?.toLowerCase() + '.svg'" width="30" height="30" class="coinlisticon"
+  alt="crypto-coin" (error)="onImageError($event)">
+
+                           </div>
+                              
+                              <div class="bitcoin-name">
+                              <label><span>{{ trade.symbol }}</span></label>
+                              </div>
+                              <!-- <div class="fee">
+                              <span>10X</span>
+                              </div> -->
+                              </div>
+                              </td>
+                              <td> {{ trade.closeprice}} </td>
+        <td><span [class.green-text]="trade.hrchange > 0" [class.red-text]="trade.hrchange < 0">{{ trade.hrchange }}%</span></td>
+
+                              <td>{{ trade.highprice }}</td>
+                              <td>{{ trade.lowprice }}</td>
+                              <td>{{ trade.hrvolume }}(USDT)</td>
+                              <!-- <td>
+                                <div *ngIf="trade.hrchange < 0" class="red-chart">
+                                  <img src="../../../../../assets/red-chart.svg" alt="Red Chart">
+                                </div>
+                              
+                                <div *ngIf="trade.hrchange >= 0" class="green-chart">
+                                  <img src="../../../../../assets/green-chart.svg" alt="Green Chart">
+                                </div>
+                              </td> -->
+
+                              <td>
+                              <div class="details-button">
+                              <!-- <a href="">Details</a> -->
+<a [routerLink]="['/app/panel', trade.coinone + trade.cointwo]">Trade</a>
+</div>
+                              </td>
+                              </tr>
+                             
+                                
+
+                                                  
+                                                         
+                              </tbody>
+
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+
+
+                              </div>
+                              <div class="tab-pane fade" id="nested-content-1-2" role="tabpanel" aria-labelledby="nested-tab-1-2">
+                              <div class="deposit-table">
+                              <div class="coin-table">
+                              <div class="table-data">
+
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Trading Pairs</th>
+                              <th scope="col">Last Traded Price</th>
+                              <th scope="col">24H Change %</th>
+                              <th scope="col">24H High</th>
+                              <th scope="col">24H Low</th>
+                              <th scope="col">24H Trading Volume</th>
+                              <th scope="col">Charts
+                              </th>
+                              <th scope="col">Trade</th>
+                              </tr>
+                              </thead>
+
+                              <tbody>
+                              <tr>
+                              <td>
+                              <div class="coin-name-btc coin-image-size">
+                              <div class="bitcoin">
+                              <img
+                              src="../../../../../assets/bitcoin-1.svg">
+                              </div>
+                              <div class="bitcoin-name">
+                              <label>BTC<span>/USDT</span></label>
+                              </div>
+                              <div class="fee">
+                              <span>10X</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>57,814.28</td>
+                              <td><span
+                              class="green-text">+1.23%</span>
+                              <td>56,627.93</td>
+                              <td>56,627.93</td>
+                              <td>1.07B(USDT)</td>
+                              <td>
+                              <div class="green-chart">
+                              <img src="../../../../../assets/red-chart.svg">
+                              </div>
+                              </td>
+                              <td>
+                              <div class="details-button">
+                              <a href="">Details</a>
+                              <a href="trade.php">Trade</a>
+                              </div>
+                              </td>
+                              </tr>
+
+                              <tr>
+                              <td>
+                              <div class="coin-name-btc coin-image-size">
+                              <div class="bitcoin">
+                              <img
+                              src="../../../../../assets/bitcoin-2.svg">
+                              </div>
+                              <div class="bitcoin-name">
+                              <label>ETH<span>/USDC</span></label>
+                              </div>
+                              <div class="fee">
+                              <span>10X</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>57,814.28</td>
+                              <td><span
+                              class="green-text">+1.23%</span>
+                              <td>56,627.93</td>
+                              <td>56,627.93</td>
+                              <td>1.07B(USDT)</td>
+                              <td>
+                              <div class="green-chart">
+                              <img
+                              src="../../../../../assets/green-chart.svg">
+                              </div>
+                              </td>
+                              <td>
+                              <div class="details-button">
+                              <a href="">Details</a>
+                              <a href="trade.php">Trade</a>
+                              </div>
+                              </td>
+                              </tr>
+                              </tbody>
+
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+
+                              </div>
+                              </div>
+                              </div>
+                              <div class="tab-pane fade" id="main-content-2" role="tabpanel" aria-labelledby="main-tab-2">
+                              <div class="favorites-gainer">
+                              <div class="row">
+                              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                              <div class="top-gainer">
+                              <h3>Top Gainers</h3>
+                              <div class="table-gainer">
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Pairs</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">24H Change</th>
+
+
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-1.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>TAI/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>29.5509</td>
+                              <td><span
+                              class="green-text">61.24%</span>
+                              </td>
+
+                              </tr>
+
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-2.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>ELT/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>29.5509</td>
+                              <td><span
+                              class="green-text">74.62%</span>
+                              </td>
+
+                              </tr>
+
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-3.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>EXVG/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+
+                              <td>29.5509</td>
+                              <td><span
+                              class="green-text">463.6%</span>
+                              </td>
+
+                              </tr>
+
+
+                              </tbody>
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+
+                              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                              <div class="top-gainer">
+                              <h3>Newly Listed</h3>
+                              <div class="table-gainer">
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Pairs</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">24H Change</th>
+
+
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-1.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>TAI/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>29.5509</td>
+                              <td><span
+                              class="green-text">61.24%</span>
+                              </td>
+
+                              </tr>
+
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-1.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>TAI/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>29.5509</td>
+                              <td><span
+                              class="green-text">74.62%</span>
+                              </td>
+
+                              </tr>
+
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-1.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>TAI/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+
+
+                              <td>29.5509</td>
+                              <td><span
+                              class="red-text">-12.83%</span>
+                              </td>
+
+                              </tr>
+
+
+                              </tbody>
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+
+
+                              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                              <div class="top-gainer">
+                              <h3>Trending</h3>
+                              <div class="table-gainer">
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Pairs</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">24H Change</th>
+
+
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-1.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>TAI/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>29.5509</td>
+                              <td><span
+                              class="green-text">61.24%</span>
+                              </td>
+
+                              </tr>
+
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-1.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>TAI/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>29.5509</td>
+                              <td><span
+                              class="green-text">74.62%</span>
+                              </td>
+
+                              </tr>
+
+                              <tr>
+                              <td>
+                              <div class="gain-logo">
+                              <div class="logo-icon coin-image-size">
+                              <img src="../../../../../assets/gain-logo-1.svg">
+                              </div>
+                              <div class="gain-name">
+                              <span>TAI/USDT</span>
+                              </div>
+                              </div>
+                              </td>
+
+
+                              <td>29.5509</td>
+                              <td><span
+                              class="green-text">463.6%</span>
+                              </td>
+
+                              </tr>
+
+
+                              </tbody>
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+
+
+
+                              </div>
+                              </div>
+                              <!-- Nested Tabs -->
+                              <ul class="nav nav-tabs" id="nestedTab2" role="tablist">
+                              <li class="nav-item" role="presentation">
+                              <button class="nav-link active" id="nested-tab-2-1" data-bs-toggle="tab" data-bs-target="#nested-content-2-1" type="button" role="tab" aria-controls="nested-content-2-1" aria-selected="true">EUR</button>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="nested-tab-2-2" data-bs-toggle="tab" data-bs-target="#nested-content-2-2" type="button" role="tab" aria-controls="nested-content-2-2" aria-selected="false">USDC</button>
+                              </li>
+                              </ul>
+                              <div class="tab-content" id="nestedTabContent2">
+                              <div class="tab-pane fade show active" id="nested-content-2-1" role="tabpanel" aria-labelledby="nested-tab-2-1">
+                              <div class="deposit-table">
+                              <div class="coin-table">
+                              <div class="table-data">
+
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Trading Pairs</th>
+                              <th scope="col">Last Traded Price</th>
+                              <th scope="col">24H Change %</th>
+                              <th scope="col">24H High</th>
+                              <th scope="col">24H Low</th>
+                              <th scope="col">24H Trading Volume</th>
+                              <th scope="col">Charts
+                              </th>
+                              <th scope="col">Trade</th>
+                              </tr>
+                              </thead>
+
+                              <tbody>
+                              <tr>
+                              <td>
+                              <div class="coin-name-btc coin-image-size">
+                              <div class="bitcoin">
+                              <img
+                              src="../../../../../assets/bitcoin-1.svg">
+                              </div>
+                              <div class="bitcoin-name">
+                              <label>BTC<span>/USDT</span></label>
+                              </div>
+                              <div class="fee">
+                              <span>10X</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>57,814.28</td>
+                              <td><span
+                              class="green-text">+1.23%</span>
+                              <td>56,627.93</td>
+                              <td>56,627.93</td>
+                              <td>1.07B(USDT)</td>
+                              <td>
+                              <div class="green-chart">
+                              <img src="../../../../../assets/red-chart.svg">
+                              </div>
+                              </td>
+                              <td>
+                              <div class="details-button">
+                              <a href="">Details</a>
+                              <a href="trade.php">Trade</a>
+                              </div>
+                              </td>
+                              </tr>
+
+                              <tr>
+                              <td>
+                              <div class="coin-name-btc coin-image-size">
+                              <div class="bitcoin">
+                              <img
+                              src="../../../../../assets/bitcoin-2.svg">
+                              </div>
+                              <div class="bitcoin-name">
+                              <label>ETH<span>/USDC</span></label>
+                              </div>
+                              <div class="fee">
+                              <span>10X</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>57,814.28</td>
+                              <td><span
+                              class="green-text">+1.23%</span>
+                              <td>56,627.93</td>
+                              <td>56,627.93</td>
+                              <td>1.07B(USDT)</td>
+                              <td>
+                              <div class="green-chart">
+                              <img
+                              src="../../../../../assets/green-chart.svg">
+                              </div>
+                              </td>
+                              <td>
+                              <div class="details-button">
+                              <a href="">Details</a>
+                              <a href="trade.php">Trade</a>
+                              </div>
+                              </td>
+                              </tr>
+                              </tbody>
+
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              <div class="tab-pane fade" id="nested-content-2-2" role="tabpanel" aria-labelledby="nested-tab-2-2">
+                              <div class="deposit-table">
+                              <div class="coin-table">
+                              <div class="table-data">
+
+                              <table class="table table-borderless">
+                              <thead>
+                              <tr>
+                              <th scope="col">Trading Pairs</th>
+                              <th scope="col">Last Traded Price</th>
+                              <th scope="col">24H Change %</th>
+                              <th scope="col">24H High</th>
+                              <th scope="col">24H Low</th>
+                              <th scope="col">24H Trading Volume</th>
+                              <th scope="col">Charts
+                              </th>
+                              <th scope="col">Trade</th>
+                              </tr>
+                              </thead>
+
+                              <tbody>
+                              <tr>
+                              <td>
+                              <div class="coin-name-btc coin-image-size">
+                              <div class="bitcoin">
+                              <img
+                              src="../../../../../assets/bitcoin-1.svg">
+                              </div>
+                              <div class="bitcoin-name">
+                              <label>BTC<span>/USDT</span></label>
+                              </div>
+                              <div class="fee">
+                              <span>10X</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>57,814.28</td>
+                              <td><span
+                              class="green-text">+1.23%</span>
+                              <td>56,627.93</td>
+                              <td>56,627.93</td>
+                              <td>1.07B(USDT)</td>
+                              <td>
+                              <div class="green-chart">
+                              <img src="../../../../../assets/red-chart.svg">
+                              </div>
+                              </td>
+                              <td>
+                              <div class="details-button">
+                              <a href="">Details</a>
+                              <a href="trade.php">Trade</a>
+                              </div>
+                              </td>
+                              </tr>
+                              <tr>
+                              <td>
+                              <div class="coin-name-btc coin-image-size">
+                              <div class="bitcoin">
+                              <img
+                              src="../../../../../assets/bitcoin-2.svg">
+                              </div>
+                              <div class="bitcoin-name">
+                              <label>ETH<span>/USDC</span></label>
+                              </div>
+                              <div class="fee">
+                              <span>10X</span>
+                              </div>
+                              </div>
+                              </td>
+                              <td>57,814.28</td>
+                              <td><span
+                              class="green-text">+1.23%</span>
+                              <td>56,627.93</td>
+                              <td>56,627.93</td>
+                              <td>1.07B(USDT)</td>
+                              <td>
+                              <div class="green-chart">
+                              <img
+                              src="../../../../../assets/green-chart.svg">
+                              </div>
+                              </td>
+                              <td>
+                              <div class="details-button">
+                              <a href="">Details</a>
+                              <a href="trade.php">Trade</a>
+                              </div>
+                              </td>
+                              </tr>
+                              </tbody>
+
+                              </table>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+
+                              </div>
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>
+
+
+<div class="wallet-for-app market-for-app card mt-4 display-none-desktop">
+    <div class="flex flex-column wallet-for-app-inner">
+      <div>
+        <!-- btn end -->
+        <div class="grid mt-3">
+  
+            <div class="Crypto-actives-block-inner px-5">
+                    <label>Market</label>
+            </div>
+          <div class="Crypto-actives-block" id="resposive-tab-view-style-homepage">
+           
+            <div class="Crypto-actives-block-lists">
+              <div class="Crypto-actives-block-list">
+                <div class="Crypto-actives-block-list-clickable" (click)="toggleSection(0)">
+                   <div class="Crypto-actives-block-list-1">
+                        <div class="Crypto-actives-block-list-left">
+                          <img src="../../../../../assets//coincurr-1.png" alt="coincurr-1">
+                        </div>
+                        <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                            <label for="">BTC</label>
+                            <span>Bitcoin</span>
+                        </div>
+                   </div>
+                   <div class="Crypto-actives-block-list-2">
+                       <img src="../../../../../assets//high-rate-market.png" alt="high-rate-market">
+                   </div>
+                   <div class="Crypto-actives-block-list-3">
+                        <div class="common-text-style-Crypto-actives-block-list">
+                          <label for="">0.01912343</label>
+                          <span class="high-rate-market">$10,234.23</span>
+                        </div>
+                   </div>
+                </div>
+                   <div class="Crypto-actives-block-list-4" [ngClass]="{'open': openedIndex === 0}">
+                    <div class="Crypto-actives-block-list-4-left"><button class="call-btn">Call</button><button class="put-btn">Put</button></div>
+                    <div class="Crypto-actives-block-list-4-right"><img src="../../../../../assets//favourite-btn.png" alt="favourite-btn"></div>
+                    </div>
+              </div>
+              <div class="Crypto-actives-block-list">
+                <div class="Crypto-actives-block-list-clickable" (click)="toggleSection(1)">
+                <div class="Crypto-actives-block-list-1">
+                     <div class="Crypto-actives-block-list-left">
+                       <img src="../../../../../assets//coincurr-1.png" alt="coincurr-1">
+                     </div>
+                     <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                         <label for="">LTC</label>
+                         <span>Litecoin</span>
+                     </div>
+                </div>
+  
+                <div class="Crypto-actives-block-list-2">
+                    <img src="../../../../../assets//high-rate-market.png" alt="high-rate-market">
+                </div>
+                <div class="Crypto-actives-block-list-3">
+                     <div class="common-text-style-Crypto-actives-block-list">
+                       <label for="">0.01912343</label>
+                       <span class="high-rate-market">$10,234.23</span>
+                     </div>
+                </div>
+            </div>
+                <div class="Crypto-actives-block-list-4" [ngClass]="{'open': openedIndex === 1}">
+                    <div class="Crypto-actives-block-list-4-left"><button class="call-btn">Call</button><button class="put-btn">Put</button></div>
+                    <div class="Crypto-actives-block-list-4-right"><img src="../../../../../assets//favourite-btn.png" alt="favourite-btn"></div>
+                </div>
+           </div>
+           <div class="Crypto-actives-block-list">
+            <div class="Crypto-actives-block-list-clickable" (click)="toggleSection(2)">
+            <div class="Crypto-actives-block-list-1">
+                 <div class="Crypto-actives-block-list-left">
+                   <img src="../../../../../assets//coincurr-2.png" alt="coincurr-1">
+                 </div>
+                 <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                     <label for="">TRX</label>
+                     <span>Tron</span>
+                 </div>
+            </div>
+            <div class="Crypto-actives-block-list-2">
+                <img src="../../../../../assets//low-rate-market.png" alt="high-rate-market">
+            </div>
+            <div class="Crypto-actives-block-list-3">
+                 <div class="common-text-style-Crypto-actives-block-list">
+                   <label for="">0.01912343</label>
+                   <span class="low-rate-market">$10,234.23</span>
+                 </div>
+            </div>
+        </div>
+            <div class="Crypto-actives-block-list-4" [ngClass]="{'open': openedIndex === 2}">
+                <div class="Crypto-actives-block-list-4-left"><button class="call-btn">Call</button><button class="put-btn">Put</button></div>
+                <div class="Crypto-actives-block-list-4-right"><img src="../../../../../assets//favourite-btn.png" alt="favourite-btn"></div>
+            </div>
+       </div>
+       <div class="Crypto-actives-block-list">
+        <div class="Crypto-actives-block-list-clickable" (click)="toggleSection(3)">
+        <div class="Crypto-actives-block-list-1">
+             <div class="Crypto-actives-block-list-left">
+               <img src="../../../../../assets//coincurr-3.png" alt="coincurr-1">
+             </div>
+             <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+                 <label for="">ETH</label>
+                 <span>Ethereum</span>
+             </div>
+        </div>
+        <div class="Crypto-actives-block-list-2">
+            <img src="../../../../../assets//high-rate-market.png" alt="high-rate-market">
+        </div>
+        <div class="Crypto-actives-block-list-3">
+             <div class="common-text-style-Crypto-actives-block-list">
+               <label for="">0.01912343</label>
+               <span class="high-rate-market">$10,234.23</span>
+             </div>
+        </div>
+    </div>
+        <div class="Crypto-actives-block-list-4" [ngClass]="{'open': openedIndex === 3}">
+            <div class="Crypto-actives-block-list-4-left"><button class="call-btn">Call</button><button class="put-btn">Put</button></div>
+            <div class="Crypto-actives-block-list-4-right"><img src="../../../../../assets//favourite-btn.png" alt="favourite-btn"></div>
+        </div>
+   </div>
+   <div class="Crypto-actives-block-list">
+    <div class="Crypto-actives-block-list-clickable" (click)="toggleSection(4)">
+    <div class="Crypto-actives-block-list-1">
+         <div class="Crypto-actives-block-list-left">
+           <img src="../../../../../assets//coincurr-4.png" alt="coincurr-1">
+         </div>
+         <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+             <label for="">Sol</label>
+             <span>Solana</span>
+         </div>
+    </div>
+    <div class="Crypto-actives-block-list-2">
+        <img src="../../../../../assets//low-rate-market.png" alt="high-rate-market">
+    </div>
+    <div class="Crypto-actives-block-list-3">
+         <div class="common-text-style-Crypto-actives-block-list">
+           <label for="">0.01912343</label>
+           <span class="low-rate-market">$10,234.23</span>
+         </div>
+    </div>
+    </div>
+    <div class="Crypto-actives-block-list-4" [ngClass]="{'open': openedIndex === 4}">
+        <div class="Crypto-actives-block-list-4-left"><button class="call-btn">Call</button><button class="put-btn">Put</button></div>
+        <div class="Crypto-actives-block-list-4-right"><img src="../../../../../assets//favourite-btn.png" alt="favourite-btn"></div>
+    </div>
+  </div>
+  <div class="Crypto-actives-block-list">
+    <div class="Crypto-actives-block-list-clickable" (click)="toggleSection(5)">
+    <div class="Crypto-actives-block-list-1">
+         <div class="Crypto-actives-block-list-left">
+           <img src="../../../../../assets//coincurr-6.png" alt="coincurr-1">
+         </div>
+         <div class="Crypto-actives-block-list-right common-text-style-Crypto-actives-block-list">
+             <label for="">Tet</label>
+             <span>Tether</span>
+         </div>
+    </div>
+    <div class="Crypto-actives-block-list-2">
+        <img src="../../../../../assets//high-rate-market.png" alt="high-rate-market">
+    </div>
+    <div class="Crypto-actives-block-list-3">
+         <div class="common-text-style-Crypto-actives-block-list">
+           <label for="">0.01912343</label>
+           <span class="high-rate-market">$10,234.23</span>
+         </div>
+    </div>
+    </div>
+    <div class="Crypto-actives-block-list-4" [ngClass]="{'open': openedIndex === 5}">
+        <div class="Crypto-actives-block-list-4-left"><button class="call-btn">Call</button><button class="put-btn">Put</button></div>
+        <div class="Crypto-actives-block-list-4-right"><img src="../../../../../assets//favourite-btn.png" alt="favourite-btn"></div>
+    </div>
+  </div>
+            </div>
+          </div>
+  
+
+        </div>
+      </div>
+    </div>
+</div>
+  

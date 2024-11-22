@@ -1,0 +1,407 @@
+<div>
+  <div class="card">
+    <div class="card-header">
+      <p>
+        <img
+          class="card-header-icon"
+          src="../../../../../assets/Dashboard Icon.svg"
+        />
+        Dashboard
+      </p>
+    </div>
+   
+
+    <div class="outerdiv resposive-tab-view-style">
+      <p-tabView >
+        <p-tabPanel [closable]="false">
+          <ng-template pTemplate="header">
+            <div class="navigation-sidebar-inner-img">
+            <!-- <img src="../../../../../assets/summary.svg" alt="Summary"> -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32">
+              <path d="M0 0 C2.82603506 2.89668593 2.86287244 3.46199853 2.875 7.3125 C2.7788797 8.73141872 2.66301505 10.14970294 2.5 11.5625 C1.84 11.5625 1.18 11.5625 0.5 11.5625 C0.17 9.2525 -0.16 6.9425 -0.5 4.5625 C-1.03625 4.8925 -1.5725 5.2225 -2.125 5.5625 C-5.07217367 6.80341523 -7.32934784 6.76928166 -10.5 6.5625 C-11.16 6.2325 -11.82 5.9025 -12.5 5.5625 C-12.5 4.9025 -12.5 4.2425 -12.5 3.5625 C-13.49 3.5625 -14.48 3.5625 -15.5 3.5625 C-15.17 9.5025 -14.84 15.4425 -14.5 21.5625 C-11.53 21.8925 -8.56 22.2225 -5.5 22.5625 C-5.5 23.2225 -5.5 23.8825 -5.5 24.5625 C-7.47909398 24.58936553 -9.45828971 24.60883375 -11.4375 24.625 C-12.53964844 24.63660156 -13.64179688 24.64820312 -14.77734375 24.66015625 C-17.5 24.5625 -17.5 24.5625 -18.5 23.5625 C-18.75098924 20.09041193 -18.68522096 16.6050938 -18.6875 13.125 C-18.69974609 12.14466797 -18.71199219 11.16433594 -18.72460938 10.15429688 C-18.72750977 8.74954102 -18.72750977 8.74954102 -18.73046875 7.31640625 C-18.73457764 6.45345947 -18.73868652 5.5905127 -18.74291992 4.70141602 C-18.5 2.5625 -18.5 2.5625 -16.5 0.5625 C-10.9064743 -2.39877831 -5.70123206 -2.34157745 0 0 Z M-9.5 0.5625 C-9.5 1.5525 -9.5 2.5425 -9.5 3.5625 C-8.18 3.5625 -6.86 3.5625 -5.5 3.5625 C-5.83 2.5725 -6.16 1.5825 -6.5 0.5625 C-7.49 0.5625 -8.48 0.5625 -9.5 0.5625 Z " fill="#41DBC2" transform="translate(22.5,4.4375)"/>
+              <path d="M0 0 C1.9375 1.6875 1.9375 1.6875 3 4 C2.92897215 7.4803645 2.61415498 9.29485909 0.3125 11.9375 C-2.89943934 13.41325591 -4.66474802 13.06444212 -8 12 C-9.9375 10.3125 -9.9375 10.3125 -11 8 C-10.92897215 4.5196355 -10.61415498 2.70514091 -8.3125 0.0625 C-5.10056066 -1.41325591 -3.33525198 -1.06444212 0 0 Z M-3 2 C-3 2.99 -3 3.98 -3 5 C-2.34 5 -1.68 5 -1 5 C-1.33 4.01 -1.66 3.02 -2 2 C-2.33 2 -2.66 2 -3 2 Z M-7 3 C-7.69159401 4.84725052 -7.69159401 4.84725052 -8 7 C-7.01 8.485 -7.01 8.485 -6 10 C-3.52733235 9.65555119 -3.52733235 9.65555119 -1 9 C-0.67 8.34 -0.34 7.68 0 7 C-1.65 7 -3.3 7 -5 7 C-5 5.68 -5 4.36 -5 3 C-5.66 3 -6.32 3 -7 3 Z " fill="#A6EF9A" transform="translate(28,18)"/>
+              <path d="M0 0 C0.66 0.33 1.32 0.66 2 1 C2 7.6 2 14.2 2 21 C4.97 21.33 7.94 21.66 11 22 C11 22.66 11 23.32 11 24 C9.02090602 24.02686553 7.04171029 24.04633375 5.0625 24.0625 C3.96035156 24.07410156 2.85820312 24.08570312 1.72265625 24.09765625 C-1 24 -1 24 -2 23 C-2.25098924 19.52791193 -2.18522096 16.0425938 -2.1875 12.5625 C-2.19974609 11.58216797 -2.21199219 10.60183594 -2.22460938 9.59179688 C-2.22750977 8.18704102 -2.22750977 8.18704102 -2.23046875 6.75390625 C-2.23457764 5.89095947 -2.23868652 5.0280127 -2.24291992 4.13891602 C-2 2 -2 2 0 0 Z " fill="#3CDAC4" transform="translate(6,5)"/>
+              <path d="M0 0 C-0.375 1.9375 -0.375 1.9375 -1 4 C-1.99 4.495 -1.99 4.495 -3 5 C-2.47731534 7.76276177 -1.89130413 10.3260876 -1 13 C-2.875 12.6875 -2.875 12.6875 -5 12 C-7 9 -7 9 -6.875 6 C-6 3 -6 3 -4.0625 1.125 C-2 0 -2 0 0 0 Z " fill="#76E6AC" transform="translate(24,17)"/>
+              <path d="M0 0 C3.875 0.875 3.875 0.875 5 2 C5.07179964 3.51928038 5.08392007 5.04167482 5.0625 6.5625 C5.05347656 7.38878906 5.04445313 8.21507812 5.03515625 9.06640625 C5.01775391 10.02353516 5.01775391 10.02353516 5 11 C4.34 11 3.68 11 3 11 C2.87625 9.865625 2.7525 8.73125 2.625 7.5625 C2.41875 6.386875 2.2125 5.21125 2 4 C1.34 3.67 0.68 3.34 0 3 C0 2.01 0 1.02 0 0 Z " fill="#85E9A7" transform="translate(20,5)"/>
+              <path d="M0 0 C2.475 0.495 2.475 0.495 5 1 C5.125 3.375 5.125 3.375 5 6 C4.34 6.66 3.68 7.32 3 8 C2.01 7.67 1.02 7.34 0 7 C0.2784375 6.1028125 0.2784375 6.1028125 0.5625 5.1875 C1.22093687 2.83591238 1.22093687 2.83591238 0 0 Z " fill="#5EE1B6" transform="translate(15,3)"/>
+              <path d="M0 0 C3.3 0.33 6.6 0.66 10 1 C10 1.66 10 2.32 10 3 C6.04 3 2.08 3 -2 3 C-1.34 2.01 -0.68 1.02 0 0 Z " fill="#5CE1B7" transform="translate(7,26)"/>
+              <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C2.34 2.65 1.68 4.3 1 6 C1.66 6 2.32 6 3 6 C3 6.66 3 7.32 3 8 C1.68 8 0.36 8 -1 8 C-1.125 2.25 -1.125 2.25 0 0 Z " fill="#93ECA1" transform="translate(24,17)"/>
+              <path d="M0 0 C2.31 0 4.62 0 7 0 C7 0.99 7 1.98 7 3 C4.36 3 1.72 3 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#49DDBF" transform="translate(10,13)"/>
+              <path d="M0 0 C0.33 1.32 0.66 2.64 1 4 C-0.98 4.33 -2.96 4.66 -5 5 C-4 2 -4 2 -1.9375 0.8125 C-1.298125 0.544375 -0.65875 0.27625 0 0 Z " fill="#98EB9F" transform="translate(27,26)"/>
+              <path d="M0 0 C2.31 0 4.62 0 7 0 C7 0.66 7 1.32 7 2 C4.69 2 2.38 2 0 2 C0 1.34 0 0.68 0 0 Z " fill="#48DDBF" transform="translate(9,19)"/>
+              </svg>
+            </div>
+            <span class="tab-tile-text">Summary</span>
+          </ng-template>
+          <p-table id="resposive-tab-view-style-summary" [value]="summury" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+              <tr class="desktop-view-login">
+                <th>Account name</th>
+                <th >Balance <p-sortIcon></p-sortIcon></th>
+                <!-- <th pSortableColumn="Balance">Balance <p-sortIcon field="Balance"></p-sortIcon></th> -->
+                <th>Market <p-sortIcon></p-sortIcon></th>
+                <th>Broker <p-sortIcon></p-sortIcon></th>
+                <th>Assets <p-sortIcon></p-sortIcon></th>
+                <th>Network <p-sortIcon></p-sortIcon></th>
+                <th>Subscriber count <p-sortIcon></p-sortIcon></th>
+                <th>Rank <p-sortIcon></p-sortIcon></th>
+                <th>Account Created Date <p-sortIcon></p-sortIcon></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-tableData>
+              <tr [routerLink]="['./summaryclick']">
+                <td class="display-flex-dir-row-responsive display-none-desktop">
+                    <div>
+                      <img style="width:20px" src="../../../../../assets/bnb.png" />
+                      <img style="width:20px; margin-left: 4px" src="../../../../../assets/bnb.png" />
+                    </div>
+                     <span class="market-color">{{ tableData.market }}</span>
+                </td>
+                <td class="text-center display-flex-dir-col-responsive">{{ tableData.telegramusername }} <label class="display-none-desktop text-gradient-color" for="">Rank {{ tableData.rank }}</label></td>
+                <td class="text-center for-responsive-view"><label for="Balance">Balance</label>{{ tableData.balance }}</td>
+                <td class="text-center desktop-view-login">{{ tableData.market }}</td>
+
+                <td class="text-center desktop-view-login">
+                  <div>
+                    <img style="width:20px" src="../../../../../assets/bnb.png" />
+                    <img style="width:20px; margin-left: 4px" src="../../../../../assets/bnb.png" />
+                  </div>
+                </td>
+                <td class="text-center for-responsive-view"><label for="Assets">Assets</label>{{ tableData.Assets }}</td>
+                <td class="text-center for-responsive-view"><label for="Network">Network</label>{{ tableData.Network }}</td>
+                <td class="text-center for-responsive-view"><label for="Subscriber">Subscriber</label>{{ tableData.Subscribercount }}</td>
+                <td class="text-center desktop-view-login">{{ tableData.rank }}</td>
+                <td class="text-center for-responsive-view"><label for="CreatedDate">Created Date</label>{{ tableData.accountCreatedDate }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-tabPanel>
+
+        <p-tabPanel [closable]="false">
+          <ng-template pTemplate="header">
+            <div class="navigation-sidebar-inner-img">
+            <!-- <img src="../../../../../assets/portfolio.svg" alt="Portfolio"> -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32">
+              <path d="M0 0 C1.98 0 3.96 0 6 0 C6.66 1.32 7.32 2.64 8 4 C8.71027344 3.98839844 9.42054687 3.97679687 10.15234375 3.96484375 C11.07144531 3.95582031 11.99054687 3.94679688 12.9375 3.9375 C13.85402344 3.92589844 14.77054688 3.91429687 15.71484375 3.90234375 C18 4 18 4 19 5 C19.51747949 12.25993279 18.96088506 19.79929341 18 27 C16.16965945 28.83034055 13.26788008 28.13042797 10.8125 28.1328125 C9.55695312 28.13410156 8.30140625 28.13539062 7.0078125 28.13671875 C6.35071289 28.13462402 5.69361328 28.1325293 5.01660156 28.13037109 C3.00838665 28.12502234 1.00039541 28.13031691 -1.0078125 28.13671875 C-2.26335938 28.13542969 -3.51890625 28.13414063 -4.8125 28.1328125 C-5.97394531 28.13168457 -7.13539063 28.13055664 -8.33203125 28.12939453 C-11 28 -11 28 -12 27 C-12.96088506 19.79929341 -13.51747949 12.25993279 -13 5 C-12 4 -12 4 -9.71484375 3.90234375 C-8.34005859 3.91974609 -8.34005859 3.91974609 -6.9375 3.9375 C-6.01839844 3.94652344 -5.09929688 3.95554687 -4.15234375 3.96484375 C-3.44207031 3.97644531 -2.73179688 3.98804688 -2 4 C-1.34 2.68 -0.68 1.36 0 0 Z M-9 8 C-9 9.65 -9 11.3 -9 13 C-3.9923004 15.5038498 -1.58965017 16.24214448 4 15 C4.639375 15.20625 5.27875 15.4125 5.9375 15.625 C9.37910926 16.25074714 11.90669178 14.48716741 15 13 C15 11.35 15 9.7 15 8 C7.08 8 -0.84 8 -9 8 Z M-8 18 C-8 19.98 -8 21.96 -8 24 C-0.74 24 6.52 24 14 24 C14 22.02 14 20.04 14 18 C13.39671875 18.144375 12.7934375 18.28875 12.171875 18.4375 C10.97304688 18.7159375 10.97304688 18.7159375 9.75 19 C8.96109375 19.185625 8.1721875 19.37125 7.359375 19.5625 C3.42962172 20.29119597 0.0800264 19.90118268 -3.75 19 C-4.54921875 18.814375 -5.3484375 18.62875 -6.171875 18.4375 C-6.77515625 18.293125 -7.3784375 18.14875 -8 18 Z " fill="#71E5AF" transform="translate(13,2)"/>
+              </svg>
+            </div>
+            <span class="tab-tile-text">Portfolio</span>
+          </ng-template>
+          <app-portfolio-management></app-portfolio-management>
+        </p-tabPanel>
+
+        <p-tabPanel [closable]="false">
+          <ng-template pTemplate="header">
+            <div class="navigation-sidebar-inner-img">
+            <!-- <img src="../../../../../assets/bots.svg" alt="Bots"> -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32">
+              <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C3 2.65 3 4.3 3 6 C6.3 6 9.6 6 13 6 C14.29243536 10.1196377 15.26252625 13.66831683 15 18 C14.34 18 13.68 18 13 18 C13.01160156 18.63808594 13.02320312 19.27617187 13.03515625 19.93359375 C13.04417969 20.75988281 13.05320312 21.58617188 13.0625 22.4375 C13.07410156 23.26121094 13.08570312 24.08492187 13.09765625 24.93359375 C13 27 13 27 12 28 C10.37742456 28.0991657 8.75060169 28.13079777 7.125 28.1328125 C6.14015625 28.13410156 5.1553125 28.13539062 4.140625 28.13671875 C3.10421875 28.13285156 2.0678125 28.12898438 1 28.125 C-0.55460938 28.13080078 -0.55460938 28.13080078 -2.140625 28.13671875 C-3.12546875 28.13542969 -4.1103125 28.13414063 -5.125 28.1328125 C-6.03507813 28.13168457 -6.94515625 28.13055664 -7.8828125 28.12939453 C-10 28 -10 28 -11 27 C-11.07179964 25.48071962 -11.08392007 23.95832518 -11.0625 22.4375 C-11.05347656 21.61121094 -11.04445313 20.78492187 -11.03515625 19.93359375 C-11.02355469 19.29550781 -11.01195312 18.65742188 -11 18 C-11.66 18 -12.32 18 -13 18 C-13.26252625 13.66831683 -12.29243536 10.1196377 -11 6 C-7.7 6 -4.4 6 -1 6 C-1 4.35 -1 2.7 -1 1 C-0.67 0.67 -0.34 0.34 0 0 Z M-8 9 C-8 13.95 -8 18.9 -8 24 C-2.06 24 3.88 24 10 24 C10 19.05 10 14.1 10 9 C4.06 9 -1.88 9 -8 9 Z " fill="#74E6AE" transform="translate(15,2)"/>
+              <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C3.38063221 3.3260857 3.71269945 5.66055264 4 8 C3 9 3 9 0.71484375 9.09765625 C-0.65994141 9.08025391 -0.65994141 9.08025391 -2.0625 9.0625 C-2.98160156 9.05347656 -3.90070312 9.04445313 -4.84765625 9.03515625 C-5.55792969 9.02355469 -6.26820312 9.01195312 -7 9 C-6.67 8.01 -6.34 7.02 -6 6 C-4.35 6 -2.7 6 -1 6 C-1.020625 5.195625 -1.04125 4.39125 -1.0625 3.5625 C-1 1 -1 1 0 0 Z " fill="#67E3B3" transform="translate(15,2)"/>
+              <path d="M0 0 C3.96 0 7.92 0 12 0 C12 0.99 12 1.98 12 3 C8.04 3 4.08 3 0 3 C0 2.01 0 1.02 0 0 Z " fill="#70E5B0" transform="translate(10,21)"/>
+              <path d="M0 0 C1.98 0.495 1.98 0.495 4 1 C3.67 2.65 3.34 4.3 3 6 C1.68 5.67 0.36 5.34 -1 5 C-0.67 3.35 -0.34 1.7 0 0 Z " fill="#74E6AE" transform="translate(10,13)"/>
+              <path d="M0 0 C1.98 0.495 1.98 0.495 4 1 C3.67 2.65 3.34 4.3 3 6 C1.68 5.67 0.36 5.34 -1 5 C-0.67 3.35 -0.34 1.7 0 0 Z " fill="#6DE4B0" transform="translate(19,13)"/>
+              </svg>
+            </div>
+            <span class="tab-tile-text">Bots</span>
+          </ng-template>
+          <app-bots></app-bots>
+        </p-tabPanel>
+
+        <p-tabPanel [closable]="false">
+          <ng-template pTemplate="header">
+            <div class="navigation-sidebar-inner-img">
+            <!-- <img src="../../../../../assets/account.svg" alt="Accounts"> -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32">
+              <path d="M0 0 C7.92 0 15.84 0 24 0 C24 7.92 24 15.84 24 24 C16.08 24 8.16 24 0 24 C0 16.08 0 8.16 0 0 Z M3 3 C3 8.94 3 14.88 3 21 C3.99 20.67 4.98 20.34 6 20 C5.34 20 4.68 20 4 20 C6.625 16.125 6.625 16.125 10 15 C10 14.34 10 13.68 10 13 C9.34 13 8.68 13 8 13 C7.95758277 10.66705225 7.95907063 8.33297433 8 6 C9 5 9 5 12 4.875 C15 5 15 5 16 6 C16.04092937 8.33297433 16.04241723 10.66705225 16 13 C15.01 13.495 15.01 13.495 14 14 C15.2065625 14.6496875 15.2065625 14.6496875 16.4375 15.3125 C19 17 19 17 20 20 C19.29875 19.67 18.5975 19.34 17.875 19 C14.67262761 17.88613134 12.36585848 17.62601572 9 18 C8.01 19.485 8.01 19.485 7 21 C11.62 21 16.24 21 21 21 C21 15.06 21 9.12 21 3 C15.06 3 9.12 3 3 3 Z M11 7 C11 7.99 11 8.98 11 10 C11.99 9.67 12.98 9.34 14 9 C13.67 8.34 13.34 7.68 13 7 C12.34 7 11.68 7 11 7 Z " fill="#70E5AF" transform="translate(4,4)"/>
+              <path d="M0 0 C4.62 0 9.24 0 14 0 C14 7.92 14 15.84 14 24 C8.06 24 2.12 24 -4 24 C-3.505 22.515 -3.505 22.515 -3 21 C1.62 21 6.24 21 11 21 C11 15.06 11 9.12 11 3 C7.04 3 3.08 3 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#9EEE9D" transform="translate(14,4)"/>
+              <path d="M0 0 C3.3 0 6.6 0 10 0 C9.67 0.99 9.34 1.98 9 3 C7.02 3 5.04 3 3 3 C3 8.94 3 14.88 3 21 C4.32 21 5.64 21 7 21 C6.67 21.99 6.34 22.98 6 24 C4.02 24 2.04 24 0 24 C0 16.08 0 8.16 0 0 Z " fill="#47DDC0" transform="translate(4,4)"/>
+              <path d="M0 0 C4.62 0 9.24 0 14 0 C14 1.65 14 3.3 14 5 C13.01 5.66 12.02 6.32 11 7 C11 5.68 11 4.36 11 3 C7.04 3 3.08 3 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#95ECA0" transform="translate(14,4)"/>
+              <path d="M0 0 C1.32 0 2.64 0 4 0 C3.67 0.7425 3.34 1.485 3 2.25 C1.77217129 5.13883312 1.77217129 5.13883312 2 9 C1.01 9 0.02 9 -1 9 C-1.625 5.625 -1.625 5.625 -2 2 C-1.34 1.34 -0.68 0.68 0 0 Z " fill="#64E2B4" transform="translate(13,8)"/>
+              <path d="M0 0 C2.97 0 5.94 0 9 0 C8.67 0.99 8.34 1.98 8 3 C5.03 3 2.06 3 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#73E5AE" transform="translate(11,25)"/>
+              <path d="M0 0 C2.64 0 5.28 0 8 0 C8 0.99 8 1.98 8 3 C5.03 3 2.06 3 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#72E5AF" transform="translate(14,4)"/>
+              <path d="M0 0 C1.65 0.33 3.3 0.66 5 1 C5.33 2.32 5.66 3.64 6 5 C1.25 4.25 1.25 4.25 -1 2 C-0.67 1.34 -0.34 0.68 0 0 Z " fill="#8AEAA5" transform="translate(18,19)"/>
+              </svg>
+            </div>
+            <span class="tab-tile-text">Accounts</span>
+          </ng-template>
+          <app-account></app-account>
+        </p-tabPanel>
+
+        <p-tabPanel [closable]="false">
+          <ng-template pTemplate="header">
+            <div class="navigation-sidebar-inner-img">
+            <!-- <img src="../../../../../assets/subscribe.svg" alt="Subscribe"> -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32">
+              <path d="M0 0 C7.92 0 15.84 0 24 0 C24.22786458 3.45052083 24.45572917 6.90104167 24.68359375 10.3515625 C24.94018126 13.96364776 24.94018126 13.96364776 25.60546875 17.34375 C26 20 26 20 24.875 21.875 C22.46277487 23.32233508 20.7648665 23.22417836 18 23 C17.34 21.68 16.68 20.36 16 19 C14.39318359 19.01740234 14.39318359 19.01740234 12.75390625 19.03515625 C11.35677257 19.04453299 9.95963701 19.05363331 8.5625 19.0625 C7.85544922 19.07087891 7.14839844 19.07925781 6.41992188 19.08789062 C4.61306441 19.09653588 2.80612397 19.05220011 1 19 C0 18 0 18 -0.11352539 16.23413086 C-0.10828857 15.48526611 -0.10305176 14.73640137 -0.09765625 13.96484375 C-0.09515869 13.23644287 -0.09266113 12.50804199 -0.09008789 11.75756836 C-0.08098389 10.8269458 -0.07187988 9.89632324 -0.0625 8.9375 C-0.041875 5.988125 -0.02125 3.03875 0 0 Z M5 3 C8.63106761 6.05270463 8.63106761 6.05270463 12 7 C15.1668838 5.62507196 15.1668838 5.62507196 18 4 C18 3.67 18 3.34 18 3 C13.71 3 9.42 3 5 3 Z M3 6 C3 9.3 3 12.6 3 16 C5.06183633 16.08150744 7.12461349 16.1394194 9.1875 16.1875 C10.91033203 16.23970703 10.91033203 16.23970703 12.66796875 16.29296875 C16.32480815 15.97144125 18.17203072 15.32146732 21 13 C21.41725678 9.37400578 21.41725678 9.37400578 21 6 C19.96875 6.515625 18.9375 7.03125 17.875 7.5625 C13.15003571 9.58204119 9.86068245 8.68764351 5.125 6.9375 C4.42375 6.628125 3.7225 6.31875 3 6 Z " fill="#89E9A5" transform="translate(4,4)"/>
+              <path d="M0 0 C5.94 0 11.88 0 18 0 C17.67 0.99 17.34 1.98 17 3 C13.7 3.33 10.4 3.66 7 4 C6.67 4.99 6.34 5.98 6 7 C5.34 7 4.68 7 4 7 C3.67 9.97 3.34 12.94 3 16 C5.31 16 7.62 16 10 16 C9.34 16.99 8.68 17.98 8 19 C4.4375 19.25 4.4375 19.25 1 19 C0 18 0 18 -0.11352539 16.23413086 C-0.10828857 15.48526611 -0.10305176 14.73640137 -0.09765625 13.96484375 C-0.09515869 13.23644287 -0.09266113 12.50804199 -0.09008789 11.75756836 C-0.08098389 10.8269458 -0.07187988 9.89632324 -0.0625 8.9375 C-0.041875 5.988125 -0.02125 3.03875 0 0 Z " fill="#4EDFBD" transform="translate(4,4)"/>
+              <path d="M0 0 C1.98 0 3.96 0 6 0 C5.01 1.485 5.01 1.485 4 3 C1.375 3.1875 1.375 3.1875 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#59E1B9" transform="translate(8,20)"/>
+              </svg>
+            </div>
+            <span class="tab-tile-text">Subscribe</span>
+          </ng-template>
+          <div class="common-responsive-card-style-inner padding-8px">
+            <div class="col-12 flex align-items-center">
+              <div class="col-12 md:col-12">
+                <!-- <label class="form-label">Number of real orders</label> -->
+                <!-- <i
+                  class="pi pi-info-circle"
+                  pTooltip="Information"
+                  tooltipPosition="right"
+                  style="margin-left: 4px; font-size: 15px"
+                ></i> -->
+                <p-dropdown
+                  [options]="commonOptions"
+                  optionLabel="name"
+                  class="dropdown-subscriber-sample-list"
+                ></p-dropdown>
+              </div>
+            </div>
+            <p-table [value]="tableData" style="overflow: hidden;">
+              <ng-template pTemplate="header">
+                <tr class="desktop-view-login">
+                  <th>Account name <p-sortIcon></p-sortIcon></th>
+                  <th>Email <p-sortIcon></p-sortIcon></th>
+                  <th>Telegram user name <p-sortIcon></p-sortIcon></th>
+                  <th>Remaining subscription <p-sortIcon></p-sortIcon></th>
+                  <th>Date of subscription <p-sortIcon></p-sortIcon></th>
+                  <th>Amount <p-sortIcon></p-sortIcon></th>
+                  <th>Action</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-tableData>
+                <tr class="dflex-aligncenter-justifycenter">
+                  <td class="display-none-desktop"><img src="../../../../../assets/subscriber-icon.png" alt="subscriber-icon" class="subscriber-icon"></td>
+                  <td class="display-none-desktop dflex-alcent-juststrt"><strong>{{ tableData.account }}</strong> ${{ tableData.email }} <div class="subs-remains-dos"><label for="">Subscription Remains -</label> <span class="text-gradient-color">$30 days</span> </div><div class="subs-remains-dos"><label for="">Date of subscription -</label> <span class="text-gradient-color">{{ tableData.dateofsubscription }}</span> </div></td>
+                  <td class="desktop-view-login">{{ tableData.account }}</td>
+                  <td class="desktop-view-login">${{ tableData.email }}</td>
+                  <td class="desktop-view-login">{{ tableData.telegramusername }}</td>
+                  <td class="desktop-view-login">${{ tableData.remainingsubscription }}</td>
+                  <td class="desktop-view-login">{{ tableData.dateofsubscription }}</td>
+                  <td class="desktop-view-login">{{ tableData.samount }}</td>
+                  <td class="flex flex-row align-items-center justify-content-between dflex-alcent-juststrt gap-20px alignitems-flex-end">
+                    <strong class="display-none-desktop amount-of-subscription">{{ tableData.samount }}</strong>
+                    <div class="status-of-subscriber">
+                      <span class="toggle-lbl">Connected</span>
+                      <label class="switch">
+                        <input type="checkbox" />
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </p-tabPanel>
+
+        <p-tabPanel [closable]="false">
+          <ng-template pTemplate="header">
+            <div class="navigation-sidebar-inner-img">
+            <!-- <img src="../../../../../assets/my-product.svg" alt="My-Products"> -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32">
+              <path d="M0 0 C7.92 0 15.84 0 24 0 C24 7.92 24 15.84 24 24 C16.08 24 8.16 24 0 24 C0 16.08 0 8.16 0 0 Z M2 2 C2 8.6 2 15.2 2 22 C8.6 22 15.2 22 22 22 C22 15.4 22 8.8 22 2 C20.02 2 18.04 2 16 2 C16 3.98 16 5.96 16 8 C13.36 8 10.72 8 8 8 C8 6.02 8 4.04 8 2 C6.02 2 4.04 2 2 2 Z M10 2 C10 3.32 10 4.64 10 6 C11.32 6 12.64 6 14 6 C14 4.68 14 3.36 14 2 C12.68 2 11.36 2 10 2 Z " fill="#49DDBF" transform="translate(4,4)"/>
+              <path d="M0 0 C1.98 0 3.96 0 6 0 C6 7.92 6 15.84 6 24 C1.05 24 -3.9 24 -9 24 C-8.67 23.34 -8.34 22.68 -8 22 C-4.04 22 -0.08 22 4 22 C4 15.4 4 8.8 4 2 C2.68 2 1.36 2 0 2 C0 1.34 0 0.68 0 0 Z " fill="#A1EE9C" transform="translate(22,4)"/>
+              <path d="M0 0 C1.9453125 -0.29296875 1.9453125 -0.29296875 4.125 -0.1875 C5.40375 -0.125625 6.6825 -0.06375 8 0 C8 0.66 8 1.32 8 2 C7.34 2 6.68 2 6 2 C6 3.98 6 5.96 6 8 C3.36 8 0.72 8 -2 8 C-2.20086443 4.28400809 -2.1519437 3.22791555 0 0 Z M0 2 C0 3.32 0 4.64 0 6 C1.32 6 2.64 6 4 6 C4 4.68 4 3.36 4 2 C2.68 2 1.36 2 0 2 Z " fill="#6FE5B0" transform="translate(14,4)"/>
+              <path d="M0 0 C0.33 0 0.66 0 1 0 C1 1.98 1 3.96 1 6 C-3.95 6 -8.9 6 -14 6 C-13.67 5.34 -13.34 4.68 -13 4 C-9.04 4 -5.08 4 -1 4 C-0.67 2.68 -0.34 1.36 0 0 Z " fill="#92EBA2" transform="translate(27,22)"/>
+              <path d="M0 0 C3.3 0 6.6 0 10 0 C10 0.66 10 1.32 10 2 C6.7 2 3.4 2 0 2 C0 1.34 0 0.68 0 0 Z " fill="#76E6AE" transform="translate(8,22)"/>
+              <path d="M0 0 C1.98 0 3.96 0 6 0 C5.67 1.65 5.34 3.3 5 5 C4.67 4.01 4.34 3.02 4 2 C2.68 2 1.36 2 0 2 C0 1.34 0 0.68 0 0 Z " fill="#95ECA1" transform="translate(22,4)"/>
+              <path d="M0 0 C1.98 0 3.96 0 6 0 C6 0.66 6 1.32 6 2 C4.02 2 2.04 2 0 2 C0 1.34 0 0.68 0 0 Z " fill="#57E0BA" transform="translate(8,18)"/>
+              </svg>
+            </div>
+            <span class="tab-tile-text">My Products</span>
+          </ng-template>
+          <div style="padding: 10px" class="common-responsive-card-style-inner padding-8px my-products-style">
+            <p-accordion class="w-full">
+              <p-accordionTab>
+                <ng-template pTemplate="header">
+                    <div class="flex align-items-center">
+                        <span class="vertical-align-middle">Ethereum Bear 2X</span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                  <div class=" grid flex align-items-center">
+                    <div class="col-12 md:col-12">
+                      <label class="form-label">Discount %</label>
+                      <i
+                        class="pi pi-info-circle"
+                        pTooltip="Information"
+                        tooltipPosition="right"
+                        style="margin-left: 4px; font-size: 15px"
+                      ></i><br>
+                      <input pInputText>
+                    </div>
+                    <div class="col-12 md:col-12">
+                      <label class="form-label">Start Date</label>
+                      <i
+                        class="pi pi-info-circle"
+                        pTooltip="Information"
+                        tooltipPosition="right"
+                        style="margin-left: 4px; font-size: 15px"
+                      ></i><br>
+                      <p-calendar [style]="{'width':'100%'}"></p-calendar>
+                    </div>
+                    <div class="col-12 md:col-12">
+                      <div>
+                        <label class="form-label">Description</label>
+                        <i
+                          class="pi pi-info-circle"
+                          pTooltip="Information"
+                          tooltipPosition="right"
+                          style="margin-left: 4px; font-size: 15px"
+                        ></i>
+                      </div>
+                      <div>
+                        <input pInputText>
+                      </div>
+                    </div>
+                    <div class="col-12 md:col-12">
+                      <label class="form-label">&nbsp;</label>
+                      <button class="save-btn common-bg-color common-button-radius">Save</button>
+                    </div>
+                  </div>
+                </ng-template>
+            </p-accordionTab>
+
+            <p-accordionTab>
+              <ng-template pTemplate="header">
+                  <div class="flex align-items-center">
+                      <span class="vertical-align-middle">Guttastemning</span>
+                  </div>
+              </ng-template>
+              <ng-template pTemplate="content">
+                <div class="grid flex align-items-center">
+                  <div class="col-12 md:col-12">
+                    <label class="form-label">Discount %</label>
+                    <i
+                      class="pi pi-info-circle"
+                      pTooltip="Information"
+                      tooltipPosition="right"
+                      style="margin-left: 4px; font-size: 15px"
+                    ></i>
+                    <input pInputText>
+                  </div>
+                  <div class="col-12 md:col-12">
+                    <label class="form-label">Start Date</label>
+                    <i
+                      class="pi pi-info-circle"
+                      pTooltip="Information"
+                      tooltipPosition="right"
+                      style="margin-left: 4px; font-size: 15px"
+                    ></i>
+                    <p-calendar [style]="{'width':'100%'}"></p-calendar>
+                  </div>
+                  <div class="col-12 md:col-12">
+                    <div>
+                      <label class="form-label">Description</label>
+                      <i
+                        class="pi pi-info-circle"
+                        pTooltip="Information"
+                        tooltipPosition="right"
+                        style="margin-left: 4px; font-size: 15px"
+                      ></i>
+                    </div>
+                    <div>
+                      <input pInputText>
+                    </div>
+                  </div>
+                  <div class="col-12 md:col-12">
+                    <label class="form-label">&nbsp;</label>
+                    <button class="save-btn common-bg-color common-button-radius">Save</button>
+                  </div>
+                </div>
+              </ng-template>
+          </p-accordionTab>
+
+          <p-accordionTab>
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center">
+                    <span class="vertical-align-middle">Pendulam flow</span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="content">
+              <div class="grid flex align-items-center">
+                <div class="col-12 md:col-12">
+                  <label class="form-label">Discount %</label>
+                  <i
+                    class="pi pi-info-circle"
+                    pTooltip="Information"
+                    tooltipPosition="right"
+                    style="margin-left: 4px; font-size: 15px"
+                  ></i>
+                  <input pInputText>
+                </div>
+                <div class="col-12 md:col-12">
+                  <label class="form-label">Start Date</label>
+                  <i
+                    class="pi pi-info-circle"
+                    pTooltip="Information"
+                    tooltipPosition="right"
+                    style="margin-left: 4px; font-size: 15px"
+                  ></i>
+                  <p-calendar [style]="{'width':'100%'}"></p-calendar>
+                </div>
+                <div class="col-12 md:col-12">
+                  <div>
+                    <label class="form-label">Description</label>
+                    <i
+                      class="pi pi-info-circle"
+                      pTooltip="Information"
+                      tooltipPosition="right"
+                      style="margin-left: 4px; font-size: 15px"
+                    ></i>
+                  </div>
+                  <div>
+                    <input pInputText>
+                  </div>
+                </div>
+                <div class="col-12 md:col-12">
+                  <label class="form-label">&nbsp;</label>
+                  <button class="save-btn common-bg-color common-button-radius">Save</button>
+                </div>
+              </div>
+            </ng-template>
+        </p-accordionTab>
+            </p-accordion>
+          </div>
+
+        </p-tabPanel>
+
+        <p-tabPanel [closable]="false">
+          <ng-template pTemplate="header">
+            <div class="navigation-sidebar-inner-img">
+            <!-- <img src="../../../../../assets/trade-copier.svg" alt="Trade-Copier"> -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="33" height="33">
+              <path d="M0 0 C3.95831809 -0.02892857 7.91660917 -0.04677427 11.875 -0.0625 C13.56689453 -0.07506836 13.56689453 -0.07506836 15.29296875 -0.08789062 C16.36933594 -0.09111328 17.44570313 -0.09433594 18.5546875 -0.09765625 C19.54968262 -0.10289307 20.54467773 -0.10812988 21.56982422 -0.11352539 C24 0 24 0 26 1 C26.02892857 4.95831809 26.04677427 8.91660917 26.0625 12.875 C26.07087891 14.00292969 26.07925781 15.13085938 26.08789062 16.29296875 C26.09272461 17.90751953 26.09272461 17.90751953 26.09765625 19.5546875 C26.10551147 21.04718018 26.10551147 21.04718018 26.11352539 22.56982422 C26 25 26 25 25 27 C21.04168191 27.02892857 17.08339083 27.04677427 13.125 27.0625 C11.43310547 27.07506836 11.43310547 27.07506836 9.70703125 27.08789062 C8.63066406 27.09111328 7.55429688 27.09433594 6.4453125 27.09765625 C5.45031738 27.10289307 4.45532227 27.10812988 3.43017578 27.11352539 C1 27 1 27 -1 26 C-1.02892857 22.04168191 -1.04677427 18.08339083 -1.0625 14.125 C-1.07087891 12.99707031 -1.07925781 11.86914062 -1.08789062 10.70703125 C-1.09111328 9.63066406 -1.09433594 8.55429688 -1.09765625 7.4453125 C-1.10289307 6.45031738 -1.10812988 5.45532227 -1.11352539 4.43017578 C-1 2 -1 2 0 0 Z M2 4 C1.90139869 5.40348735 1.86921063 6.81180477 1.8671875 8.21875 C1.86589844 9.06824219 1.86460938 9.91773438 1.86328125 10.79296875 C1.86714844 11.68628906 1.87101563 12.57960938 1.875 13.5 C1.87113281 14.39332031 1.86726562 15.28664063 1.86328125 16.20703125 C1.86457031 17.05652344 1.86585937 17.90601563 1.8671875 18.78125 C1.86831543 19.56564453 1.86944336 20.35003906 1.87060547 21.15820312 C1.79892558 23.01752988 1.79892558 23.01752988 3 24 C4.40348735 24.09860131 5.81180477 24.13078937 7.21875 24.1328125 C8.06824219 24.13410156 8.91773438 24.13539062 9.79296875 24.13671875 C10.68628906 24.13285156 11.57960938 24.12898438 12.5 24.125 C13.83998047 24.13080078 13.83998047 24.13080078 15.20703125 24.13671875 C16.48126953 24.13478516 16.48126953 24.13478516 17.78125 24.1328125 C18.56564453 24.13168457 19.35003906 24.13055664 20.15820312 24.12939453 C22.01752988 24.20107442 22.01752988 24.20107442 23 23 C23.09860131 21.59651265 23.13078937 20.18819523 23.1328125 18.78125 C23.13410156 17.93175781 23.13539062 17.08226562 23.13671875 16.20703125 C23.13091797 14.86705078 23.13091797 14.86705078 23.125 13.5 C23.12886719 12.60667969 23.13273437 11.71335937 23.13671875 10.79296875 C23.13542969 9.94347656 23.13414063 9.09398437 23.1328125 8.21875 C23.13168457 7.43435547 23.13055664 6.64996094 23.12939453 5.84179688 C23.20107442 3.98247012 23.20107442 3.98247012 22 3 C20.59651265 2.90139869 19.18819523 2.86921063 17.78125 2.8671875 C16.93175781 2.86589844 16.08226562 2.86460938 15.20703125 2.86328125 C14.31371094 2.86714844 13.42039062 2.87101563 12.5 2.875 C11.16001953 2.86919922 11.16001953 2.86919922 9.79296875 2.86328125 C8.51873047 2.86521484 8.51873047 2.86521484 7.21875 2.8671875 C6.0421582 2.86887939 6.0421582 2.86887939 4.84179688 2.87060547 C2.98247012 2.79892558 2.98247012 2.79892558 2 4 Z " fill="#67E3B3" transform="translate(4,3)"/>
+              <path d="M0 0 C0.99 0 1.98 0 3 0 C3 5.61 3 11.22 3 17 C2.01 17 1.02 17 0 17 C0 11.39 0 5.78 0 0 Z " fill="#71E5AF" transform="translate(15,8)"/>
+              <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C3 4.3 3 7.6 3 11 C1.68 11 0.36 11 -1 11 C-1.02688151 9.35425434 -1.04634123 7.70838587 -1.0625 6.0625 C-1.07410156 5.14597656 -1.08570312 4.22945312 -1.09765625 3.28515625 C-1 1 -1 1 0 0 Z " fill="#8BE9A4" transform="translate(22,13)"/>
+              <path d="M0 0 C0.33 0 0.66 0 1 0 C1.125 6.75 1.125 6.75 0 9 C-2.31 9 -4.62 9 -7 9 C-6.67 8.01 -6.34 7.02 -6 6 C-5.01 5.67 -4.02 5.34 -3 5 C-1.9590934 3.35857037 -0.95495674 1.69287785 0 0 Z " fill="#A0EE9C" transform="translate(29,21)"/>
+              <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C3 3.31 3 5.62 3 8 C1.68 8 0.36 8 -1 8 C-1.04241723 5.66705225 -1.04092937 3.33297433 -1 1 C-0.67 0.67 -0.34 0.34 0 0 Z " fill="#59E1B8" transform="translate(9,16)"/>
+              <path d="M0 0 C2.97 0 5.94 0 9 0 C8.67 0.99 8.34 1.98 8 3 C5.03 3 2.06 3 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#7DE7AA" transform="translate(14,27)"/>
+              </svg>
+            </div>
+            <span class="tab-tile-text">Trade Copier</span>
+          </ng-template>
+        </p-tabPanel>
+
+        <p-tabPanel [closable]="false">
+          <ng-template pTemplate="header">
+            <div class="navigation-sidebar-inner-img">
+            <!-- <img src="../../../../../assets/statics.svg" alt="Statics"> -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32">
+              <path d="M0 0 C2.62527189 -0.05382106 5.24944713 -0.09358313 7.875 -0.125 C8.62136719 -0.14175781 9.36773437 -0.15851563 10.13671875 -0.17578125 C12.09194461 -0.1933959 14.04742021 -0.10320189 16 0 C18.44986932 2.44986932 18.25631311 3.137078 18.265625 6.5 C18.26949219 7.8303125 18.26949219 7.8303125 18.2734375 9.1875 C18.26570313 10.115625 18.25796875 11.04375 18.25 12 C18.25773437 12.928125 18.26546875 13.85625 18.2734375 14.8125 C18.27085938 15.699375 18.26828125 16.58625 18.265625 17.5 C18.26336914 18.3146875 18.26111328 19.129375 18.25878906 19.96875 C18 22 18 22 16 24 C13.96875 24.25878906 13.96875 24.25878906 11.5 24.265625 C10.613125 24.26820312 9.72625 24.27078125 8.8125 24.2734375 C7.884375 24.26570313 6.95625 24.25796875 6 24.25 C4.6078125 24.26160156 4.6078125 24.26160156 3.1875 24.2734375 C1.8571875 24.26957031 1.8571875 24.26957031 0.5 24.265625 C-0.3146875 24.26336914 -1.129375 24.26111328 -1.96875 24.25878906 C-4 24 -4 24 -6 22 C-6.14507695 19.25514407 -6.18652423 16.61519457 -6.125 13.875 C-6.11146484 12.74384766 -6.11146484 12.74384766 -6.09765625 11.58984375 C-6.0740687 9.72642746 -6.03819719 7.86317407 -6 6 C-4.02 6 -2.04 6 0 6 C0 4.02 0 2.04 0 0 Z M2 2 C2 3.32 2 4.64 2 6 C4.64 6 7.28 6 10 6 C10 4.68 10 3.36 10 2 C7.36 2 4.72 2 2 2 Z M12 2 C12 3.32 12 4.64 12 6 C13.32 5.67 14.64 5.34 16 5 C15.02149805 3.97895449 14.02019573 2.9793879 13 2 C12.67 2 12.34 2 12 2 Z M-4 8 C-4 10.64 -4 13.28 -4 16 C-2.68 16 -1.36 16 0 16 C0 13.36 0 10.72 0 8 C-1.32 8 -2.64 8 -4 8 Z M2 8 C2 10.64 2 13.28 2 16 C4.64 16 7.28 16 10 16 C10 13.36 10 10.72 10 8 C7.36 8 4.72 8 2 8 Z M12 8 C12 10.64 12 13.28 12 16 C13.32 16 14.64 16 16 16 C16 13.36 16 10.72 16 8 C14.68 8 13.36 8 12 8 Z M-4 18 C-3.67 18.99 -3.34 19.98 -3 21 C-2.01 21.33 -1.02 21.66 0 22 C0 20.68 0 19.36 0 18 C-1.32 18 -2.64 18 -4 18 Z M2 18 C2 19.32 2 20.64 2 22 C4.64 22 7.28 22 10 22 C10 20.68 10 19.36 10 18 C7.36 18 4.72 18 2 18 Z M12 18 C12.33 19.32 12.66 20.64 13 22 C13.99 21.01 14.98 20.02 16 19 C14.68 18.67 13.36 18.34 12 18 Z " fill="#93EBA2" transform="translate(10,4)"/>
+              <path d="M0 0 C1.65 0 3.3 0 5 0 C5 0.66 5 1.32 5 2 C4.01 2 3.02 2 2 2 C2 3.32 2 4.64 2 6 C3.65 6 5.3 6 7 6 C6.67 6.66 6.34 7.32 6 8 C4.68 8 3.36 8 2 8 C2 10.64 2 13.28 2 16 C4.31 16 6.62 16 9 16 C8.67 16.66 8.34 17.32 8 18 C6.02 18 4.04 18 2 18 C2 19.32 2 20.64 2 22 C2.66 22.33 3.32 22.66 4 23 C3 24 3 24 -0.4375 24.1875 C-4 24 -4 24 -6 22 C-6.14507695 19.25514407 -6.18652423 16.61519457 -6.125 13.875 C-6.11146484 12.74384766 -6.11146484 12.74384766 -6.09765625 11.58984375 C-6.0740687 9.72642746 -6.03819719 7.86317407 -6 6 C-4.02 6 -2.04 6 0 6 C0 4.02 0 2.04 0 0 Z M-4 8 C-4 10.64 -4 13.28 -4 16 C-2.68 16 -1.36 16 0 16 C0 13.36 0 10.72 0 8 C-1.32 8 -2.64 8 -4 8 Z M-4 18 C-3.67 18.99 -3.34 19.98 -3 21 C-2.01 21.33 -1.02 21.66 0 22 C0 20.68 0 19.36 0 18 C-1.32 18 -2.64 18 -4 18 Z " fill="#59E0B9" transform="translate(10,4)"/>
+              <path d="M0 0 C0.33 0 0.66 0 1 0 C1 2.31 1 4.62 1 7 C3.31 7 5.62 7 8 7 C7.67 7.66 7.34 8.32 7 9 C5.02 9 3.04 9 1 9 C1 10.32 1 11.64 1 13 C1.66 13.33 2.32 13.66 3 14 C2 15 2 15 -1.4375 15.25 C-2.613125 15.1675 -3.78875 15.085 -5 15 C-5.66 14.01 -6.32 13.02 -7 12 C-6.01 11.67 -5.02 11.34 -4 11 C-3.34 11.33 -2.68 11.66 -2 12 C-1.67 11.01 -1.34 10.02 -1 9 C-1.99 9 -2.98 9 -4 9 C-4 8.34 -4 7.68 -4 7 C-3.01 7 -2.02 7 -1 7 C-1.020625 6.030625 -1.04125 5.06125 -1.0625 4.0625 C-1 1 -1 1 0 0 Z " fill="#5DE1B7" transform="translate(11,13)"/>
+              <path d="M0 0 C2.31 0 4.62 0 7 0 C7 1.98 7 3.96 7 6 C7.66 6 8.32 6 9 6 C9 6.66 9 7.32 9 8 C8.34 8 7.68 8 7 8 C7 10.31 7 12.62 7 15 C6.01 15.495 6.01 15.495 5 16 C5 13.36 5 10.72 5 8 C3.68 7.67 2.36 7.34 1 7 C2.32 6.67 3.64 6.34 5 6 C5 4.68 5 3.36 5 2 C3.35 2 1.7 2 0 2 C0 1.34 0 0.68 0 0 Z " fill="#7FE8A9" transform="translate(15,4)"/>
+              <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C3 5.29 3 9.58 3 14 C2.01 14.33 1.02 14.66 0 15 C0 10.05 0 5.1 0 0 Z " fill="#41DCC2" transform="translate(4,10)"/>
+              <path d="M0 0 C0.625 1.875 0.625 1.875 1 4 C-1 6 -1 6 -3.625 6.125 C-4.40875 6.08375 -5.1925 6.0425 -6 6 C-5.34 5.01 -4.68 4.02 -4 3 C-3.34 3 -2.68 3 -2 3 C-2 2.34 -2 1.68 -2 1 C-1.34 0.67 -0.68 0.34 0 0 Z " fill="#A0ED9C" transform="translate(27,22)"/>
+              </svg>
+            </div>
+            <span class="tab-tile-text">Statics</span>
+          </ng-template>
+          <app-static></app-static>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+
+  </div>
+</div>

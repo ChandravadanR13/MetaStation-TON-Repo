@@ -1,0 +1,1623 @@
+
+<div class="">
+  <!-- desktop-view-login -->
+  <section class="homepage-new-page">
+    <section  class="overlayer1 header-custom">
+      <div class="contain-width">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6"><img class="logo" src="../../assets/log.png"  style="width: 200px;" /></div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 header-login-register">
+              <div *ngIf="showloginbutton" >
+                <button class="login-btn" id="myBtn" (click)="formVisible()">
+                  <span class="login-text"> Login</span>
+                </button> 
+              </div>
+              <div *ngIf="!showloginbutton">
+                <button class="login-btn" id="myBtn"  (click)="navigateHome()">
+                  <span class="login-text">Home</span>
+                </button> 
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+    <section class="crypto-exchange-banner">
+        <div class="contain-width">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <!-- <h1>Earn crypto rewards on every purchase</h1>
+                    <p>Create your Bof Trade account and earn exciting welcome rewards</p> -->
+                    <h1>Faster, better, stronger than your average crypto exchange</h1>
+                    <p class="Trade-Earn-Learn">Trade over 300 cryptocurrencies safely, quickly, and easily</p>
+                    <!-- <p>Sign up and win up to $6666 in welcome rewards</p> -->
+                    <!-- <p class="sigup-to-claim"><i class="fa-regular fa-gem"></i>Sign up to claim rewards worth 5125 USDT</p> -->
+                    <!-- <div class="row">
+                        <div class="input-field signup-email-address-block">
+                            <div class="apply-download-now">
+                                <input placeholder="Email or Phone" type="text" />
+                                <div class="apply-now">
+                                    <a href="#">Sign Up</a>
+                                </div>
+                            </div>
+                            <div class=""><img src="../../../../../assets/telegram-banner.png"></div>
+                            <div class=""><img src="../../../../../assets/google-banner.png"></div>
+                            <div class=""><img src="../../../../../assets/metamask-banner.png"></div>
+                        </div>
+                    </div> -->
+    
+                    <div class="ticker">
+                        <div class="ticker-card-inner">
+                           <label>$6.09<span>B</span></label>
+                           <span>24h Trading Volume</span>
+                        </div>
+                        <div class="ticker-card-inner">
+                            <label>300+</label>
+                            <span>Cryptocurrencies Listed</span>
+                         </div>
+                         <!-- <div class="ticker-card-inner">
+                            <label>18+<span>M</span></label>
+                            <span>Registered Users</span>
+                         </div> -->
+                         <div class="ticker-card-inner">
+                            <label>499.32<span>%</span></label>
+                            <span>Simple Earn APR</span>
+                         </div>
+                    </div>
+    
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="banner-side-img-right">
+                        <img src="../../../../../assets/banner-mage-right.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="market-update">
+        <div class="contain-width">
+            <div class="market-update-row market-head-block">
+                <h5>Crypto Market Today</h5>
+            </div>
+            <div class="Crypto-Market-Today">
+              <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab" (click)="selectTabMarketList(0)" [class.active]="selectedTabMarketList === 0">Hot Spot</div>
+                    <div class="tab" (click)="selectTabMarketList(1)" [class.active]="selectedTabMarketList === 1">Gainers</div>
+                    <div class="tab" (click)="selectTabMarketList(2)" [class.active]="selectedTabMarketList === 2">Losers</div>
+                </div>
+                <ng-container class="tab-content" id="tab1" *ngIf="selectedTabMarketList === 0">
+                    <div class="wrapper">
+                        <div class="content-wrapper">
+                            <div id="tab-1">
+                                <div class="table-box">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <!-- <th>Open Price</th> -->
+                                                <th>High Price</th>
+                                                <th>Low Price</th>
+                                                <th>Last Price</th>
+                                                <th>24h h change</th>
+                                                <!-- <th>Trend</th> -->
+                                                <th>Trade</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                       
+                                        
+                                        
+                                        
+                                        <tbody *ngFor="let trade of topvolume" >
+                                            <tr>
+    
+                                                <td>
+                                                    <div class="table-head">
+    
+                                                        <div class="coin-img">
+                  <img [src]="'/assets/images/color/' + trade.coinone?.toLowerCase() + '.svg'" width="30" height="30" class="coinlisticon"
+                    alt="crypto-coin" (error)="onImageError($event)">
+                                                        </div>
+                  <p>{{ trade.symbol }} <span class="gray-txt"></span></p>
+                                                    </div>
+                                                </td>
+<!-- <td><span>{{ trade.openprice !== null ? trade.openprice : 0 }}</span></td> -->
+                                                <td><span>{{ trade.highprice }}</span></td>
+                                                <td><span>{{ trade.lowprice }}</span></td>
+                                                <td><span>{{ trade.closeprice | currency:'USD' }}</span></td>
+                                                <td><span [class.green]="trade.hrchange > 0" [class.red]="trade.hrchange < 0">{{ trade.hrchange }}%</span></td>
+                                                <td><a [href]="trade.tradeLink" class="trade-now-btn">Trade</a></td>
+                                            </tr>
+    
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container class="tab-content" id="tab2" *ngIf="selectedTabMarketList === 1">
+                    <div class="wrapper">
+                        <div class="content-wrapper">
+                            <div id="tab-1">
+                                <div class="table-box">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <!-- <th>Open Price</th> -->
+                                                <th>High Price</th>
+                                                <th>Low Price</th>
+                                                <th>Last Price</th>
+                                                <th>24h h change</th>
+                                                <th>Trade</th>
+                                            </tr>
+                                        </thead>
+                                       
+                                       
+                                        
+                                       
+          <tbody *ngFor="let trade of topGains">
+                                            <tr>
+    
+                                                <td>
+                                                    <div class="table-head">
+    
+                                                        <div class="coin-img">
+                  <img [src]="'/assets/images/color/' + trade.coinone?.toLowerCase() + '.svg'" width="30" height="30" class="coinlisticon"
+                    alt="crypto-coin" (error)="onImageError($event)">
+                                                        </div>
+                  <p>{{ trade.symbol }} <span class="gray-txt"></span></p>
+                                                    </div>
+                                                </td>
+                                                <!-- <td><span>{{ trade.openprice !== null ? trade.openprice : 0 }}</span></td> -->
+                                                <td><span>{{ trade.highprice }}</span></td>
+                                                <td><span>{{ trade.lowprice }}</span></td>
+                                                <td><span>{{ trade.closeprice | currency:'USD' }}</span></td>
+                                                <td><span [class.green]="trade.hrchange > 0" [class.red]="trade.hrchange < 0">{{ trade.hrchange }}%</span></td>
+                                                <td><a [href]="trade.tradeLink" class="trade-now-btn">Trade</a></td>
+                                            </tr>
+    
+                                        </tbody>
+                                  
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container class="tab-content" id="tab3" *ngIf="selectedTabMarketList === 2">
+                    <div class="wrapper">
+                        <div class="content-wrapper">
+                            <div id="tab-1">
+                                <div class="table-box">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <!-- <th>Open Price</th> -->
+                                                <th>High Price</th>
+                                                <th>Low Price</th>
+                                                <th>Last Price</th>
+                                                <th>24h h change</th>
+                                                <th>Trade</th>
+                                            </tr>
+                                        </thead>
+                                      
+                                       
+                                       
+                                       
+          <tbody *ngFor="let trade of losers">
+                                            <tr>
+    
+                                                <td>
+                                                    <div class="table-head">
+    
+                                                        <div class="coin-img">
+                  <img [src]="'/assets/images/color/' + trade.coinone?.toLowerCase() + '.svg'" width="30" height="30" class="coinlisticon"
+                    alt="crypto-coin" (error)="onImageError($event)">
+                                                        </div>
+                  <p>{{ trade.symbol }} <span class="gray-txt"></span></p>
+                                                    </div>
+                                                </td>
+                                              <!-- <td><span>{{ trade.openprice !== null ? trade.openprice : 0 }}</span></td> -->
+                                              <td><span>{{ trade.highprice }}</span></td>
+                                              <td><span>{{ trade.lowprice }}</span></td>
+                                              <td><span>{{ trade.closeprice | currency:'USD' }}</span></td>
+                                              <td><span [class.green]="trade.hrchange > 0" [class.red]="trade.hrchange < 0">{{ trade.hrchange }}%</span></td>
+                                              <td><a [href]="trade.tradeLink" class="trade-now-btn">Trade</a></td>
+                                            </tr>
+    
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+    
+            
+            </div>
+    
+        </div>
+    </section>
+
+    
+
+    <section class="digital-invest Trade-Anytime-Anywhere-section">
+        <div class="contain-width Trade-like-a-pro">
+            <h3>Trade like a pro</h3>
+            <p>Get the lowest fees, fastest transactions, powerful APIs, and more</p>
+            <h3>Experience unmatched ease and efficiency in every action</h3>
+            <div class="Trade-like-a-pro-img"><img src="../../../../../assets/Trade-like-a-pro.png" alt="Trade-like-a-pro" class="img-fluid" /></div>
+        </div>
+        <div class="contain-width taa-left-inner">
+            <div class="digital-invest-head taa-left">
+                <img src="../../../../../assets/One-Web-Unlimited-possibilities.png" alt="One-Web-Unlimited-possibilities" class="img-fluid" />
+            </div>
+            <div class="digital-invest-head taa-right">
+                <h3 class='taa-head'>One Web. Unlimited possibilities.</h3>
+                <div class="One-Web-Unlimited-possibilities">
+                    <span>Exchange</span>
+                    <span class="active-white">Web3</span>
+                </div>
+                <p class="sigup-to-claim">Explore the world’s best NFT marketplace, DEX, and wallet that
+                    supports all of your favorite chains.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="digital-assets three-Steps-to-Trade">
+        <div class="contain-width">
+            <div class="row">
+    
+                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5 space-bottom">
+                    <h3>With you every step of the way</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur. Sapien a egestas nam vel semper. Vulputate tortor pulvinar nunc fringilla.</p>
+                    <div class="common-button-color"><a href="#">Portfolio</a></div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-1 col-xl-1"></div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 space-bottom">
+                    <div class="digital-lap digital-lapp-right">
+                        <img src="../../../../../assets/With-you-every-step-of-the-way.png" alt="With-you-every-step-of-the-way" class="img-fluid" loading="lazy">
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+
+
+    <section class="explore-our-products">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <h3 class='taa-head'>Unlocking features with Metastation</h3>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="explore-pdt-inner">
+                        <div class="epi-img">
+                            <img src="../../../../../assets/portfolio.png" class="img-fluid" alt="">
+                        </div>
+                        <h6>Portfolio</h6>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <div class="epi-btn-outer apply-now">
+                            <a href="#" class="epi-btn-href">Explore options</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="explore-pdt-inner">
+                        <div class="epi-img">
+                            <img src="../../../../../assets/buy-trade.png" class="img-fluid" alt="">
+                        </div>
+                        <h6>Buy and trade</h6>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <div class="epi-btn-outer apply-now">
+                            <a href="#" class="epi-btn-href">Explore options</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="explore-pdt-inner">
+                        <div class="epi-img">
+                            <img src="../../../../../assets/signal-provider.png" class="img-fluid" alt="">
+                        </div>
+                        <h6>Signal Provider</h6>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <div class="epi-btn-outer apply-now">
+                            <a href="#" class="epi-btn-href">Explore options</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="explore-pdt-inner">
+                        <div class="epi-img">
+                            <img src="../../../../../assets/copy-trade.png" class="img-fluid" alt="">
+                        </div>
+                        <h6>Copy trade</h6>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <div class="epi-btn-outer apply-now">
+                            <a href="#" class="epi-btn-href">Explore options</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="explore-pdt-inner">
+                        <div class="epi-img">
+                            <img src="../../../../../assets/fund-manager.png" class="img-fluid" alt="">
+                        </div>
+                        <h6>Fund Manager</h6>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <div class="epi-btn-outer apply-now">
+                            <a href="#" class="epi-btn-href">Explore options</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section class="digital-invest Trade-Anytime-Anywhere-section">
+        <div class="contain-width taa-left-inner Liquidity-Globally-outer-container">
+            <div class="digital-invest-head taa-right Liquidity-Globally-left">
+                <h3 class='taa-head'>No. 1 in Liquidity Globally</h3>
+                <p class="sigup-to-claim">Faster Trades, Tighter Spreads, Steadier Trading</p>
+                <div class="Liquidity-Globally-left-bottom">
+                    <img src="../../../../../assets/Liquidity-Globally-bottom.png" alt="Liquidity-Globally-bottom" class="img-fluid" />
+                    <img src="../../../../../assets/Liquidity-Globally-gradient.png" alt="Liquidity-Globally-gradient" class="Liquidity-Globally-gradient img-fluid" />
+                </div>
+            </div>
+            <div class="digital-invest-head taa-left Liquidity-Globally-right">
+                <img src="../../../../../assets/num-one-Liquidity-Globally.png" alt="num-one-Liquidity-Globally" class="img-fluid" />
+            </div>
+        </div>
+    </section>
+    
+    <section class="digital-assets three-Steps-to-Trade">
+        <div class="contain-width">
+            <div class="row">
+    
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 space-bottom Getting-started-is-easy-left">
+    
+                    <h3>Getting started is easy:
+                        all you need is TON</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur. Sapien a egestas nam vel semper. Vulputate tortor pulvinar nunc fringilla.</p>
+                    <div class="common-button-color"><a href="#">Connect wallet</a></div>
+    
+    
+                </div>
+    
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 space-bottom">
+                    <div class="digital-lap digital-lapp-right">
+                        <img src="../../../../../assets/Getting-started-is-easy.png" alt="Getting-started-is-easy" class="img-fluid" loading="lazy">
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+   
+    <section class="qr-code-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                <div class="qr-code-left">
+                    <img src="../../../../../assets/qr-code-section-left.png" alt="num-one-Liquidity-Globally" class="img-fluid" />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                <div class="qr-code-right">
+                    <div class="qr-code-right-top">
+                      <img src="../../../../../assets/qrcode-landing.png" alt="qrcode-landing" class="img-fluid" />
+                      <div class="Scan-QR-Code">
+                        <label>Scan QR Code</label>
+                        <span>Download Metastation App for Android / iOS</span>
+                      </div>
+                    </div>
+                    <div class="qr-code-right-bottom">
+                        <div class="qr-code-right-bottom-card">
+                            <img src="../../../../../assets/App-Store.png" alt="qrcode-landing" class="img-fluid" />
+                            <label>App Store</label>
+                        </div>
+                        <div class="qr-code-right-bottom-card">
+                            <img src="../../../../../assets/android.png" alt="qrcode-landing" class="img-fluid" />
+                            <label>Android</label>
+                        </div>
+                        <div class="qr-code-right-bottom-card">
+                            <img src="../../../../../assets/google-play.png" alt="qrcode-landing" class="img-fluid" />
+                            <label>Google Play</label>
+                        </div>
+                        <div class="qr-code-right-bottom-card">
+                            <img src="../../../../../assets/mac-os.png" alt="qrcode-landing" class="img-fluid" />
+                            <label>Mac OS</label>
+                        </div>
+                        <div class="qr-code-right-bottom-card">
+                            <img src="../../../../../assets/Windows.png" alt="qrcode-landing" class="img-fluid" />
+                            <label>Windows</label>
+                        </div>
+                        <div class="qr-code-right-bottom-card">
+                            <img src="../../../../../assets/api.png" alt="qrcode-landing" class="img-fluid" />
+                            <label>API</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    
+    <section class="faq-section-block faq-section faq-sectn faq-section-faq-sectn">
+        <div class="contain-width">
+            <h3>FAQ</h3>
+    
+            <div class="faq-cls-sectns">
+                <div class="perks-benfits">
+                    <div class="block-1 faq-block">
+                        <div class="accrd-panel-head" (click)="toggle(1)">
+                            <span class="align-self-center">What is Metastation?</span>
+    
+                            <span class="mp-icon">{{ openItem === 1 ? '-' : '+' }}</span>
+                        </div>
+                        <div class="accrd-panel-body" *ngIf="openItem === 1">
+                            <p>Metastation is a centralized cryptocurrency exchange that provides a secure and user-friendly platform for trading a wide range of cryptocurrencies. Our exchange offers advanced trading features, high liquidity, and robust security
+                                measures to ensure a seamless trading experience.</p>
+    
+                        </div>
+                    </div>
+                    <div class="block-1 faq-block">
+                        <div class="accrd-panel-head" (click)="toggle(2)">
+                            <span class="align-self-center">How do I create an account on Metastation?</span>
+    
+                            <span class="mp-icon">{{ openItem === 2 ? '-' : '+' }}</span>
+                        </div>
+                        <div class="accrd-panel-body" *ngIf="openItem === 2">
+                            <p>To create an account on Metastation, visit our website and click on the "Sign Up" button. Follow the on-screen instructions to enter your personal information, verify your email, and set up two-factor authentication (2FA) for enhanced
+                                security.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="block-1 faq-block">
+                        <div class="accrd-panel-head" (click)="toggle(3)">
+                            <span class="align-self-center">What cryptocurrencies are supported on Metastation?</span>
+    
+                            <span class="mp-icon">{{ openItem === 3 ? '-' : '+' }}</span>
+                        </div>
+                        <div class="accrd-panel-body" *ngIf="openItem === 3">
+                            <p>Metastation supports a wide variety of cryptocurrencies, including popular options like Bitcoin (BTC), Ethereum (ETH), Litecoin (LTC), and many others. We continuously evaluate and add new coins and tokens to provide our users with
+                                a diverse trading portfolio.</p>
+                        </div>
+                    </div>
+                    <div class="block-1 faq-block">
+                        <div class="accrd-panel-head" (click)="toggle(4)">
+                            <span class="align-self-center">How can I deposit and withdraw funds on Metastation?</span>
+    
+                            <span class="mp-icon">{{ openItem === 4 ? '-' : '+' }}</span>
+                        </div>
+                        <div class="accrd-panel-body" *ngIf="openItem === 4">
+                            <p>To deposit funds, log in to your Metastation account, navigate to the "Deposit" section, and select your preferred cryptocurrency. Follow the instructions to generate a deposit address and transfer the funds. For withdrawals, go to
+                                the "Withdraw" section, enter the desired amount, and provide your wallet address. Ensure all details are correct before confirming the transaction.</p>
+                        </div>
+                    </div>
+                    <div class="block-1 faq-block">
+                        <div class="accrd-panel-head" (click)="toggle(5)">
+                            <span class="align-self-center">What security measures does Metastation have in place?</span>
+    
+                            <span class="mp-icon">{{ openItem === 5 ? '-' : '+' }}</span>
+                        </div>
+                        <div class="accrd-panel-body" *ngIf="openItem === 5">
+                            <p>Metastation prioritizes the security of its users' assets and personal information. We employ industry-standard security protocols, including SSL encryption, two-factor authentication (2FA), cold storage for the majority of funds,
+                                and regular security audits. Additionally, we have a dedicated team monitoring for suspicious activity to prevent unauthorized access.</p>
+                        </div>
+                    </div>
+                    <div class="block-1 faq-block">
+                        <div class="accrd-panel-head" (click)="toggle(6)">
+                            <span class="align-self-center">How can I get help if I encounter an issue or have a question?</span>
+    
+                            <span class="mp-icon">{{ openItem === 6 ? '-' : '+' }}</span>
+                        </div>
+                        <div class="accrd-panel-body" *ngIf="openItem === 6">
+                            <p>If you need assistance, our dedicated support team is available 24/7. You can reach out to us via the "Support" section on our website, where you can submit a ticket detailing your issue. We also offer a comprehensive Help Center
+                                with articles and guides to address common questions and problems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+    
+    <section class="footer-sctn">
+        <div class="contain-width">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <div class="quantum-logo">
+                        <a class="navbar-brand" href=""> <img src="../../assets/log.png" alt="footer-logo" class="img-fluid" loading="lazy" style="width:200px;background-color: #000;"></a>
+                    </div>
+                    <div class="social-icons-foot">
+                        <a class="navbar-brand" target="_blank" href="#"> <img src="../../../../../assets/smi.png" alt="" class="img-fluid" loading="lazy"></a>
+                        <a class="navbar-brand" target="_blank" href="#"> <img src="../../../../../assets/twitter.svg" alt="" class="img-fluid" loading="lazy"></a>
+                        <a class="navbar-brand" target="_blank" href="#"> <img src="../../../../../assets/smi-2.png" alt="" class="img-fluid" loading="lazy"></a>
+                        <a class="navbar-brand" target="_blank" href="#"> <img src="../../../../../assets/smi-3.png" alt="" class="img-fluid" loading="lazy"></a>
+                        <a class="navbar-brand" target="_blank" href="#"> <img src="../../../../../assets/smi-4.png" alt="" class="img-fluid" loading="lazy"></a>
+                        <!-- <a class="navbar-brand" href=""> <img src="../../../../../assets/smi-5.png" alt="" class="img-fluid" loading="lazy"></a> -->
+                        <a class="navbar-brand" target="_blank" href="#"> <img src="../../../../../assets/smi-6.png" alt="" class="img-fluid" loading="lazy"></a>
+                        <!-- <a class="navbar-brand" href=""> <img src="../../../../../assets/smi-7.png" alt="" class="img-fluid" loading="lazy"></a> -->
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-2 col-xl-2"></div>
+
+                <div class="col-sm-12 col-md-4 col-lg-2 col-xl-2">
+                    <p>General</p>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/app/panel">Trade Panel</a></li>
+                        <li><a href="/app/wallets">Wallet</a></li>
+                        <li><a href="#">Market</a></li>
+                    </ul>
+                </div>
+  
+                <div class="col-sm-12 col-md-4 col-lg-2 col-xl-2"></div>
+    
+                <div class="col-sm-12 col-md-4 col-lg-2 col-xl-2">
+                    <p>Legal</p>
+                    <ul>
+                        <li><a href="/page/terms-conditions">Terms &amp; Conditions</a>
+                        </li>
+                        <li><a href="/page/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/page/riskdisclosure">Risk Disclosure</a></li>
+                        <li><a href="/page/aml">AML & KYC Policy</a></li>
+                    </ul>
+    
+                    <!-- <p>Community</p>
+                        <div class="social-media-icon">
+                            <ul>
+                                <li><a href="" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+                                <li><a href="" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                                <li><a href="" target="_blank">
+                                        <i class="fa-brands fa-instagram"></i></a></li>
+                            </ul>
+                        </div> -->
+                </div>
+            </div>
+    
+        </div>
+    </section>
+    
+    </section>
+    
+
+</div>
+
+
+<!-- <div class="responsive-view-login responsive-view-login-100vh">
+  <div class="logo-responsive text-align-center"><img class="logo" src="../../assets/log.png" style="width: 200px;" alt="logo" /></div>
+  <div class="login-responsive"><img class="login-responsive" src="../../assets/login-responsive.png" style="width: 200px;" alt="login-responsive" /></div>
+  <div class="buttons-common-login">
+    <button (click)="formVisible()" class="common-bg-color">Login</button>
+    <button class="common-bg-transparent">Get Started</button>
+  </div>
+</div> -->
+
+<!--------- Modal start here ------->
+
+<p-dialog [style]="{width: '35vw'}" class="login-modal-popup" [contentStyle]="{'overflow':'hidden', 'padding': '10px'}"  [(visible)]="visible" [breakpoints]="{ '991px': '95vw' }">
+  <div class="login-new-form">
+  <form #signinForm="ngForm" (ngSubmit)="signIn()">
+    <div>
+      <div
+        class="grid flex flex-column align-items-center"
+        style="padding: 0px 10px; margin-top: 0px"
+      >
+        <div class="col-12 responsive-style-class">
+          <div class="logo-responsive text-align-center"><img class="logo" src="../../assets/log.png" alt="logo" /></div>
+          <label class="sign-header sign-up-header" style="position: absolute; top: 32px"
+            >Welcome back</label>
+            <span class="wmu">We missed you</span>
+              
+            <div>
+              <div class="display-none-desktop">
+                <label class="apn-lbl"
+                  >Not a paid member?
+                  <span class="act" (click)="signUp = true; visible = false"
+                    >Create Account</span
+                  ></label
+                >
+              </div>
+            </div>
+        </div>
+        <div class="col-12 form mt-1 padding-0px">
+          <div class="alert alert-success" [hidden]="!success">{{success}}</div>
+          <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+          <label class="form-label display-none-responsive">Email </label>
+          <input placeholder="Email" class="form-input" type="text" name="email" [(ngModel)]="form.email" pInputText required/>
+          <span *ngIf="signinForm.controls['email'].errors && (signinForm.controls['email'].invalid && signinForm.controls['email'].touched)">
+            <small class="text-danger" style="color: red" *ngIf="signinForm.controls['email'].errors['required']">Email ID is required</small>
+          </span>
+          <div class="activateOtp" *ngIf="activateOtp">
+            <a (click)="resendOtp()">Resend OTP?</a>
+            </div>
+        </div>
+        <div class="spinner-container" *ngIf="loading.isLoading | async">
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span id="loading"></span>
+            </div>
+          </div>
+          <!-- <i class="fas fa-spinner fa-spin"></i> -->
+        </div>
+        <div class="grid col-12 padding-0px">
+          <label class="form-label display-none-responsive">Password</label>
+          <!-- <input class="form-input"type="password" name="password" [(ngModel)]="form.password" pattern ="^(?=.*[A-Z])(?=.*[^a-zA-Z\d]).{8,}$" pInputText required/> -->
+          <div class="password-style-block">
+            <input placeholder="Password" class="form-input" type="{{ hidePassword ? 'password' : 'text' }}" name="password" [(ngModel)]="form.password"  pInputText required/>
+            <div class="show-password" (click)="togglePasswordVisibility()">
+            <i class="{{ hidePassword ? 'fas fa-eye' : 'fas fa-eye-slash' }}"></i></div>
+            </div>
+          <span *ngIf="signinForm.controls['password'].errors && (signinForm.controls['password'].invalid && signinForm.controls['password'].touched)">
+            <small class="text-danger" style="color: red" *ngIf="signinForm.controls['password'].errors['required']">Password is required</small>
+          
+          </span>
+          <div class="col-12 flex flex-row  justify-content-between flex-column-mobile-view display-none-responsive">
+            <div>
+              <p-checkbox [binary]="true" inputId="binary"> </p-checkbox>Remember me
+              <!-- <span class="ml-2">Remember me</span> -->
+            </div>
+            <div>
+            <a (click)="forgetpasss(); visible = false">Forgot Password?</a>
+            </div>
+            <!-- <a>Forgot Password?</a> -->
+
+          </div>
+
+        </div>
+
+        
+
+        <div class="grid col-12 padding-0px last-child-mb-0">
+          <p-button class="sign-in-btn common-bg-color" *ngIf="signinForm.valid && signinForm.controls['email'].valid && signinForm.controls['password'].valid " type="submit">Sign In</p-button>
+          <p-button class="sign-in-btn common-bg-color" [disabled]="signinForm.controls['email'].invalid" *ngIf="signinForm.controls['email'].invalid" type="submit">Enter email</p-button>
+          <p-button class="sign-in-btn common-bg-color" [disabled]="signinForm.controls['email'].valid && signinForm.controls['password'].invalid" *ngIf="signinForm.controls['email'].valid && signinForm.controls['password'].invalid" type="submit">Enter Password</p-button>
+          
+
+          <div class="Or-sign-up-with-option">
+            <label class="apn-lbl"
+              >Or sign up with
+              <!-- <span class="act" (click)="signUp = false; visible = true"
+                >Sign in</span> -->
+              </label>
+              <ul>
+
+                <li>
+                  <button type="button" (click)="loginWithTelegram()" style="border:none;background:transparent;margin:5px">
+                    <img src="../../../assets/telegram-icon-login.png" alt="telegram-icon-login" style="width: 24px;">
+                  </button>
+                  <button type="button"  style="border:none;background:transparent;margin:5px">
+                    <img src="../../../assets/google-icon-login.png" alt="telegram-icon-login" style="width: 24px;">
+                  </button>
+              </li>
+              
+                <!-- <a href="https://oauth.telegram.org/auth?bot_id=7418729133&origin=https://152.42.224.98/9zXVFYO0pjgqrjB/public/api/telegramlogin&request_access=write">
+                  Login with Telegram
+              </a> -->
+
+                <!-- <li><a href="#"><img src="../../../assets/apple-icon.png" alt=""></a></li>
+                <li><a href="#"><img src="../../../assets/facebook-icon.png" alt=""></a></li> -->
+              </ul>
+          </div>
+
+          <div class="col-12 flex flex-row justify-content-between flex-column-mobile-view">
+            <div class="display-none-responsive">
+              <label class="apn-lbl"
+                >Don’t have an account?
+                <span class="act" (click)="signUp = true; visible = false"
+                  >Sign up</span
+                ></label
+              >
+            </div>
+
+            <a class="act font-size-12 text-align-right text-gradient-color" style="cursor: pointer" (click)="openOptions()">Trouble signing in?</a>
+          </div>
+        </div>
+          <!-- <div class="flex justify-content-center mt-1">
+              <p>OR Login with</p>
+          </div> -->
+        <!-- <div class="col-12  mt-3 flex justify-content-center align-item-center md:col-12">
+          <a (click)="loadWeb3()" ><img src="../../../assets/metamask.png" class="mx-4"/></a>
+          <a id="googleSignInButton" (click)="googleSignIn()" ><img src="../../../assets/google.png" /></a>
+          <img src="../../../assets/twitter.png"class="mx-4" />
+          <img src="../../../assets/Fb.png" />
+        </div> -->
+      </div>
+    </div>
+  </form>
+</div>
+</p-dialog>
+
+<p-dialog [style]="{width: '35vw'}" class="login-modal-popup" [contentStyle]="{'overflow':'auto', 'padding': '10px'}"  [(visible)]="resendemailotp" [breakpoints]="{ '991px': '95vw' }">
+  <form #ResendemailOtp="ngForm" (ngSubmit)="resendOTP()" >
+    <div class="col-12 form" >
+      <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+      <label class="form-label">Enter the Verification Code we Sent to Your Email</label>
+      <div class="col-12 flex justify-content-center align-items-center">
+        <input class="form-input" type="text" name="OTP" [(ngModel)]="form.OTP" pInputText required/>
+        <!-- <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}"  [config]="config"></ng-otp-input> -->
+      </div> 
+      <div class="m-2 col-12 form">
+        <button class="next-btn" type='submit'[disabled]="!ResendemailOtp.valid" >Submit</button>
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="mt-2 otp-msg">
+        6 digit Email verification code received by {{strFirstThree}}**@gmail.com
+      </div>
+      <div class="col-12 mt-2 p-0 flex justify-content-between ">
+        <!-- <label class="otp-msg">Didn't receive the OTP?</label> -->
+        <!-- <label class="act">Resend OTP</label> -->
+      </div>
+    </div>
+  </form>
+  </p-dialog>
+
+
+
+<p-dialog [style]="{width: '35vw'}" class="login-modal-popup" [contentStyle]="{'overflow':'auto', 'padding': '10px'}"  [(visible)]="logingoogle" [breakpoints]="{ '991px': '95vw' }">
+<form #logingoogleOtp="ngForm" (ngSubmit)="loginOTP()">
+  <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+  <div>
+    <div style="text-align: center;font-family: 'Euclid Circular A';font-size: 38px;margin: 0px 0px;">
+      TwoFactor Verification
+    </div>  
+    <div class="grid flex align-items-center justify-content-center" >
+      <p style="font-family: 'Euclid Circular A';font-size: 16px;margin: 20px 0px;color: #707688;">You are requesting to complete the following actions:</p>
+
+      <!-- <div class="col-10 form">
+        <label class="form-label">Enter the new E-mail address for your account</label>
+        <input class="form-input" type="text" pInputText />
+      </div> -->
+
+      <div class="col-10 flex justify-content-center align-items-center">
+        <!-- <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}"  [config]="config"></ng-otp-input> -->
+        <input class="form-input" type="text" name="OTP" [(ngModel)]="twofa.OTP" pInputText required/>
+        <input class="form-input" type="hidden" name="google" [(ngModel)]="twofa.type" pInputText/>
+      </div>
+      <div class="p-0 m-0 mt-2 otp-msg">
+        Enter the 6 digit code from google authenticator.
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="col-10 mt-2 p-0 flex justify-content-between ">
+        <!-- <label class="otp-msg" >Didn't receive the OTP?</label>
+        <label class="act">Resend OTP</label> -->
+      </div>
+      <div class="col-10 form">
+        <button class="next-btn" [disabled]="!logingoogleOtp.valid" type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</p-dialog>
+
+
+<p-dialog [style]="{width: '35vw'}" class="login-modal-popup"  [contentStyle]="{'overflow':'auto'}" [(visible)]="loginemail" [breakpoints]="{ '991px': '95vw' }">
+<form #loginemailOtp="ngForm" (ngSubmit)="loginOTP()" >
+  <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+  <div class="col-12 form" >
+    <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+    <label class="form-label">TwoFactor Verification</label>
+    <div class="col-12 flex justify-content-center align-items-center">
+      
+      <input class="form-input" type="text" name="OTP" [(ngModel)]="twofa.OTP" pInputText required/>
+      <span *ngIf="loginemailOtp.controls['OTP'].errors && (loginemailOtp.controls['OTP'].invalid && loginemailOtp.controls['OTP'].touched)">
+        <small class="text-danger" style="color: red" *ngIf="loginemailOtp.controls['OTP'].errors['required']">OTP is required</small>
+      </span>
+      <input class="form-input" type="hidden" name="email" [(ngModel)]="twofa.type" pInputText/>
+      <!-- <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}"  [config]="config"></ng-otp-input> -->
+    </div>
+    <div class="spinner-container" *ngIf="loading.isLoading | async">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span id="loading"></span>
+        </div>
+      </div>
+      <!-- <i class="fas fa-spinner fa-spin"></i> -->
+    </div>
+
+    <div class="col-12 form">
+      <button class="next-btn" type='submit'[disabled]="!loginemailOtp.valid" >Submit</button>
+    </div>
+
+    <div class="col-12 otp-msg">
+      6 digit Email verification code received by {{strFirstThree}}**@gmail.com
+    </div>
+    <div class="col-12 mt-2 p-0 flex justify-content-between ">
+      <!-- <label class="otp-msg">Didn't receive the OTP?</label>
+      <label class="act">Resend OTP</label> -->
+    </div>
+  </div>
+</form>
+</p-dialog>
+
+<p-dialog [style]="{width: '35vw'}" class="login-modal-popup" [contentStyle]="{'overflow':'auto', 'padding': '10px'}" [(visible)]="signUp" [breakpoints]="{ '991px': '95vw' }">
+  <div class="login-new-form">
+  <form class="sign-up-form" #signupForm="ngForm" (ngSubmit)="registerOnSubmit()">
+  <div>
+    <div class="grid flex flex-column align-items-center" style="padding: 0px 10px; margin-top: 0px;">
+
+    <div class="col-12 responsive-style-class">
+      <div class="logo-responsive text-align-center"><img class="logo" src="../../assets/log.png" alt="logo" /></div>
+      <label class="sign-header sign-up-header desktop-responsive-heading" style="position:absolute; top:32px">Sign up</label>
+      <label class="sign-header sign-up-header signup-responsive-heading" style="position:absolute; top:32px">Just step Away</label>
+      <span class="wmu">claim your bonus on registration</span>
+      <div>
+        <div class="display-none-desktop">
+          <label class="apn-lbl"
+            >Already A paid member?
+            <span class="act" (click)="signUp = false; visible = true"
+              >login</span
+            ></label
+          > 
+        </div>
+      </div>
+    </div>
+
+      <!-- <div class="col-12 form padding-0px field-icon-positioning">
+        <div class="alert alert-success" [hidden]="!success">{{success}}</div>
+        <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+        <label class="form-label form-label-positioning-for-signup">User ID*</label>
+        <img src="../../../assets/username.png" alt="username">
+        <input placeholder="User ID" class="form-input" name="userId" [(ngModel)]="formData.userId" type="text" style="width: 100%" pInputText required pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,16}$"/>
+        <span *ngIf="signupForm.controls['userId'].errors && (signupForm.controls['userId'].invalid && signupForm.controls['userId'].touched)">
+          <small class="text-danger" style="color: red" *ngIf="signupForm.controls['userId'].errors['required']">User ID is required</small>
+          <small class="text-danger" style="color: red" *ngIf="signupForm.controls['userId'].errors['pattern']">Your ID must contain 6-16 characters, must include both numbers and letters.</small>
+        </span>
+      </div> -->
+      
+      <div class="col-12 form padding-0px field-icon-positioning">
+        <label class="form-label form-label-positioning-for-signup">Email</label>
+        <img src="../../../assets/mobileoremail.png" alt="mobileoremail">
+        <input placeholder="Email" class="form-input" type="email" name="email" [(ngModel)]="formData.email" style="width: 100%" pInputText required />
+        <span *ngIf="signupForm.controls['email'].errors && (signupForm.controls['email'].invalid && signupForm.controls['email'].touched)">
+          <small class="text-danger" style="color: red" *ngIf="signupForm.controls['email'].errors['required']">Email ID is required</small>
+          <small class="text-danger" style="color: red"  *ngIf="signupForm.controls['email'].errors['pattern']">Enter Valid EmailID</small>
+        </span>
+      </div>
+      <div class="grid col-12 padding-0px field-icon-positioning">
+        <label class="form-label form-label-positioning-for-signup">Password</label>
+        <div class="password-style-block">
+        <input placeholder="Password" class="form-input" type="{{ hidePasswordRegister ? 'password' : 'text' }}" type="password" name="password" [(ngModel)]="formData.password" style="width: 100%" pInputText   required/>
+        <div class="show-password" (click)="togglePasswordRegisterVisibility()">
+          <i class="{{ hidePasswordRegister ? 'fas fa-eye' : 'fas fa-eye-slash' }}"></i></div>
+        </div>
+          <span *ngIf="signupForm.controls['password'].errors && (signupForm.controls['password'].invalid && signupForm.controls['password'].touched)">
+            <small class="text-danger" style="color: red" *ngIf="signupForm.controls['password'].errors['required']">Password is required</small>
+            <!-- <small class="text-danger" style="color: red" *ngIf="signupForm.controls['password'].errors['pattern']">Your password must contain at least 8 characters, one uppercase letter, one lowercase letter, one numeric digit, and one special character.</small> -->
+          </span>
+      </div>
+      
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+
+      <div class="col-12 form padding-0px field-icon-positioning">
+        <label class="form-label form-label-positioning-for-signup">Confirm Password</label>
+        <!-- <input class="form-input" type="password" name="confirmpassword" [(ngModel)]="formData.confirmpassword" style="width: 100%" pInputText pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required /> -->
+        <div class="password-style-block">
+          <input placeholder="Confirm Password" class="form-input" type="{{ hidePasswordRegisterConfirm ? 'password' : 'text' }}" name="confirmpassword" [(ngModel)]="formData.confirmpassword" style="width: 100%" pInputText  required />
+          <div class="show-password" (click)="togglePasswordRegisterConfirmVisibility()">
+            <i class="{{ hidePasswordRegisterConfirm ? 'fas fa-eye' : 'fas fa-eye-slash' }}"></i></div>
+          </div>
+        <span *ngIf="signupForm.controls['confirmpassword'].errors && (signupForm.controls['confirmpassword'].invalid && signupForm.controls['confirmpassword'].touched)">
+          <small class="text-danger" style="color: red" *ngIf="signupForm.controls['confirmpassword'].errors['required']">Confirm Password is required</small>
+        </span>
+      </div>
+
+      <div class="col-12 form padding-0px field-icon-positioning">
+        <label class="form-label form-label-positioning-for-signup">Referal Code</label>
+        <img src="../../../assets/invite-code.png" alt="invite-code">
+        <input placeholder="Enter Referal code" class="form-input" type="text" [(ngModel)]="formData.referralid" style="width: 100%" pInputText />
+      </div>
+      <!-- <div class="col-12 form padding-0px field-icon-positioning">
+        <img src="../../../assets/entotp.png" alt="entotp">
+        <input placeholder="Enter 4 digit OTP" class="form-input" type="text" [(ngModel)]="formData.referralid" style="width: 100%" pInputText />
+      </div> -->
+      
+      <div class="grid col-12 padding-0px last-child-mb-0">
+        <p-button class="sign-in-btn common-bg-color" type="submit" [disabled]="!signupForm.valid" >Sign Up</p-button>
+        <div class="col-12 flex flex-row justify-content-center display-none-responsive">
+          <div class="Or-sign-up-with-options">
+            <label class="apn-lbl"
+              >Or sign up with
+              <!-- <span class="act" (click)="signUp = false; visible = true"
+                >Sign in</span> -->
+              </label>
+              <ul>
+                <li><a href="#"><img src="../../../assets/google-icon.png" alt=""></a></li>
+                <li><a href="#"><img src="../../../assets/apple-icon.png" alt=""></a></li>
+                <li><a href="#"><img src="../../../assets/facebook-icon.png" alt=""></a></li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+</p-dialog>
+
+<p-dialog [style]="{width: '35vw'}" class="login-modal-popup" [contentStyle]="{'overflow':'auto', 'padding': '10px'}" [(visible)]="registeremail" [breakpoints]="{ '991px': '95vw' }">
+  <form #RegemailOtp="ngForm" (ngSubmit)="resOTP()" >
+    <div class="col-12 form" >
+      <div class="alert alert-danger error" [hidden]="!error">{{error}} </div>
+      <label class="form-label">Enter the Verification Code we Sent to Your Email</label>
+      <div class="col-12 flex justify-content-center align-items-center">
+        <input class="form-input" type="text" name="OTP" [(ngModel)]="formData.OTP" pInputText required/>
+        <!-- <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}"  [config]="config"></ng-otp-input> -->
+      </div> 
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="m-2 col-12 form">
+        <button class="next-btn" type='submit'[disabled]="!RegemailOtp.valid" >Submit</button>
+      </div>
+  
+      <div class="mt-2 otp-msg">
+        6 digit Email verification code received by {{strFirstThree}}**@gmail.com
+      </div>
+      <div class="col-12 mt-2 p-0 flex justify-content-between ">
+        <!-- <label class="otp-msg">Didn't receive the OTP?</label> -->
+        <!-- <label class="act">Resend OTP</label> -->
+      </div>
+    </div>
+  </form>
+  </p-dialog>
+
+<!-- signup modal end -->
+
+<p-dialog [style]="{width: '35vw'}" class="login-modal-popup" [contentStyle]="{'overflow':'auto', 'padding': '10px'}"[(visible)]="options" [breakpoints]="{ '991px': '95vw' }">
+  <div>
+    <div
+      class="grid flex flex-column align-items-center Trouble-signing-in-block"
+      style="padding: 0px"
+    >
+      <div class="col-12"> 
+        <label class="sign-header sign-up-header Trouble-signing-in-head">Trouble signing in?</label>
+      </div>
+      <div class="col-12">
+        <div class="checkbox">
+          <label class="check_cont">
+            If you can access your original email
+            <input type="radio" name="radio" (change)="openChangeEmail()" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="checkbox">
+          <label class="check_cont">
+            If you can’t access your original email
+            <input type="radio" name="radio" (change)="openAcountRecovery()" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="checkbox">
+          <label class="check_cont">
+            If you can’t access your account
+            <input type="radio" name="radio" (change)="openAcount()"/>
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="checkbox">
+          <label class="check_cont">
+            Forgot password
+            <input type="radio" name="radio" (change)="forgetpasss()" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- First option here -->
+<p-dialog [style]="{width: '35vw'}" [contentStyle]="{'overflow':'auto', 'padding': '10px'}" class="login-modal-popup" [(visible)]="changeEmail" [breakpoints]="{ '991px': '95vw' }">
+
+  <div class="text-center my-2" style="font-family: 'Euclid Circular A';
+  font-size: 38px;">
+    Change Email Address
+  </div>
+  
+  <div class="flex flex-wrap p-3 flex-row justify-content-around Change-Email-Address-popup">
+    <div class="flex flex-column justify-content-between align-items-center " >
+      <label class="stepper-dot flex align-item-center justify-content-center "
+      >1</label>
+      <label class="stepper-lbl mt-1 ">Verify Previous Email address</label>
+    </div>
+
+    <div class="flex flex-column justify-content-between align-items-center " >
+      <label class="stepper-dot flex align-item-center justify-content-center "
+      >2</label>
+      <label class="stepper-lbl mt-1 ">Enter New Email Adress</label>
+    </div>
+    <div class="flex flex-column justify-content-between align-items-center " >
+      <label class="stepper-dot flex align-item-center justify-content-center "
+      >3</label>
+      <label class="stepper-lbl mt-1 ">Verify New Email Address</label>
+    </div>
+    <div class="flex flex-column justify-content-between align-items-center " >
+      <label class="stepper-dot flex align-item-center justify-content-center "
+      >4</label>
+      <label class="stepper-lbl mt-1 ">2 step verification</label>
+    </div>
+    <div class="flex flex-column justify-content-between align-items-center " >
+      <label class="stepper-dot flex align-item-center justify-content-center "
+      >5</label>
+      <label class="stepper-lbl mt-1 ">Complete</label>
+    </div>
+  </div>
+
+  <div
+    class="grid flex flex-column align-items-center change-email-address-form"
+    style="padding: 0px 10px; margin-top: 0px;" 
+  >
+
+  <form class="common-form-class-name" #emailChangeForm=ngForm (ngSubmit)="handleEmailChange()">
+    <div class="col-12 form" *ngIf="activeIndex === 1">
+      <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+      <label class="form-label">Previous Email Address</label>
+      <input class="form-input" type="email" name="email" [(ngModel)]="emailChange.email" pInputText required/>
+      <span *ngIf="emailChangeForm.controls['email'].errors && (emailChangeForm.controls['email'].invalid && emailChangeForm.controls['email'].touched)">
+        <small class="text-danger" *ngIf="emailChangeForm.controls['email'].errors['required']">Email is required</small>
+      </span> 
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>     
+      <div class="mt-2 form">
+        <button class="next-btn" [disabled]="!emailChangeForm.valid" type='submit' >Next</button>
+      </div>
+    </div>
+  </form>
+
+  <form class="common-form-class-name" #emailverify="ngForm" (ngSubmit)="emailVerify()">
+    <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+    <div class="col-12 form" *ngIf="activeIndex === 2">
+      <label class="form-label">Email Verification Code</label>
+      <div class="col-12 flex justify-content-center align-items-center">
+        <!-- <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}"  [config]="config"></ng-otp-input> -->
+        <input class="form-input" type="text" name="otp" [(ngModel)]="emailChange.OTP" pInputText required/>
+      </div>
+      <div class="mt-2 otp-msg">
+        6 digit Email verification code received by {{strFirstThree}}**@gmail.com
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="col-12 mt-2 p-0 flex justify-content-between ">
+        <!-- <label class="otp-msg">Didn't receive the OTP?</label>
+        <label class="act">Resend OTP</label> -->
+      </div>
+      <div class="col-12 form">
+        <button class="next-btn" [disabled]="!emailverify.valid" type="submit">Next</button>
+      </div>
+    </div>
+  </form>
+
+  <form class="common-form-class-name" #emailForm="ngForm" (ngSubmit)="addEmail()" >
+
+    <div class="col-12 form" *ngIf="activeIndex === 3">
+      <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+      <div class="col-12 form" >
+        <label class="form-label">New Email Address</label>
+        <input class="form-input" type="text" name="newemail" [(ngModel)]="emailChange.newemail" style="width: 100%" pInputText required/>
+      </div>
+      <div class="col-12 form" >
+        <label class="form-label">Confirm New Email Address</label>
+        <input class="form-input" type="text" name="confirmemail" [(ngModel)]="emailChange.confirmemail" style="width: 100%" pInputText required/>
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="col-12 form" >
+        <label class="form-label">New Password</label>
+        <input class="form-input" type="password" name="newpassword" [(ngModel)]="emailChange.newpassword" style="width: 100%" pInputText required/>
+      </div>
+      <div class="col-12 form">
+        <button class="next-btn"  [disabled]="!emailForm.valid" type="submit">Next</button>
+      </div>
+    </div>
+  </form>
+
+    <div class="col-12 form" *ngIf="activeIndex === 4">
+
+      <label class="form-label">Phone verification code</label>
+      <div class="col-12 flex justify-content-center align-items-center">
+        <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}" name="otp" [(ngModel)]="emailChange.OTP" [config]="config"></ng-otp-input>
+        <input class="form-input" type="text" name="otp" [(ngModel)]="emailChange.OTP" pInputText />
+        
+      </div>
+      <div class="p-0 m-0 mt-2 otp-msg">
+        Enter the 6 digit code from phone number
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="col-12 mt-2 p-0 flex justify-content-between ">
+        <!-- <label class="otp-msg">Didn't receive the OTP?</label>
+        <label class="act">Resend OTP</label> -->
+      </div>
+    </div>
+
+    <div class="col-12 form" *ngIf="activeIndex === 5">
+      <label class="form-label">Google verification code</label>
+      <div class="col-12 flex justify-content-center align-items-center">
+        <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}"  [config]="config"></ng-otp-input>
+      </div>
+      <div class="p-0 m-0 mt-2 otp-msg">
+        Enter the 6 digit code from google authenticator.
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="col-12 mt-2 p-0 flex justify-content-between ">
+        <!-- <label class="otp-msg" >Didn't receive the OTP?</label>
+        <label class="act">Resend OTP</label> -->
+      </div>
+    </div>
+  
+    <div class="col-12 flex-column form  flex align-items-center justify-content-center" *ngIf="activeIndex === 6">
+      <img src="../../../assets/succes.svg" />
+      <p class="email-succ" >Email Address Updated</p>
+      <p class="email-msg ">Your email address has been successfully changed. please sign in with the new email address</p>
+    </div>
+  
+    <div class="m-2 col-12 form">
+      <!-- <button class="next-btn" (click)="clickNext()" type='submit' *ngIf="!(activeIndex === 6)">Next</button> -->
+      <button class="next-btn" (click)="clickNext()" *ngIf="activeIndex === 6">Sign In</button>
+    </div>
+
+    <div class="act p-2 flex align-item-center justify-content-center" *ngIf="!(activeIndex === 6)">
+      Security verification unavailable?
+    </div>
+
+  </div>
+
+</p-dialog>
+
+<!-- Second option here -->
+<p-dialog [breakpoints]="{ '991px': '95vw' }" [style]="{width: '35vw'}" [contentStyle]="{'overflow':'auto', 'padding': '10px'}" class="login-modal-popup" [style]="{'width':'600px'}"
+  [(visible)]="accountRecovery">
+
+<div  *ngIf="recovery === 1" >
+  <div style="text-align: center;font-family: 'Euclid Circular A';font-size: 38px;margin: 0px 0px;">
+    Account Recovery
+  </div>
+  
+  <form #RecoveryForm="ngForm" (ngSubmit)="AccoutRecovery()">
+  <div class="grid flex align-items-center justify-content-center" >
+    <div class="col-10 form" >
+      <label class="form-label">Enter the last username you remember</label>
+      <input class="form-input" type="text" name="username" [(ngModel)]="AccoutRecoveryForm.username" pInputText required/>
+      <span *ngIf="RecoveryForm.controls['username'].errors && (RecoveryForm.controls['username'].invalid && RecoveryForm.controls['username'].touched)">
+        <small class="text-danger" style="color: red"  *ngIf="RecoveryForm.controls['username'].errors['required']">Username is required</small>
+      </span>
+    </div>
+    <div class="spinner-container" *ngIf="loading.isLoading | async">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span id="loading"></span>
+        </div>
+      </div>
+      <!-- <i class="fas fa-spinner fa-spin"></i> -->
+    </div>
+    <div class="col-10 form" >
+      <label class="form-label">Enter the last password you remember</label>
+      <input class="form-input" type="password" name="password" [(ngModel)]="AccoutRecoveryForm.password" pInputText required/>
+      <span *ngIf="RecoveryForm.controls['password'].errors && (RecoveryForm.controls['password'].invalid && RecoveryForm.controls['password'].touched)">
+        <small class="text-danger" style="color: red" *ngIf="RecoveryForm.controls['password'].errors['required']">Password is required</small>
+      </span>
+    </div>
+    <div class="col-10 form">
+      <button class="next-btn" [disabled]="!RecoveryForm.valid" type="submit">Next</button>
+    </div>
+  </div>
+</form>
+</div>
+
+<form #accountRecoveryForm="ngForm" (ngSubmit)="emailRecovery()">
+<div  *ngIf="recovery === 2" >
+  <div style="text-align: center;font-family: 'Euclid Circular A';font-size: 38px;margin: 0px 0px;">
+    Reset Security Verification
+  </div>
+
+  <div class="grid flex align-items-center justify-content-center" >
+    <p style="font-family: 'Euclid Circular A';font-size: 16px;margin: 20px 0px;color: #707688;">You are requesting to complete the following actions:</p>
+    <div class="col-10 form" >
+      <label class="form-label">Enter the new E-mail address for your account</label>
+      <input class="form-input" type="text" name="email" [(ngModel)]="AccoutRecoveryForm.email" pInputText required/>
+      <span *ngIf="accountRecoveryForm.controls['email'].errors && (accountRecoveryForm.controls['email'].invalid && accountRecoveryForm.controls['email'].touched)">
+        <small class="text-danger" style="color: red" *ngIf="accountRecoveryForm.controls['email'].errors['required']">Email Address is Required</small>
+      </span>
+    </div>
+    <div class="spinner-container" *ngIf="loading.isLoading | async">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span id="loading"></span>
+        </div>
+      </div>
+      <!-- <i class="fas fa-spinner fa-spin"></i> -->
+    </div>
+    <!-- <div class="col-10 form" >
+      <label class="form-label">Enter the last password you remember</label>
+      <input class="form-input" type="text" pInputText />
+    </div> -->
+    <div class="col-10 form">
+      <button class="next-btn" [disabled]="!accountRecoveryForm.valid" type="submit">Next</button>
+    </div>
+  </div>
+</div>
+</form>
+
+
+<form #OTPform="ngForm" (ngSubmit)="recoveryOtp()">
+<div  *ngIf="recovery === 3" >
+  <div style="text-align: center;font-family: 'Euclid Circular A';font-size: 38px;margin: 0px 0px;">
+    Reset Security Verification
+  </div>
+
+  <div class="grid flex align-items-center justify-content-center" >
+    <p style="font-family: 'Euclid Circular A';font-size: 16px;margin: 20px 0px;color: #707688;">You are requesting to complete the following actions:</p>
+    <!-- <div class="col-10 form" >
+      <label class="form-label">Enter the new E-mail address for your account</label>
+      <input class="form-input" type="text" pInputText />
+    </div> -->
+    <div class="col-10 flex justify-content-center align-items-center">
+      <!-- <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}"  [config]="config"></ng-otp-input> -->
+      <input class="form-input" type="text" name="OTP" [(ngModel)]="AccoutRecoveryForm.OTP" pInputText required/>
+    </div>
+    <div class="spinner-container" *ngIf="loading.isLoading | async">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span id="loading"></span>
+        </div>
+      </div>
+      <!-- <i class="fas fa-spinner fa-spin"></i> -->
+    </div>
+    <div class="p-0 m-0 mt-2 otp-msg">
+      Enter the 6 digit code from google authenticator.
+    </div>
+    <div class="col-10 mt-2 p-0 flex justify-content-between ">
+      <!-- <label class="otp-msg" >Didn't receive the OTP?</label>
+      <label class="act">Resend OTP</label> -->
+    </div>
+    <div class="col-10 form">
+      <button class="next-btn" [disabled]="!OTPform.valid" type="submit">Reset Now</button>
+    </div>
+  </div>
+</div>
+</form>
+
+<div  *ngIf="recovery === 4" >
+<div class="grid flex align-items-center justify-content-center" >
+    
+      <div class="col-10 flex-column form  flex align-items-center justify-content-center">
+        <img src="../../../assets/succes.svg" />
+        <p class="email-succ" >Email Updated Successfully</p>
+        <p class="email-msg ">Email has been updated successfully</p>
+      </div>
+    
+    <div class="col-10 form">
+      <button class="next-btn" (click)="clickRecovery()">Sign in</button>
+    </div>
+  </div>
+</div>
+</p-dialog>
+
+<!-- Thirs option here -->
+
+<p-dialog [breakpoints]="{ '991px': '95vw' }" [style]="{width: '35vw'}" [contentStyle]="{'overflow':'auto', 'padding': '10px'}" class="login-modal-popup"
+  [(visible)]="openAcount2">
+
+  <div class="text-center my-2" style="font-family: 'Euclid Circular A';
+  font-size: 38px;">
+    Account Recovery
+  </div>
+
+  <div
+    class="grid flex flex-column align-items-center"
+    style="margin-top: 0px;" 
+  >
+  
+  <form #thirdReasonForm="ngForm" (ngSubmit)="Reason()" >
+    <div class="col-12 form" *ngIf="activeIndex === 1">
+      
+        <div class="flex flex-column gap-2">
+            <div *ngFor="let category of categories" class="field-checkbox">
+                <p-checkbox name="group" [value]="category" [(ngModel)]="category.selected" (click)="Reason()" [inputId]="category.key"></p-checkbox>
+                <label [for]="category.key">{{ category.name }}</label>
+            </div>
+            <div class="spinner-container" *ngIf="loading.isLoading | async">
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span id="loading"></span>
+                </div>
+              </div>
+              <!-- <i class="fas fa-spinner fa-spin"></i> -->
+            </div>
+            <div class="m-2 col-12 form">
+              <!-- <button class="next-btn" type='submit' [disabled]="!thirdReasonForm.valid">Next</button> -->
+            </div>
+        </div>
+    </div>
+  </form> 
+
+    <form #thirdEmailForm="ngForm" (ngSubmit)="thirdEmail()" >
+    <div class="col-12 form" *ngIf="activeIndex === 2">
+      <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+      <p style="margin-bottom: 5px;color: #707688;">Enter email address where we should contact you.</p>
+      <label class="form-label">Enter an email address to contact you</label>
+      <input class="form-input" type="text" name='email' [(ngModel)]='thirdForm.email' style="width: 100%" pInputText required/>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="mt-2 form">
+        <button class="next-btn" type='submit'[disabled]="!thirdEmailForm.valid" >Next</button>
+      </div>
+    </div>
+  </form>
+    
+  <form #thirdOTPForm="ngForm" (ngSubmit)="thirdotp()" >
+    <div class="col-12 form" *ngIf="activeIndex === 3">
+      <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+      <label class="form-label">Email Verification Code</label>
+      <div class="col-12 flex justify-content-center align-items-center">
+        <input class="form-input" type="text" name="otp" [(ngModel)]="thirdForm.OTP" pInputText required/>
+        <!-- <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}"  [config]="config"></ng-otp-input> -->
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+
+      <div class="m-2 col-12 form">
+        <button class="next-btn" type='submit'[disabled]="!thirdOTPForm.valid" >Next</button>
+      </div>
+
+      <div class="mt-2 otp-msg">
+        6 digit Email verification code received by {{strFirstThree}}**@gmail.com
+      </div>
+      <div class="col-12 mt-2 p-0 flex justify-content-between ">
+        <!-- <label class="otp-msg">Didn't receive the OTP?</label> -->
+        <!-- <label class="act">Resend OTP</label> -->
+      </div>
+    </div>
+  </form>
+
+    <div class="col-12 flex-column form  flex align-items-center justify-content-center" *ngIf="activeIndex === 4">
+      <img src="../../../assets/succes.svg" />
+      <p class="email-succ" >Request Accepted</p>
+      <p class="email-msg">Customer care will get in touch with you shortly</p>
+    </div>
+   
+  </div>
+
+</p-dialog>
+
+<!-- Fourth option here -->
+ <p-dialog [breakpoints]="{ '991px': '95vw' }" [style]="{width: '35vw'}" [contentStyle]="{'overflow':'auto', 'padding': '10px'}" class="login-modal-popup"
+  [(visible)]="forgetpass"
+>
+
+<div>
+<form #forgetForm="ngForm" (ngSubmit)="forgetPassword()">
+  <div class="grid flex flex-column align-items-center" style="margin-top: 0px;">
+    <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+    <div class="col-12 form" *ngIf="activeIndex === 1">
+      <h2 style="font-size: 30px;font-weight: 500;">Forgot Password?</h2>
+      <p style="font-size: 14px; color: #707688;">Enter the email associated with your account, and we'll send an email with instructions to reset your password.</p>
+      <div class="mt-5">
+        <label class="form-label">Enter an email address to contact you</label>
+        <input class="form-input" name="email" [(ngModel)]="forget.email" type="text" style="width: 100%" pInputText />
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="mt-2 form">
+        <button class="next-btn" type="submit" >Next</button>
+     </div>
+    </div>
+  </div>
+</form>
+
+<div class="col-12 flex-column form  flex align-items-center justify-content-center" *ngIf="activeIndex === 2">
+  <img src="../../../assets/Group 32986 1.png" />
+  <p class="email-succ mt-4" >Check your mail</p>
+  <p class="email-msg mt-4">We have sent password recovery instructions to your email.</p>
+  <div class="m-2 col-12 form">
+    <div class="spinner-container" *ngIf="loading.isLoading | async">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span id="loading"></span>
+        </div>
+      </div>
+      <!-- <i class="fas fa-spinner fa-spin"></i> -->
+    </div>
+    <button class="next-btn" (click)="clickNext()" >Next</button>
+  </div>
+</div>
+
+<form #verifyForm="ngForm" (ngSubmit)="onOtp()">
+    <div class="col-12 form" *ngIf="activeIndex === 3">
+      <!-- <div class="alert alert-danger" [hidden]="!error">{{error}} </div> -->
+      <h2 style="font-size: 30px;font-weight: 500;">Reset Security Verification</h2>
+      <p style="font-size: 14px; color: #ffffff;margin-top: 20px;">2 step verification</p>
+      <div class="col-12 flex justify-content-center align-items-center">
+        <!-- <ng-otp-input inputStyles="{ backgroundColor: 'transperent'}" name="otp" [(ngModel)]="otp.otp" [config]="config"  ></ng-otp-input> -->
+        <input class="form-input" type="text" name="otp" [(ngModel)]="forget.OTP" pInputText />
+      </div>
+      <div class="mt-2 otp-msg">
+        Enter the 6 digit code from phone number
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+      <div class="col-12 mt-2 p-0 flex justify-content-between ">
+        <!-- <label class="otp-msg">Didn't receive the OTP?</label>
+        <label class="act">Resend OTP</label> -->
+      </div>
+      <div class="col-12 form">
+         <button class="next-btn" type="submit" >Next</button>
+    </div>
+    </div>
+    
+    <!-- <div class="col-12 flex-column form  flex align-items-center justify-content-center" *ngIf="activeIndex === 3">
+      <img src="../../../assets/Group 32986 1.png" />
+      <p class="email-succ mt-4" >Check your mail</p>
+      <p class="email-msg mt-4">We have sent password recovery instructions to your email.</p>
+      </div>
+    
+    <div class="col-12 flex-column form  flex align-items-center justify-content-center" *ngIf="activeIndex === 3">
+      <img src="../../../assets/Group 32986 1.png" />
+      <p class="email-succ mt-4" >Check your mail</p>
+      <p class="email-msg mt-4">We have sent password recovery instructions to your email.</p>
+    </div> -->
+  </form>
+
+  <form #passwordForm="ngForm" (ngSubmit)="changePassword()">
+     <div class="col-12 form" *ngIf="activeIndex === 4">
+      <div class="alert alert-danger" [hidden]="!error">{{error}} </div>
+      <h2 style="font-size: 30px;font-weight: 500;margin-bottom: 20px;">Reset password</h2>
+      <div class="col-12 form" >
+        <label class="form-label">New Password</label>
+        <input class="form-input" type="password" name="newpassword" [(ngModel)]="forget.password" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" style="width: 100%" pInputText required/>        
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+
+      <div class="col-12 form" >
+        <label class="form-label">Confirm New Password</label>
+        <input class="form-input" type="password" name="confirmpassword" [(ngModel)]="forget.confirmpassword" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" style="width: 100%" pInputText required/>
+      </div>
+      <div class="spinner-container" *ngIf="loading.isLoading | async">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span id="loading"></span>
+          </div>
+        </div>
+        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+      </div>
+
+      <div class="m-2 col-12 form">
+        <button class="next-btn" type="submit" >Next</button>
+      </div>
+    
+    </div>
+  </form>
+
+    <div class="col-12 flex-column form  flex align-items-center justify-content-center" *ngIf="activeIndex === 5">
+      <img src="../../../assets/Group 33005@2x 1.png" />
+      <p class="email-succ mt-4" >Password Reset Successful</p>
+      <p class="email-msg mt-4">You can now use your new password to log in to your account</p>
+    </div>
+  
+
+    <div class="m-2 col-12 form">
+      <!-- <button class="next-btn" (click)="clickNext()" *ngIf="!(activeIndex === 3)">Next</button> -->
+      <!-- <button class="next-btn" (click)="clickNext()" *ngIf="activeIndex === 3">Continue</button> -->
+    </div>
+   
+  </div>
+</p-dialog>

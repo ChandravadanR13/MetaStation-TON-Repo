@@ -1,0 +1,3541 @@
+<div *ngIf="isLoading" class="loader loader-new-class">
+  <img src="../../../../../assets/images/loaderimg.gif" />
+</div>
+
+<div class="grid sub-admin-panel" id="whole-trade-panel-id-outer">
+  <div class="col-12 md:col-12" id="whole-trade-panel-id">
+    <div class="grid">
+      <div
+        [ngClass]="{
+          'col-12': true,
+          'md:col-9': true,
+          activeexpandright: isMoveExpand
+        }"
+      >
+        <div class="card socket-running-top">
+          <div class="ticker-shower-menu" >
+            <div class="ticker-shower" (click)="toggleTicker()">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="spot-future-selection " style="display: flex;justify-content: center;align-items: center;">
+               <label >{{tradeModeText}}</label>
+            </div>
+            <div class="ticker-block" *ngIf="isTickerOpen" >
+                <div class="search-box-ticker">
+                   <input type="text" placeholder="Search.." [(ngModel)]="searchTerm" (input)="filterTradepairs()" />
+                   <button  (click)="filterTradepairs()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="tab-container">
+                  <button *ngFor="let tab of tabList; let i = index" (click)="selectTab(i,tab)"
+                    [class.active]="i === selectedTabIndex">
+                    {{ tab }}
+                  </button>
+                </div>
+
+                <div class="tab-container">
+                  <button *ngFor="let coin of coinList;" (click)="selectCoin(coin)">
+                    {{ coin }}
+                  </button>
+                </div>
+
+                <div class="tab-content">
+                  <table>
+                    <tr>
+                      <th>Pair</th>
+                      <th>Price/ Vol</th>
+                      <th>Change</th>
+                    </tr>
+                    <tr *ngFor="let item of filteredTradepairs">
+                     <td (click)="navigateTo(item.symbol)">
+                      <img
+                      (error)="onImageError($event)"
+                      [src]="'/assets/images/color/' +item.coinone.toLowerCase() +'.svg'"
+                      class="mr-1"
+                      width="20%"
+                    />
+                    {{ item.coinone }}
+                  </td>
+                      <!-- <td (click)="navigateTo(item.symbol)"></td> -->
+                      <td (click)="navigateTo(item.symbol)"><span [ngClass]="'last_price_' + item.symbol">{{item.lastprice}}</span></td>
+                      <td (click)="navigateTo(item.symbol)"><span [ngClass]="'price_change_' + item.symbol" [ngStyle]="{'background-color':item.change < 0 ? 'red' : 'green'}" >{{item.change + "%"}}</span></td>
+ 
+                    </tr>
+                  </table>
+                </div>
+            </div>
+        </div>
+
+          <div id="livehead_price-id" [ngClass]="'livehead_price_' + this.symbol" style="color: white">--</div>
+          <div class="symbolId-outer"><label>Pair</label><div>
+              <span>{{ this.symbol }}</span>
+            </div>
+          </div>
+
+          <div class="order-wise-3">
+            <label>Volume</label>
+            <div>
+              <span [ngClass]="'livehead_vol_' + this.symbol">4100.33M</span>
+            </div>
+          </div>
+          <div class="order-wise-4">
+            <label>Change 24h</label>
+            <div>
+              <span
+                ><span [ngClass]="'livehead_change_' + this.symbol">0.77</span
+                >%</span
+              >
+            </div>
+          </div>
+          <div class="order-wise-5">
+            <label>High</label>
+            <span [ngClass]="'livehead_high_' + this.symbol">72800.00</span>
+          </div>
+          <div class="order-wise-6">
+            <label>Low</label>
+            <span [ngClass]="'livehead_low_' + this.symbol">71270.09</span>
+          </div>
+        </div>
+
+        <div
+          class="tradingview-isMinMax"
+          [ngClass]="{
+            card: true,
+            'trading-view-sell-buy-block': true,
+            activeminmax: isMinMax,
+            inactiveMoveShrinkTrade: isMoveShrinkTrade
+          }"
+          style="
+            background-color: #31456d;
+            padding-bottom: 0px !important;
+            display: flex !important;
+            gap: 1px !important;
+          "
+        >
+          <div class="tradingview-widget-container" #elementRef>
+            <div id="tradingview_bac65"></div>
+            <div class="fullscreen-icon" (click)="toggleFullscreen()">
+              <!-- <img src="../../../../../assets/images/fullscreen.png"> -->
+              <i class="fa-solid fa-expand"></i>
+            </div>
+          </div>
+
+          <div>
+            <div style="flex: 0 0 30%">
+
+              <div class="change-the-rage-select-for-order-book">
+                <div class="change-the-rage-select-for-order-book-left">
+                    <span [ngClass]="{'active': activeTile === 'class1'}" (click)="setClasses('class1')">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <rect x="2.10175" y="1.23071" width="4.59728" height="6.15385" rx="0.265232" fill="#E35561"/>
+                        <rect x="2.10175" y="8.61536" width="4.59728" height="6.15385" rx="0.265232" fill="#5DC787"/>
+                        <rect x="14.7443" y="1.23071" width="2.46154" height="6.89593" rx="0.265232" transform="rotate(90 14.7443 1.23071)" fill="#868E9B"/>
+                        <rect x="14.7443" y="4.9231" width="2.46154" height="6.89593" rx="0.265232" transform="rotate(90 14.7443 4.9231)" fill="#868E9B"/>
+                        <rect x="14.7443" y="8.61536" width="2.46154" height="6.89593" rx="0.265232" transform="rotate(90 14.7443 8.61536)" fill="#868E9B"/>
+                        <rect x="14.7443" y="12.3076" width="2.46154" height="6.89593" rx="0.265232" transform="rotate(90 14.7443 12.3076)" fill="#868E9B"/>
+                        </svg>
+                    </span>
+                    <span [ngClass]="{'active': activeTile === 'class2'}" (click)="setClasses('class2')">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                      <rect x="2.05341" y="1.23071" width="4.90377" height="13.5385" rx="0.246287" fill="#5DC787"/>
+                      <rect x="15.5388" y="1.23071" width="2.46154" height="7.35566" rx="0.246287" transform="rotate(90 15.5388 1.23071)" fill="#868E9B"/>
+                      <rect x="15.5388" y="4.9231" width="2.46154" height="7.35566" rx="0.246287" transform="rotate(90 15.5388 4.9231)" fill="#868E9B"/>
+                      <rect x="15.5388" y="8.61536" width="2.46154" height="7.35566" rx="0.246287" transform="rotate(90 15.5388 8.61536)" fill="#868E9B"/>
+                      <rect x="15.5388" y="12.3077" width="2.46154" height="7.35566" rx="0.246287" transform="rotate(90 15.5388 12.3077)" fill="#868E9B"/>
+                      </svg>
+                    </span>
+                    <span [ngClass]="{'active': activeTile === 'class3'}" (click)="setClasses('class3')">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                        <rect x="1.92432" y="1.23071" width="4.90377" height="13.5385" rx="0.256106" fill="#E35561"/>
+                        <rect x="15.4097" y="1.23071" width="2.46154" height="7.35566" rx="0.256106" transform="rotate(90 15.4097 1.23071)" fill="#868E9B"/>
+                        <rect x="15.4097" y="4.9231" width="2.46154" height="7.35566" rx="0.256106" transform="rotate(90 15.4097 4.9231)" fill="#868E9B"/>
+                        <rect x="15.4097" y="8.61548" width="2.46154" height="7.35566" rx="0.256106" transform="rotate(90 15.4097 8.61548)" fill="#868E9B"/>
+                        <rect x="15.4097" y="12.3076" width="2.46154" height="7.35566" rx="0.256106" transform="rotate(90 15.4097 12.3076)" fill="#868E9B"/>
+                        </svg>
+                    </span>
+                </div>
+
+                <div class="change-the-rage-select-for-order-book-right">
+                   <select (change)="filterOrderbook($event)" name="" id="valuerange">
+                    <option value="0.001">0.001</option>
+                    <option value="0.01">0.01</option>
+                    <option value="0.1">0.1</option>
+                    <option value="1">1</option>
+                    <option value="10">10</option>
+                    <option value="100">100</option>
+                   </select>
+                </div>
+            </div>
+
+
+            <!-- OrderBook -->
+              <table class="selling-buy-block" [ngClass]="classList">
+                <tr class="selling-buy-block-head">
+                  <th>Price</th>
+                  <th>Amount</th>
+                  <th>Total</th>
+                </tr>
+
+                <tbody class="selling-block-body">
+                  <tr *ngFor="let item of displayedAsk.slice(-50).reverse()"class="selling-block-body-inner"(click)="selectOrder(item[0], item[1])">
+                    <td class="sell-color">{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ (item[0] * item[1]).toFixed(2) }}</td>
+                  </tr>
+                </tbody>
+
+                <div class="mid-block-buy-sell-part">
+                  <span></span>
+                  <!-- <span class="mid-block-buy-sell-part-inner">1.752723</span> -->
+                  <span></span>
+                </div>
+
+                <tbody class="buy-block-body">
+                  <tr *ngFor="let item of displayedBid.slice(-50).reverse()" class="buy-block-body-inner" (click)="selectOrder(item[0], item[1])">
+                    <td class="buy-color-color">{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ (item[0] * item[1]).toFixed(2) }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- card End -->
+
+        <div
+          [ngClass]="{
+            card: true,
+            'mt-3': true,
+            'order-form-book order-form-book-bottom': true,
+            ofminmax: isMinMax,
+            activeMoveShrinkTrade: isMoveShrinkTrade
+          }"
+        >
+          <div
+            class="card mt-3 order-form-book order-form-book-bottom-inner-inner order-form-book-bottom-table"
+          >
+            <div class="grid" style="margin-bottom: -40px">
+              <div
+                class="col-12 sf-table-bottom-style-unique"
+                style="display: none"
+              >
+                <div class="mmr">
+                  <button
+                    pButton
+                    pTooltip="Minimize open and close position table"
+                    tooltipPosition="left"
+                    (click)="toggleMinMax()"
+                  >
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <button
+                    pButton
+                    pTooltip="Maximize the height of open and close position table"
+                    tooltipPosition="left"
+                    (click)="toggleMoveShrinkTrade()"
+                  >
+                    <i class="fa-regular fa-window-maximize"></i>
+                  </button>
+                  <button
+                    pButton
+                    pTooltip="Expand the width for 'Trade with orderbook' and 'open and close position table'"
+                    tooltipPosition="left"
+                    (click)="toggleMoveExpand()"
+                  >
+                    <i class="fa-regular fa-square-caret-right"></i>
+                  </button>
+                </div>
+                <div class="col-12 flex justify-content-between">
+                  <p-tabView
+                    style="width: 100%"
+                    class="innertab sf-table-bottom-style-unique-outer"
+                  >
+                    <p-tabPanel
+                      header="Positions"
+                      *ngIf="selectedTradeType !== 'spot'"
+                    >
+                      <p-tabView
+                        style="width: 100%"
+                        class="innertab2 sf-table-bottom-style-unique-inner"
+                      >
+                        <p-tabPanel header="Closed">
+                          <ng-container
+                            *ngIf="
+                              positionCloseTrades &&
+                                positionCloseTrades.length > 0;
+                              else noRecordsFound
+                            "
+                          >
+                            <p-table
+                              [value]="positionCloseTrades"
+                              class="closed-tab-table"
+                            >
+                              <ng-template pTemplate="header">
+                                <tr></tr>
+                                <tr>
+                                  <th>Type</th>
+                                  <th>Pair</th>
+                                  <th>Price</th>
+                                  <th>Amount</th>
+                                  <th>Maker/Taker</th>
+                                  <th>Status</th>
+                                  <th>Execute</th>
+                                </tr>
+                              </ng-template>
+                              <ng-template pTemplate="body" let-data>
+                                <tr>
+                                  <td
+                                    [ngStyle]="{
+                                      color:
+                                        data.side === 'Buy'
+                                          ? '#02df02'
+                                          : '#ff8300'
+                                    }"
+                                  >
+                                    {{ data.side === "Buy" ? "Long" : "Short" }}
+                                  </td>
+                                  
+                                  <td>{{ data.symbol }}</td>
+                                  <td>{{ data.price }}</td>
+                                  <td>{{ data.qty }}</td>
+                                  <td>
+                                    {{ data.isMaker ? "Maker" : "Taker" }}
+                                  </td>
+                                  <td>{{ data.orderStatus }}</td>
+                                  <td>
+                                    {{
+                                      data.updatedTime
+                                        | date : "MM/dd/yyyy HH:mm:ss"
+                                    }}
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </p-table>
+                          </ng-container>
+                        </p-tabPanel>
+                      </p-tabView>
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Orders">
+                      <p-tabView
+                        style="width: 100%"
+                        class="innertab2 sf-table-bottom-style-unique-inner"
+                      >
+                        <p-tabPanel header="Open">
+                          <ng-container
+                            *ngIf="
+                              openorders && openorders.length > 0;
+                              else noRecordsFound
+                            "
+                          >
+                            <p-table [value]="openorders">
+                              <ng-template pTemplate="header">
+                                <tr>
+                                  <th>Type</th>
+                                  <th>Pair</th>
+                                  <th>Quantity</th>
+                                  <th>Price</th>
+                                  <th>Created</th>
+                                  <!-- <th>BOT</th> -->
+                                  <th>Cancel</th>
+                                </tr>
+                              </ng-template>
+                              <ng-template pTemplate="body" let-itemdata>
+                                <tr>
+                                  <td>{{ itemdata.side }}</td>
+                                  <td>{{ itemdata.symbol }}</td>
+                                  <td>{{ itemdata.qty }}</td>
+                                  <td>
+                                    {{
+                                      parseFloat(itemdata.price) > 0
+                                        ? itemdata.price
+                                        : itemdata.triggerPrice
+                                    }}
+                                  </td>
+                                  <td>
+                                    {{
+                                      itemdata.createdTime
+                                        | date : "yyyy-MM-dd HH:mm:ss"
+                                    }}
+                                  </td>
+                                  <td>
+                                    <i
+                                      (click)="cancelOrder(itemdata.orderId)"
+                                      class="pi pi-times-circle"
+                                      style="color: #ff5656"
+                                    ></i>
+                                    <div
+                                      class="flex flex-column align-items-center"
+                                    ></div>
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </p-table>
+                          </ng-container>
+                          <ng-template #noRecordsFound>
+                            <div
+                              class="my-5 no-records-found-table"
+                              style="
+                                text-align: center;
+                                color: #b1b7c5;
+                                font-family: Euclid Circular A;
+                                font-size: 14px;
+                              "
+                            >
+                              No records found
+                            </div>
+                          </ng-template>
+                        </p-tabPanel>
+                        <p-tabPanel
+                          *ngIf="selectedTradeType == 'spot'"
+                          header="Closed"
+                        >
+                          <ng-container
+                            *ngIf="
+                              closedtrades && closedtrades.length > 0;
+                              else noRecordsFound1
+                            "
+                          >
+                            <p-table [value]="closedtrades">
+                              <ng-template pTemplate="header">
+                                <tr>
+                                  <th>Side</th>
+                                  <th>Type</th>
+                                  <th>Pair</th>
+                                  <th>Quantity</th>
+                                  <th>Price</th>
+                                  <th>Created</th>
+                                </tr>
+                              </ng-template>
+                              <ng-template pTemplate="body" let-closedtrade>
+                                <tr>
+                                  <td>{{ closedtrade.side }}</td>
+                                  <td>{{ closedtrade.orderType }}</td>
+                                  <td>{{ closedtrade.symbol }}</td>
+                                  <td>{{ closedtrade.qty }}</td>
+                                  <td>
+                                    {{
+                                      closedtrade.orderType === "Market"
+                                        ? closedtrade.avgPrice
+                                        : closedtrade.price
+                                    }}
+                                  </td>
+                                  <td>
+                                    {{
+                                      closedtrade.createdTime
+                                        | date : "yyyy-MM-dd HH:mm:ss"
+                                    }}
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </p-table>
+                          </ng-container>
+                          <ng-template #noRecordsFound1>
+                            <div
+                              class="my-5 no-records-found-table"
+                              style="
+                                text-align: center;
+                                color: #b1b7c5;
+                                font-family: Euclid Circular A;
+                                font-size: 14px;
+                              "
+                            >
+                              No records found
+                            </div>
+                          </ng-template>
+                        </p-tabPanel>
+                      </p-tabView>
+                    </p-tabPanel>
+
+                    <!-- <p-tabPanel header="Balances">
+                      <div
+                        class="innertab2 sf-table-bottom-style-unique-inner inner-common-style"
+                      >
+                        <p class="sf-table-bottom-style-unique-inner-para">
+                          At vero eos et accusamus et iusto odio dignissimos
+                          ducimus qui blanditiis praesentium voluptatum deleniti
+                          atque corrupti quos dolores et quas molestias
+                          excepturi sint occaecati cupiditate non provident,
+                          similique sunt in culpa qui officia deserunt mollitia
+                          animi, id est laborum et dolorum fuga. Et harum quidem
+                          rerum facilis est et expedita distinctio. Nam libero
+                          tempore, cum soluta nobis est eligendi optio cumque
+                          nihil impedit quo minus.
+                        </p>
+                      </div>
+                    </p-tabPanel> -->
+
+                    <!-- <p-tabPanel header="Signal Log">
+                      <div
+                        class="col-12 flex innertab2 sf-table-bottom-style-unique-inner inner-common-style"
+                      >
+                        <div class="col-9">
+                          <p-table
+                            [value]="productsSignalLog"
+                            class="signaltable"
+                          >
+                            <ng-template pTemplate="header">
+                              <div
+                                style="
+                                  height: 40px;
+                                  font-size: 10px;
+                                  overflow: hidden;
+                                  border: 1px solid #1e2945;
+                                "
+                              >
+                                <tr class="signallog">
+                                  <th style="padding-top: 0px">
+                                    <div class="flex align-items-center">
+                                      <span style="padding-left: 10px">Id</span>
+                                      <div
+                                        class="search flex justify-content-between px-2 align-items-center"
+                                        style="
+                                          border-bottom: 2px solid #5c6276;
+                                          height: 40px;
+                                        "
+                                      >
+                                        <i
+                                          class="pi pi-search mr-1"
+                                          style="font-size: 10px"
+                                        ></i>
+                                        <input
+                                          type="search"
+                                          placeholder="Search here"
+                                          class="Searchbar"
+                                          style="
+                                            background-color: #8a93a4;
+                                            color: white;
+                                            border: 1px solid white;
+                                            border-radius: 10px;
+                                          "
+                                        />
+                                      </div>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div
+                                      class="flex align-items-center mr-3"
+                                      style="padding-left: 30px"
+                                    >
+                                      <span>Drop</span>  
+                                      <select id="btn" class="mx-1">
+                                        <option
+                                          *ngFor="let item of itemsDrop3"
+                                          [value]="item"
+                                          style="
+                                            color: #ffffff;
+                                            background-color: gray;
+                                            border: none;
+                                          "
+                                        >
+                                          {{ item }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div
+                                      class="flex align-items-center"
+                                      style="padding-left: 30px"
+                                    >
+                                      <span>Pair</span>
+                                      <div
+                                        class="search flex justify-content-between align-items-center px-2"
+                                        style="
+                                          border-bottom: 2px solid #5c6276;
+                                          height: 40px;
+                                        "
+                                      >
+                                        <i
+                                          class="pi pi-search mr-1"
+                                          style="font-size: 10px"
+                                        ></i>
+                                        <input
+                                          type="search"
+                                          placeholder="Search here"
+                                          class="Searchbar"
+                                          style="
+                                            background-color: #8a93a4;
+                                            color: white;
+                                            border: 1px solid white;
+                                            border-radius: 10px;
+                                          "
+                                        />
+                                      </div>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div
+                                      class="flex align-items-center"
+                                      style="padding-left: 30px"
+                                    >
+                                      <span>Name</span>
+                                      <div
+                                        class="search flex justify-content-between align-items-center px-2"
+                                        style="
+                                          border-bottom: 2px solid #5c6276;
+                                          height: 40px;
+                                        "
+                                      >
+                                        <i
+                                          class="pi pi-search mr-1"
+                                          style="font-size: 10px"
+                                        ></i>
+                                        <input
+                                          type="search"
+                                          placeholder="Search here"
+                                          class="Searchbar"
+                                          style="
+                                            background-color: #8a93a4;
+                                            color: white;
+                                            border: 1px solid white;
+                                            border-radius: 10px;
+                                          "
+                                        />
+                                      </div>
+                                    </div>
+                                  </th>
+                                </tr>
+                              </div>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-product>
+                              <tr>
+                                <td>{{ product.id }}</td>
+                                <td>{{ product.value }}</td>
+                                <td>{{ product.pair }}</td>
+                                <td>{{ product.name }}</td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </div>
+                        <div
+                          class="vl"
+                          style="border-left: 6px solid #1e2945; height: auto"
+                        ></div>
+                        <div class="col-3">
+                          <div
+                            class="flex justify-content-center align-content-center my-5 no-records-found-table"
+                          >
+                            <i class="pi pi-arrow-left mr-2"></i>
+                            <p>Choose a signal</p>
+                          </div>
+                        </div>
+                      </div>
+                    </p-tabPanel> -->
+                  </p-tabView>
+                </div>
+              </div>
+              <!-- new table tab order book jo Arun -->
+
+              <div class="col-12 sf-table-bottom-style-unique">
+                <div class="col-12 flex justify-content-between">
+                  <p-tabView
+                    style="width: 100%"
+                    class="innertab sf-table-bottom-style-unique-outer future-tab-table-subpanel"
+                  >
+                    <p-tabPanel
+                      header="Positions"
+                      *ngIf="selectedTradeType == 'linear'"
+                      header="Positions{{
+                        positionTrades.length > 0
+                          ? '(' + positionTrades.length + ')'
+                          : '(0)'
+                      }}"
+                    >
+                      <ng-container
+                        *ngIf="
+                          positionTrades && positionTrades.length > 0;
+                          else noRecordsFound
+                        "
+                      >
+                        <p-table
+                          class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          [value]="positionTrades"
+                        >
+                          <ng-template pTemplate="header">
+                            <tr>
+                              <th>Contracts</th>
+                              <th>Qty</th>
+                              <th>Value</th>
+                              <th>Entry Price</th>
+                              <th>Mark Price</th>
+                              <th>Liq.Price</th>
+                              <th>IM</th>
+                              <th>MM</th>
+                              <th>Unrealized P&L</th>
+                              <th>Realized P&L</th>
+                              <!-- <th>TP/SL</th> -->
+                              <!-- <th>Trailing Stop</th> -->
+                              <th>ADL</th>
+                              <th>Close By</th>
+                              <!-- <th>Cancel</th> -->
+                            </tr>
+                          </ng-template>
+
+                          <ng-template pTemplate="body" let-item>
+                            <tr>
+                              <td style="border-left: 3px solid red">
+                                <span>{{ item.symbol }}</span>
+                                <label class="sell-color"
+                                  >{{
+                                    item.tradeMode === 0 ? "Cross" : "Isolated"
+                                  }}
+                                  {{ item.leverage }}x</label
+                                >
+                              </td>
+                              <td class="sell-color">{{ item.size }}</td>
+                              <td>{{ item.positionValue }} USDT</td>
+                              <td>{{ item.avgPrice }}</td>
+                              <td>{{ item.markPrice }}</td>
+                              <td>{{ item.liqPrice || "--" }}</td>
+                              <td>
+                                <span>{{ item.positionIM }} USDT</span>
+                              </td>
+                              <td>
+                                <span>{{ item.positionMM }} USDT</span>
+                              </td>
+                              <td>
+                                <span class="buy-color"
+                                  >{{ item.unrealisedPnl }} USDT</span
+                                >
+                                <span class="buy-color"
+                                  >({{
+                                    (item.unrealisedPnl / item.positionValue) *
+                                      100 | number : "1.2-2"
+                                  }}%)</span
+                                >
+                              </td>
+                              <td>
+                                <span class="sell-color"
+                                  >{{ item.curRealisedPnl }} USDT</span
+                                >
+                              </td>
+                              <!-- <td><button>Add</button></td>
+                              <td><button>Add</button></td> -->
+                              <td>{{ item.adlRankIndicator }}</td>
+                              <button
+                                class="unique-button-cls"
+                                (click)="closePosition('Limit', item)"
+                              >
+                                Limit
+                              </button>
+                              <button
+                                class="unique-button-cls"
+                                (click)="closePosition('Market', item)"
+                              >
+                                Market
+                              </button>
+                              <!-- <td><button (click)="Canceltrade('item.orderId ,item.orderLinkId')">Cancel</button></td> -->
+                            </tr>
+
+                            <tr
+                              class="children-table-tab-accordion"
+                              *ngIf="activeChildtab"
+                            >
+                              <td colspan="11">
+                                <p-table [value]="childTrades">
+                                  <ng-template pTemplate="body" let-childtrade>
+                                    <tr>
+                                      <td>{{ childtrade.type }}</td>
+
+                                      <td
+                                        [ngStyle]="{
+                                          color:
+                                            childtrade.side === 'Sell'
+                                              ? 'red'
+                                              : childtrade.side === 'Buy'
+                                              ? 'green'
+                                              : 'red'
+                                        }"
+                                      >
+                                        <div class="sell-buy-status-div-cls">
+                                          <span
+                                            [ngClass]="[
+                                              'fa-circle-sell-buy',
+                                              childtrade.side === 'Buy'
+                                                ? 'buy-color'
+                                                : 'sell-color'
+                                            ]"
+                                          >
+                                            <i class="fa-solid fa-circle"></i>
+                                          </span>
+                                          {{ childtrade.side }}
+                                        </div>
+                                      </td>
+
+                                      <td>{{ childtrade.price }}</td>
+
+                                      <td
+                                        class="aproved-bloced-status-limit-td"
+                                      >
+                                        <div
+                                          class="aproved-bloced-status-limit-td-inner"
+                                        >
+                                          <div
+                                            class="aproved-bloced-status-limit"
+                                          >
+                                            <span class="sell-color"
+                                              ><i
+                                                class="fa-solid fa-angle-down"
+                                              ></i></span
+                                            >{{ childtrade.ordertype }}#{{
+                                              childtrade.type
+                                            }}
+                                          </div>
+                                          <div class="aproved-bloced-status-td">
+                                            <span class="approved-class"
+                                              ><i
+                                                class="fa-regular fa-circle-check"
+                                              ></i
+                                            ></span>
+                                            <!-- <span class="blocked-class"><i class="fa-solid fa-ban"></i></span> -->
+                                          </div>
+                                        </div>
+                                      </td>
+
+                                      <td>{{ childtrade.qty }}</td>
+                                      <td>
+                                        {{
+                                          childtrade.time
+                                            | date : "MM/dd/yyyy HH:mm:ss"
+                                        }}
+                                      </td>
+                                      <td>{{ childtrade.type }}</td>
+                                      <!-- <td
+                                        (click)="
+                                          cancelOrder(
+                                            childtrade.orderid,
+                                            childtrade.type
+                                          )
+                                        "
+                                        class="close-icon"
+                                      >
+                                        <span class="sell-color"
+                                          ><i
+                                            class="fa-regular fa-circle-xmark"
+                                          ></i
+                                        ></span>
+                                      </td> -->
+                                    </tr>
+                                  </ng-template>
+                                </p-table>
+                              </td>
+                            </tr>
+                          </ng-template>
+                        </p-table>
+
+                        <ng-template #noRecordsFound>
+                          <div
+                            class="my-5 no-records-found-table"
+                            style="
+                              text-align: center;
+                              color: #b1b7c5;
+                              font-family: Euclid Circular A;
+                              font-size: 14px;
+                            "
+                          >
+                            No records found
+                          </div>
+                        </ng-template>
+                      </ng-container>
+                    </p-tabPanel>
+
+                    <p-tabPanel *ngIf="selectedTradeType == 'linear'" header="P&L">
+                      <p-tabView
+                        style="width: 100%"
+                        class="innertab2 sf-table-bottom-style-unique-inner"
+                      >
+                        <!-- <p-tabPanel header="Closed Orders">
+                        <p-table
+                          [value]="openorders"
+                          class="ptable-positiontrades ptable-positiontrades-subpanel"
+                        >
+                          <ng-template pTemplate="header">
+                            <tr>
+                              <th>Contracts</th>
+                              <th>Qty</th>
+                              <th>Entry Price</th>
+                              <th>Exit Price</th>
+                              <th>Trade Type</th>
+                              <th>Closed P&L</th>
+                              <th>Exit Type</th>
+                              <th>Trade Time</th>
+                            </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-itemdata>
+                            <tr *ngIf="openorders?.length > 0; else noRecordsFound">
+                              <td style="border-left: 3px solid red">
+                                <span>{{ itemdata.symbol }}</span>
+                              </td>
+                              <td>{{ itemdata.side }}</td>
+                              <td class="sell-color">
+                                {{ itemdata.qty }}
+                              </td>
+                              <td>{{ itemdata.price }}</td>
+                              <td>{{ itemdata.filledQty }}/{{ itemdata.qty }}</td>
+                              <td>{{ itemdata.orderType }}</td>
+                              <td>{{ itemdata.orderStatus }}</td>
+                              <td>{{ itemdata.orderId }}</td>
+                              <td>
+                                {{ itemdata.createdTime | date: "yyyy-MM-dd HH:mm:ss" }}
+                              </td>
+                              <td>{{ itemdata.timeInForce }}</td>
+                              <td>
+                                <button
+                                  (click)="Canceltrade(itemdata.orderId, itemdata.orderLinkId, itemdata.symbol)"
+                                >
+                                  Cancel
+                                </button>
+                              </td>
+                            </tr>
+                          </ng-template>
+                          <ng-template #noRecordsFound>
+                            <tr>
+                              <td colspan="11" style="text-align: center; color: #b1b7c5;">
+                                No records found
+                              </td>
+                            </tr>
+                          </ng-template>
+                        </p-table>
+                      </p-tabPanel> -->
+
+                        <p-tabPanel header="Closed Positions">
+                          <p-table
+                            [value]="plPositions"
+                            class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          >
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Contracts</th>
+                                <th>Qty</th>
+                                <th>Direction</th>
+                                <th>Avg. Entry Price</th>
+                                <th>Avg. Exit Price</th>
+                                <th>P&L</th>
+                                <th>Open Time</th>
+                                <th>Close Time</th>
+                                <th>Type</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-itemdata>
+                              <tr
+                                *ngIf="
+                                  plPositions?.length > 0;
+                                  else noRecordsFound
+                                "
+                              >
+                                <td style="border-left: 3px solid red">
+                                  <span>{{ itemdata.symbol }}</span>
+                                </td>
+                                <td>{{ itemdata.qty }}</td>
+                                <td>{{ itemdata.side }}</td>
+                                <td>{{ itemdata.avgEntryPrice }}</td>
+                                <td>{{ itemdata.avgExitPrice }}</td>
+                                <td>{{ itemdata.closedPnl }}</td>
+                                <td>
+                                  {{
+                                    itemdata.createdTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    itemdata.updatedTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>{{ itemdata.execType }}</td>
+                              </tr>
+                            </ng-template>
+                            <ng-template #noRecordsFound>
+                              <tr>
+                                <td
+                                  colspan="11"
+                                  style="text-align: center; color: #b1b7c5"
+                                >
+                                  No records found
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </p-tabPanel>
+
+                      </p-tabView>
+                    </p-tabPanel>
+
+                    <p-tabPanel
+                      header="Current Orders {{
+                        openorders.length > 0
+                          ? '(' + openorders.length + ')'
+                          : '(0)'
+                      }}"
+                    >
+                      <p-tabView
+                        style="width: 100%"
+                        class="innertab2 sf-table-bottom-style-unique-inner"
+                      >
+                        <p-tabPanel *ngIf="selectedTradeType == 'spot'" header="Active">
+                          <p-table
+                            [value]="openorders"
+                            class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          >
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Market</th>
+                                <th>Instrument</th>
+                                <th>Order Type</th>
+                                <th>Direction</th>
+                                <th>Order Price</th>
+                                <th>Filled/Order Quantity</th>
+                                <th>Order Value</th>
+                                <th>Trade Type</th>
+                                <th>Order Time</th>
+                                <th>Order ID</th>
+                                <th>Action</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-itemdata>
+                              <tr
+                                *ngIf="
+                                  openorders?.length > 0;
+                                  else noRecordsFound
+                                "
+                              >
+                                <td>{{ itemdata.symbol }}</td>
+                                <td><span>spot</span></td>
+                                <td>{{ itemdata.orderType }}</td>
+                                <td>{{ itemdata.side }}</td>
+                                <td>{{ itemdata.price }}</td>
+                                <td>
+                                  {{ itemdata.cumExecQty }}/{{ itemdata.qty }}
+                                </td>
+                                <td>{{ itemdata.leavesValue }}</td>
+                                <td>
+                                  {{
+                                    itemdata.placeType
+                                      ? itemdata.placeType
+                                      : "--"
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    itemdata.createdTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>{{ itemdata.orderId }}</td>
+                                <td>
+                                  <i
+                                    (click)="cancelOrder(itemdata.orderId)"
+                                    class="pi pi-times-circle"
+                                    style="color: #ff5656"
+                                  ></i>
+                                  <div
+                                    class="flex flex-column align-items-center"
+                                  ></div>
+                                </td>
+                              </tr>
+                            </ng-template>
+                            <ng-template #noRecordsFound>
+                              <tr>
+                                <td
+                                  colspan="11"
+                                  style="text-align: center; color: #b1b7c5"
+                                >
+                                  No records found
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </p-tabPanel>
+
+                        <p-tabPanel *ngIf="selectedTradeType == 'linear'" header="Active">
+                          <p-table
+                            [value]="openorders"
+                            class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          >
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Market</th>
+                                <th>Instrument</th>
+                                <th>Order Type</th>
+                                <th>Direction</th>
+                                <th>Order Price</th>
+                                <th>Filled/Order Quantity</th>
+                                <th>Order Value</th>
+                                <th>Trade Type</th>
+                                <th>Order Time</th>
+                                <th>Order ID</th>
+                                <th>Action</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-itemdata>
+                              <tr
+                                *ngIf="
+                                  openorders?.length > 0;
+                                  else noRecordsFound
+                                "
+                              >
+                                <td>{{ itemdata.symbol }}</td>
+                                <td><span>linear</span></td>
+                                <td>{{ itemdata.orderType }}</td>
+                                <td>{{ itemdata.side }}</td>
+                                <td>{{ itemdata.price }}</td>
+                                <td>
+                                  {{ itemdata.cumExecQty }}/{{ itemdata.qty }}
+                                </td>
+                                <td>{{ itemdata.leavesValue }}</td>
+                                <td>
+                                  {{
+                                    itemdata.placeType
+                                      ? itemdata.placeType
+                                      : "--"
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    itemdata.createdTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>{{ itemdata.orderId }}</td>
+                                <td>
+                                  <i
+                                    (click)="cancelOrder(itemdata.orderId)"
+                                    class="pi pi-times-circle"
+                                    style="color: #ff5656"
+                                  ></i>
+                                  <div
+                                    class="flex flex-column align-items-center"
+                                  ></div>
+                                </td>
+                              </tr>
+                            </ng-template>
+                            <ng-template #noRecordsFound>
+                              <tr>
+                                <td
+                                  colspan="11"
+                                  style="text-align: center; color: #b1b7c5"
+                                >
+                                  No records found
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </p-tabPanel>
+
+                        <p-tabPanel *ngIf="selectedTradeType == 'spot'" header="Conditional">
+                          <p-table
+                            [value]="conditionalorders"
+                            class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          >
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Market</th>
+                                <th>Instrument</th>
+                                <th>Direction</th>
+                                <th>Trigger Price</th>
+                                <th>Order Price</th>
+                                <th>Order Qty</th>
+                                <th>Order Value</th>
+                                <th>TP/SL</th>
+                                <th>Trade Type</th>
+                                <th>Order Time</th>
+                                <th>Order ID</th>
+                                <th>Reduce-Only</th>
+                                <th>Order Status</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-itemdata>
+                              <tr
+                                *ngIf="
+                                  conditionalorders?.length > 0;
+                                  else noRecordsFound
+                                "
+                              >
+                                <td style="border-left: 3px solid red">
+                                  <span>{{ itemdata.symbol }}</span>
+                                </td>
+                                <td>{{ itemdata.qty }}</td>
+                                <td>{{ itemdata.side }}</td>
+                                <td>{{ itemdata.avgEntryPrice }}</td>
+                                <td>{{ itemdata.avgExitPrice }}</td>
+                                <td>{{ itemdata.closedPnl }}</td>
+                                <td>
+                                  {{
+                                    itemdata.createdTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    itemdata.updatedTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>{{ itemdata.execType }}</td>
+                              </tr>
+                            </ng-template>
+                            <ng-template #noRecordsFound>
+                              <tr>
+                                <td
+                                  colspan="11"
+                                  style="text-align: center; color: #b1b7c5"
+                                >
+                                  No records found
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </p-tabPanel>
+
+                        <p-tabPanel *ngIf="selectedTradeType == 'spot'" header="Conditional">
+                          <p-table
+                            [value]="conditionalorders"
+                            class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          >
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Market</th>
+                                <th>Instrument</th>
+                                <th>Direction</th>
+                                <th>Trigger Price</th>
+                                <th>Order Price</th>
+                                <th>Order Qty</th>
+                                <th>Order Value</th>
+                                <th>TP/SL</th>
+                                <th>Trade Type</th>
+                                <th>Order Time</th>
+                                <th>Order ID</th>
+                                <th>Reduce-Only</th>
+                                <th>Order Status</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-itemdata>
+                              <tr
+                                *ngIf="
+                                  conditionalorders?.length > 0;
+                                  else noRecordsFound
+                                "
+                              >
+                                <td style="border-left: 3px solid red">
+                                  <span>{{ itemdata.symbol }}</span>
+                                </td>
+                                <td>{{ itemdata.qty }}</td>
+                                <td>{{ itemdata.side }}</td>
+                                <td>{{ itemdata.avgEntryPrice }}</td>
+                                <td>{{ itemdata.avgExitPrice }}</td>
+                                <td>{{ itemdata.closedPnl }}</td>
+                                <td>
+                                  {{
+                                    itemdata.createdTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    itemdata.updatedTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>{{ itemdata.execType }}</td>
+                              </tr>
+                            </ng-template>
+                            <ng-template #noRecordsFound>
+                              <tr>
+                                <td
+                                  colspan="11"
+                                  style="text-align: center; color: #b1b7c5"
+                                >
+                                  No records found
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </p-tabPanel>
+
+                        <p-tabPanel *ngIf="selectedTradeType == 'spot'" header="TP/SL">
+                          <p-table
+                            [value]="tpslorder"
+                            class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          >
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Market</th>
+                                <th>Instrument</th>
+                                <th>Direction</th>
+                                <th>Trigger Price</th>
+                                <th>Order Price</th>
+                                <th>Order Qty</th>
+                                <th>Order Value</th>
+                                <th>Order Time</th>
+                                <th>Order ID</th>
+                                <th>Order Status</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-itemdata>
+                              <tr
+                                *ngIf="
+                                tpslorder?.length > 0;
+                                  else noRecordsFound
+                                "
+                              >
+                                <td>{{itemdata.symbol}}</td>
+                                <td>{{ itemdata.qty }}</td>
+                                <td>{{ itemdata.side }}</td>
+                                <td>{{ itemdata.triggerPrice }}</td>
+                                <td>{{ itemdata.lastPriceOnCreated }}</td>
+                                <td>{{ itemdata.qty }}</td>
+                                <td>{{ (itemdata.cumExecValue == 0 ) ? itemdata.cumExecValue : '--' }}</td>
+                                <td>{{itemdata.createdTime | date : "yyyy-MM-dd HH:mm:ss"}}</td>
+                                <td>{{itemdata.orderId}}</td>
+                                <td>{{itemdata.orderStatus}}</td>
+                              </tr>
+                            </ng-template>
+                            <ng-template #noRecordsFound>
+                              <tr>
+                                <td
+                                  colspan="11"
+                                  style="text-align: center; color: #b1b7c5"
+                                >
+                                  No records found
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </p-tabPanel>
+
+                      </p-tabView>
+                    </p-tabPanel>
+
+                    <!-- <p-tabPanel header="Order History">
+                      <p-tabView
+                        style="width: 100%"
+                        class="innertab2 sf-table-bottom-style-unique-inner"
+                      >
+                      <p-tabPanel  header="Limit & Market">
+                        <p-table
+                          [value]="limitmarket"
+                          class="ptable-positiontrades ptable-positiontrades-subpanel"
+                        >
+                          <ng-template pTemplate="header">
+                            <tr>
+                              <th>Market</th>
+                              <th>Instrument</th>
+                              <th>Order Type</th>
+                              <th>Direction</th>
+                              <th>Order Price</th>
+                              <th>Filled/Order Quantity</th>
+                              <th>Order Value</th>
+                              <th>Trade Type</th>
+                              <th>Order Time</th>
+                              <th>Order ID</th>
+                            </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-itemdata>
+                            <tr
+                              *ngIf="
+                              limitmarket?.length > 0;
+                                else noRecordsFound
+                              "
+                            >
+                              <td>{{ itemdata.symbol }}</td>
+                              <td><span>spot</span></td>
+                              <td>{{ itemdata.orderType }}</td>
+                              <td>{{ itemdata.side }}</td>
+                              <td>{{ itemdata.price }}</td>
+                              <td>
+                                {{ itemdata.cumExecQty }}/{{ itemdata.qty }}
+                              </td>
+                              <td>{{ itemdata.leavesValue }}</td>
+                              <td>
+                                {{
+                                  itemdata.placeType
+                                    ? itemdata.placeType
+                                    : "--"
+                                }}
+                              </td>
+                              <td>
+                                {{
+                                  itemdata.createdTime
+                                    | date : "yyyy-MM-dd HH:mm:ss"
+                                }}
+                              </td>
+                              <td>{{ itemdata.orderId }}</td>
+                            </tr>
+                          </ng-template>
+                          <ng-template #noRecordsFound>
+                            <tr>
+                              <td
+                                colspan="11"
+                                style="text-align: center; color: #b1b7c5"
+                              >
+                                No records found
+                              </td>
+                            </tr>
+                          </ng-template>
+                        </p-table>
+                      </p-tabPanel>
+
+                        <p-tabPanel  header="Conditional">
+                          <p-table
+                            [value]="conditionalhistory"
+                            class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          >
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Market</th>
+                                <th>Instrument</th>
+                                <th>Order Type</th>
+                                <th>Direction</th>
+                                <th>Order Price</th>
+                                <th>Filled/Order Quantity</th>
+                                <th>Order Value</th>
+                                <th>Trade Type</th>
+                                <th>Order Time</th>
+                                <th>Order ID</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-itemdata>
+                              <tr
+                                *ngIf="
+                                conditionalhistory?.length > 0;
+                                  else noRecordsFound
+                                "
+                              >
+                                <td>{{ itemdata.symbol }}</td>
+                                <td><span>spot</span></td>
+                                <td>{{ itemdata.orderType }}</td>
+                                <td>{{ itemdata.side }}</td>
+                                <td>{{ itemdata.price }}</td>
+                                <td>
+                                  {{ itemdata.cumExecQty }}/{{ itemdata.qty }}
+                                </td>
+                                <td>{{ itemdata.leavesValue }}</td>
+                                <td>
+                                  {{
+                                    itemdata.placeType
+                                      ? itemdata.placeType
+                                      : "--"
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    itemdata.createdTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>{{ itemdata.orderId }}</td>
+                              </tr>
+                            </ng-template>
+                            <ng-template #noRecordsFound>
+                              <tr>
+                                <td
+                                  colspan="11"
+                                  style="text-align: center; color: #b1b7c5"
+                                >
+                                  No records found
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </p-tabPanel>
+
+                        <p-tabPanel *ngIf="selectedTradeType == 'linear'" header="TP/SL">
+                          <p-table
+                            [value]="tpslhistory"
+                            class="ptable-positiontrades ptable-positiontrades-subpanel"
+                          >
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Market</th>
+                                <th>Instrument</th>
+                                <th>Order Type</th>
+                                <th>Direction</th>
+                                <th>Order Price</th>
+                                <th>Filled/Order Quantity</th>
+                                <th>Order Value</th>
+                                <th>Trade Type</th>
+                                <th>Order Time</th>
+                                <th>Order ID</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-itemdata>
+                              <tr
+                                *ngIf="
+                                tpslhistory?.length > 0;
+                                  else noRecordsFound
+                                "
+                              >
+                                <td>{{ itemdata.symbol }}</td>
+                                <td><span>spot</span></td>
+                                <td>{{ itemdata.orderType }}</td>
+                                <td>{{ itemdata.side }}</td>
+                                <td>{{ itemdata.price }}</td>
+                                <td>
+                                  {{ itemdata.cumExecQty }}/{{ itemdata.qty }}
+                                </td>
+                                <td>{{ itemdata.leavesValue }}</td>
+                                <td>
+                                  {{
+                                    itemdata.placeType
+                                      ? itemdata.placeType
+                                      : "--"
+                                  }}
+                                </td>
+                                <td>
+                                  {{
+                                    itemdata.createdTime
+                                      | date : "yyyy-MM-dd HH:mm:ss"
+                                  }}
+                                </td>
+                                <td>{{ itemdata.orderId }}</td>
+                              </tr>
+                            </ng-template>
+                            <ng-template #noRecordsFound>
+                              <tr>
+                                <td
+                                  colspan="11"
+                                  style="text-align: center; color: #b1b7c5"
+                                >
+                                  No records found
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </p-tabPanel>
+
+                      </p-tabView>
+                    </p-tabPanel> -->
+
+                    <p-tabPanel header="Trade History" *ngIf="selectedTradeType == 'spot'">
+                      <p-tabView
+                        style="width: 100%"
+                        class="innertab2 sf-table-bottom-style-unique-inner"
+                      >
+                        <p-tabPanel *ngIf="selectedTradeType == 'spot'">
+                          <ng-container
+                            *ngIf="
+                              closedtrades && closedtrades.length > 0;
+                              else noRecordsFound1
+                            "
+                          >
+                            <p-table [value]="closedtrades">
+                              <ng-template pTemplate="header">
+                                <tr>
+                                  <th>Side</th>
+                                  <th>Type</th>
+                                  <th>Pair</th>
+                                  <th>Quantity</th>
+                                  <th>Price</th>
+                                  <th>Status</th>
+                                  <th>Created</th>
+                                </tr>
+                              </ng-template>
+
+                              <!-- Table body -->
+                              <ng-template pTemplate="body" let-closedtrade>
+                                <tr>
+                                  <td>{{ closedtrade.side }}</td>
+                                  <td>{{ closedtrade.orderType }}</td>
+                                  <td>{{ closedtrade.symbol }}</td>
+                                  <td>{{ closedtrade.qty }}</td>
+                                  <td>
+                                    {{
+                                      closedtrade.orderType === "Market"
+                                        ? closedtrade.avgPrice
+                                        : closedtrade.price
+                                    }}
+                                  </td>
+                                  <td>{{ closedtrade.orderStatus }}</td>
+                                  <td>
+                                    {{
+                                      closedtrade.createdTime
+                                        | date : "yyyy-MM-dd HH:mm:ss"
+                                    }}
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </p-table>
+                          </ng-container>
+
+                          <!-- Template for no records found -->
+                          <ng-template #noRecordsFound1>
+                            <div
+                              class="my-5 no-records-found-table"
+                              style="
+                                text-align: center;
+                                color: #b1b7c5;
+                                font-family: Euclid Circular A;
+                                font-size: 14px;
+                              "
+                            >
+                              No records found
+                            </div>
+                          </ng-template>
+                        </p-tabPanel>
+
+                        <!-- <p-tabPanel *ngIf="selectedTradeType == 'linear'">
+                          <ng-container
+                            *ngIf="
+                              positionCloseTrades &&
+                                positionCloseTrades.length > 0;
+                              else noRecordsFound1
+                            "
+                          >
+                            <p-table [value]="positionCloseTrades">
+                              <ng-template pTemplate="header">
+                                <tr>
+                                  <th>Side</th>
+                                  <th>Type</th>
+                                  <th>Pair</th>
+                                  <th>Quantity</th>
+                                  <th>Price</th>
+                                  <th>Created</th>
+                                </tr>
+                              </ng-template>
+                              <ng-template pTemplate="body" let-closedtrade>
+                                <tr>
+                                  <td>{{ closedtrade.side }}</td>
+                                  <td>{{ closedtrade.orderType }}</td>
+                                  <td>{{ closedtrade.symbol }}</td>
+                                  <td>{{ closedtrade.qty }}</td>
+                                  <td>
+                                    {{
+                                      closedtrade.orderType === "Market"
+                                        ? closedtrade.avgPrice
+                                        : closedtrade.price
+                                    }}
+                                  </td>
+                                  <td>
+                                    {{
+                                      closedtrade.createdTime
+                                        | date : "yyyy-MM-dd HH:mm:ss"
+                                    }}
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </p-table>
+                          </ng-container>
+                          <ng-template #noRecordsFound1>
+                            <div
+                              class="my-5 no-records-found-table"
+                              style="
+                                text-align: center;
+                                color: #b1b7c5;
+                                font-family: Euclid Circular A;
+                                font-size: 14px;
+                              "
+                            >
+                              No records found
+                            </div>
+                          </ng-template>
+                        </p-tabPanel> -->
+
+                      </p-tabView>
+                    </p-tabPanel>
+                  </p-tabView>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Left Side section End -->
+      <div
+        class="right-content-tne-oslxtp-positioning for-app-for-put"
+        [ngClass]="{
+          active: activeContent === 1,
+          'col-12': true,
+          'md:col-3': true,
+          'right-content-tne-oslxtp': true,
+          oslxtpminmax: isMoveExpand
+        }"
+      >
+        <div
+          class="close-icon-for-call-put display-none-desktop"
+          (click)="closeContentApp()"
+        >
+          <img
+            src="../../../../../assets/close-icon-for-call-put.png"
+            alt="close-icon-for-call-put"
+          />
+        </div>
+        <p-tabView class="innertab">
+          <!-- <p-tabPanel header="Ticker" class="TNE-tabs">
+            <p-tabView class="innertab">
+        
+              <p-tabPanel header="Favorites">
+                <div>
+                  <p-table [value]="getFavoritePairs()">
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>Pair</th>
+                        <th>Price/ Vol</th>
+                        <th class="text-end">Change</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item>
+                      <tr>
+                        <td>
+                          <div class="flex align-items-center">
+                            <img
+                              (click)="
+                                navigateTo(item.coinone + '_' + item.cointwo)
+                              "
+                              [src]="
+                                '/assets/images/color/' +
+                                item.coinone.toLowerCase() +
+                                '.svg'
+                              "
+                              class="mr-1"
+                              width="20%"
+                            />
+                            <span
+                              (click)="
+                                navigateTo(item.coinone + '_' + item.cointwo)
+                              "
+                              style="font-size: 12px"
+                              >{{ item.coinone }}/{{ item.cointwo }}
+                            </span>
+                          </div>
+                        </td>
+                        <td
+                          (click)="
+                            navigateTo(item.coinone + '_' + item.cointwo)
+                          "
+                        >
+                          <div style="width: 100px">
+                            <span [ngClass]="'last_price_' + item.symbol">{{
+                              item.lastprice
+                            }}</span>
+                          </div>
+                        </td>
+                        <td
+                          (click)="
+                            navigateTo(item.coinone + '_' + item.cointwo)
+                          "
+                        >
+                          <div class="text-end">
+                            <button
+                              [ngStyle]="{
+                                'background-color':
+                                  item.change < 0 ? 'red' : 'green'
+                              }"
+                              id="btn3"
+                              [ngClass]="'price_change_' + item.symbol"
+                            >
+                              {{ item.change + "%" }}
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </p-tabPanel>
+            </p-tabView>
+          </p-tabPanel> -->
+
+          <p-tabPanel header="New Long" class="New-Long-Order">
+            <p-tabView class="innertab" *ngIf="longbye || shortsell">
+              <p-tabPanel header="Order">
+                <ng-template pTemplate="header">
+                  <div id="fututreorder">Order</div>
+                </ng-template>
+
+                <div
+                  class="basic-pro-common-flex-class enable-master-bot-class common-style-SL-SLX-TP"
+                >
+                  <div
+                    class="switch-btn flex align-items-end gap-3 justify-content-between"
+                  >
+                    <div *ngIf="selectedTradeType == 'linear'" class="basic-pro-left">
+                      <label class="switch mt-2 mb-2">
+                        <input type="checkbox" (change)="toggleMode()" />
+                        <span class="slider round"> </span>
+                      </label>
+                      <p>{{ modeText }}</p>
+                    </div>
+                    <div
+                      *ngIf="this.userRole === 'basic' && this.isProMode"
+                      class="basic-pro-right"
+                    >
+                      Upgrade to PRO version
+                    </div>
+                  </div>
+
+                  <div
+                    class="switch-btn flex align-items-end gap-3 justify-content-between"
+                  >
+                    <!-- <div class="basic-pro-left">
+                      <label class="switch mt-2 mb-2">
+                        <input
+                          type="checkbox"
+                          (change)="changeTradeType()"
+                        />
+                        <span class="slider round"> </span>
+                      </label>
+                      <p>{{ tradeModeText }}</p>
+                    </div> -->
+                  </div>
+                </div>
+
+                <div class="card px-2 common-style-SL-SLX-TP-order">
+                  <!-- <div class="flex align-items-center justify-content-between">
+                    <div
+                      class="new-order-grig-flex outmm mt-3 flex flex-row justify-content-between align-items-center px-2"
+                      style="
+                        width: 100px;
+                        height: 30px;
+                        border-radius: 6px;
+                        background: rgba(255, 255, 255, 0.1);
+                        box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.25) inset,
+                          0px 1px 4px 0px rgba(0, 0, 0, 0.2) inset;
+                      "
+                    >
+                      <p
+                        [ngClass]="{ active: activeButton21 === 'btn21' }"
+                        (click)="setActiveButton21('btn21')"
+                      >
+                        1
+                      </p>
+                      <p
+                        [ngClass]="{ active: activeButton21 === 'btn22' }"
+                        (click)="setActiveButton21('btn22')"
+                      >
+                        G
+                      </p>
+                      <p
+                        [ngClass]="{ active: activeButton21 === 'btn23' }"
+                        (click)="setActiveButton21('btn23')"
+                      >
+                        F
+                      </p>
+                    </div>
+                    <div *ngIf="activeButton21 === 'btn21'">
+                      <p>Single order</p>
+                    </div>
+                    <div *ngIf="activeButton21 === 'btn22'">
+                      <p>New order grid</p>
+                    </div>
+                    <div *ngIf="activeButton21 === 'btn23'">
+                      <p>New Fibonacci grid</p>
+                    </div>
+                  </div> -->
+
+                  <div *ngIf="activeButton21 == 'btn21'">
+                    <!-- first row close -->
+                    <div class="">
+                      <div class="col-6 flex">
+                        <!-- <p style="font-size: 14px">Order Type</p> -->
+
+                        <div class="componentsBox">
+                          <div class="content">
+                            <!-- <label class="switch m5">
+                              <input
+                                type="checkbox"
+                                [(ngModel)]="isToggledss"
+                              />
+                              <small></small>
+                            </label> -->
+                          </div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="isToggledss == false">
+                        <div
+                          class="col-12 flex new-order-grig-flex outmm flex flex-row justify-content-center align-items-center LMSL-tabs"
+                          style="
+                            width: 100%;
+                            height: 30px;
+                            border-radius: 6px;
+                            background: rgba(255, 255, 255, 0.1);
+                            gap:20px;
+                          "
+                        >
+                          <p
+                            [ngClass]="{ active: activeButton22 === 'btn24' }"
+                            (click)="setActive('L')"
+                          >
+                            Limit
+                          </p>
+                          <!-- <p
+                            [ngClass]="{ active: activeButton22 === 'btn25' }"
+                            (click)="setActive('F')"
+                          >
+                            F
+                          </p> -->
+                          <p
+                            [ngClass]="{ active: activeButton22 === 'btn26' }"
+                            (click)="setActive('M')"
+                          >
+                            Market
+                          </p>
+                          <p
+                            [ngClass]="{ active: activeButton22 === 'btn27' }"
+                            (click)="setActive('S')"
+                          >
+                            Stop Limit
+                          </p>
+                        </div>
+                      </div>
+                      <!-- v section button group start -->
+
+                      <div *ngIf="isToggledss == true">
+                        <div
+                          class="col-6 flex new-order-grig-flex outmm flex flex-row justify-content-between align-items-center"
+                          style="
+                            width: 120px;
+                            height: 30px;
+                            border-radius: 6px;
+                            background: rgba(255, 255, 255, 0.1);
+                          "
+                        >
+                          <p
+                            [ngClass]="{ active: activeButton23 === 'btn28' }"
+                            (click)="setActiveButton23('btn28')"
+                          >
+                            L
+                          </p>
+                          <p
+                            [ngClass]="{ active: activeButton23 === 'btn29' }"
+                            (click)="setActiveButton23('btn29')"
+                          >
+                            F
+                          </p>
+                          <p
+                            [ngClass]="{ active: activeButton23 === 'btn30' }"
+                            (click)="setActiveButton23('btn30')"
+                          >
+                            M
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- v section button group end -->
+                    </div>
+                  
+                      <div>
+                        <div *ngIf="showtriggerprice" class="flex justify-content-between align-items-center my-2 right-form">
+                          <label>Trigger Price</label>
+                          <input
+                            type="float"
+                            id="sellstopprice"
+                            [(ngModel)]="triggerprice"
+                            [style]="{
+                              background: 'none',
+                              'border-radius': '5px',
+                              border: '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                            placeholder="{{ coinone }}"
+                          />
+                        </div>
+
+                        <div *ngIf="triggerpriceerror" style="color: red">
+                          Trigger Price is required.
+                        </div>
+
+                        <div *ngIf="showprice"
+                          class="flex justify-content-between align-items-center my-2 right-form"
+                        >
+                          <label> Price</label>
+                          <input
+                            type="float"
+                            id="stopsellprice"
+                            [(ngModel)]="price"
+                            (keypress)="inputRegex($event)"
+                            [style]="{
+                              background: 'none',
+                              'border-radius': '5px',
+                              border: '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                            [value]="lastPrice"
+                            (input)="onPriceChange()"
+                          />
+                        </div>
+                        <div *ngIf="priceerror" style="color: red">
+                          Price is required.
+                        </div>
+                        <div
+                          class="flex justify-content-between align-items-center my-2 right-form"
+                        >
+                          <label> Qty</label>
+                          <input
+                            type="float"
+                            id="stopsellamount"
+                            [(ngModel)]="qty"
+                            (keypress)="restrictDecimalforqty($event)"
+                            [step]="qtyStep ? qtyStep : basedecimal"
+                            [style]="{
+                              background: 'none',
+                              'border-radius': '5px',
+                              border: '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                            placeholder="{{ coinone }}"
+                            (input)="onqtyChange()"
+                          />
+                        </div>
+                        <div *ngIf="qtyerror" style="color: red">
+                          Qty is required.
+                        </div>
+                        <div
+                          class="flex justify-content-between align-items-center my-2 right-form"
+                        >
+                          <label> Value</label>
+                          <input
+                            type="float"
+                            id="stopvolume"
+                            [(ngModel)]="value"
+                            (keypress)="inputRegex($event)"
+                            [style]="{
+                              background: 'none',
+                              'border-radius': '5px',
+                              border: '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                            placeholder="{{ cointwo }}"
+                            (input)="onValuechange()"
+                          />
+                        </div>
+
+                        <!-- Balance start here -->
+                        <div>
+                          <div
+                            *ngIf="selectedTradeType == 'linear' && userRole == 'pro'"
+                            class="flex justify-content-between align-items-center my-2 leverage-slider-row-div"
+                          >
+                            <p class="Leverage-display-none-for-responsive">
+                              <label>Leverage</label>
+                            </p>
+                            <div class="leverage-step-leverage-10">
+                              <input
+                                type="range"
+                                formControlName="leverage"
+                                (input)="updateValue2($event)"
+                                min="{{this.minleverage}}"
+                                max="{{this.maxleverage}}"
+                                step="1"
+                                style="
+                                  border: none !important;
+                                  padding-left: 0 !important;
+                                  padding-right: 0 !important;
+                                "
+                                value="{{this.leverage}}"
+                              />
+                              <ul class="leverage-step-leverage-10-step">
+                                <li><span></span></li>
+                                <li><span></span></li>
+                                <li><span></span></li>
+                                <li><span></span></li>
+                                <li><span></span></li>
+                                <li><span></span></li>
+                                <li><span></span></li>
+                                <li><span></span></li>
+                                <li><span></span></li>
+                                <li><span></span></li>
+                              </ul>
+                            </div>
+                            <span
+                              class="save-btn-small"
+                              (click)="saveLeverage()"
+                            >
+                              <i class="fa-solid fa-floppy-disk"></i>
+                            </span>
+                            <span
+                              style="
+                                width: 65px;
+                                height: 34px;
+                                text-align: center;
+                                border-radius: 8px;
+                                border: 1px solid rgba(255, 255, 255, 0.4);
+                                line-height: 34px;
+                              "
+                            >
+                              {{ leverage }}x
+                            </span>
+                            
+                            <span
+                            style="
+                              width: 65px;
+                              height: 34px;
+                              text-align: center;
+                              border-radius: 8px;
+                              border: 1px solid rgba(255, 255, 255, 0.4);
+                              line-height: 34px;
+                            "
+                          >
+                            {{ maxleverage }}x
+                          </span>
+                          </div>
+
+                          <div
+                            class="percentbtn mt-2 flex justify-content-between"
+                          >
+                            <button
+                              type="button"
+                              (click)="this.sliderValue1 = 10"
+                              (click)="calculatepercentage(10)"
+                            >
+                              10%
+                            </button>
+                            <button
+                              type="button"
+                              (click)="this.sliderValue1 = 25"
+                              (click)="calculatepercentage(25)"
+                            >
+                              25%
+                            </button>
+                            <button
+                              type="button"
+                              (click)="this.sliderValue1 = 30"
+                              (click)="calculatepercentage(30)"
+                            >
+                              30%
+                            </button>
+                            <button
+                              type="button"
+                              (click)="this.sliderValue1 = 50"
+                              (click)="calculatepercentage(50)"
+                            >
+                              50%
+                            </button>
+                            <button
+                              type="button"
+                              (click)="this.sliderValue1 = 75"
+                              (click)="calculatepercentage(75)"
+                            >
+                              75%
+                            </button>
+                            <button
+                              type="button"
+                              (click)="this.sliderValue1 = 100"
+                              (click)="calculatepercentage(100)"
+                            >
+                              100%
+                            </button>
+                          </div>
+
+                          <div
+                            class="flex mt-2 justify-content-between align-items-center"
+                          >
+                            <!-- <p
+                              style="
+                                width: 40px;
+                                height: 35px;
+                                text-align: center;
+                                border-radius: 6px;
+                                background: rgba(255, 255, 255, 0.1);
+                                line-height: 38px;
+                                font-size: 14px;
+                              "
+                            >
+                              {{ coinonebalance }}
+                            </p> -->
+
+                            <p><label>Balance</label></p>
+
+                            <input
+                              class="balance-range-slider"
+                              type="range"
+                              formControlName="sliderValue1"
+                              (input)="calculateperValue($event)"
+                              min="0"
+                              max="100"
+                              step="1"
+                              value="{{sliderValue1}}"
+                            />
+
+                            <span
+                              style="
+                                width: 65px;
+                                height: 34px;
+                                text-align: center;
+                                border-radius: 8px;
+                                border: 1px solid rgba(255, 255, 255, 0.4);
+                                line-height: 34px;
+                              "
+                              >{{ sliderValue1 }}%</span
+                            >
+                          </div>
+                        </div>
+
+                        <div class="post-only-gik">
+                          <div class="post-only-div">
+                            <div
+                              *ngIf="selectedTradeType == 'linear'"
+                              class="option-post-only"
+                            >
+                              <input
+                                type="checkbox"
+                                [(ngModel)]="postOnly"
+                                (change)="setPostOnly($event)"
+                                id="postOnlyCheckbox"
+                              />
+                              <label for="postOnlyCheckbox">Post-only</label>
+                            </div>
+
+                            <div
+                              *ngIf="selectedTradeType == 'linear'"
+                              class="option-post-only"
+                            >
+                              <input
+                                type="checkbox"
+                                [(ngModel)]="reduceOnly"
+                                (change)="setReduceOnly($event)"
+                                id="reduceOnlyCheckbox"
+                              />
+                              <label for="reduceOnlyCheckbox"
+                                >Reduce-only</label
+                              >
+                            </div>
+                          </div>
+
+                          <div class="gik-div">
+                            <select
+                              (change)="setTimeInForce($event)"
+                              name=""
+                              id=""
+                            >
+                              <option value="GTC">Good Til Canceled</option>
+                              <option value="IOC">Immediate Or Cancel</option>
+                              <option value="FOK">Fill Or Kill</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="grid mt-1">
+                          <div class="col-12">
+                            <!-- <button pButton label="Create order" [style]="{
+                                'border-radius': '6px',
+                                background: 'rgba(255, 255, 255, 0.20)',
+                                color: 'white'
+                              }"></button> -->
+                            <button
+                              class="common-bg-color common-button-radius"
+                              *ngIf="selectedTradeType === 'linear'"
+                              pButton
+                              (click)="placeTrade()"
+                              label="Create Linear Order"
+                              [style]="{
+                                'border-radius': '6px',
+                                background: 'rgba(255, 255, 255, 0.20)',
+                                color: 'white'
+                              }"
+                            ></button>
+
+                            <!-- Button for 'spot' trade type -->
+                            <button
+                              class="common-bg-color common-button-radius"
+                              *ngIf="selectedTradeType === 'spot'"
+                              pButton
+                              (click)="placeTrade()"
+                              label="Create Spot Order"
+                              [style]="{
+                                'border-radius': '6px',
+                                background: 'rgba(255, 255, 255, 0.20)',
+                                color: 'white'
+                              }"
+                            ></button>
+                          </div>
+                        </div>
+                        <!-- create order start -->
+                      </div>
+                      <div
+                        class="spinner-container"
+                        *ngIf="loading.isLoading | async"
+                      >
+                        <div class="d-flex justify-content-center">
+                          <div class="spinner-border" role="status">
+                            <span class="sr-only" id="loading"></span>
+                          </div>
+                        </div>
+                        <!-- <i class="fas fa-spinner fa-spin"></i> -->
+                      </div>
+        
+                    <!-- v section -->
+                    <!-- order close  -->
+                  </div>
+                  <!-- <div class="grid mt-1">
+                  <div class="col-12">
+                    <p-button
+                      label="Create order"
+                      [style]="{
+                        'border-radius': '6px',
+                        background: 'rgba(255, 255, 255, 0.20)',
+                        color: 'white'
+                      }"
+                    ></p-button>
+                  </div>
+                </div> -->
+
+                  <!-- both btn  start -->
+
+                  <div class="col-12 flex p-0 longshort-putcall" id="longshort">
+                    <div class="col-6">
+                      <!-- <button *ngIf="selectedTradeType == 'linear'" [ngClass]="{ active: shotlongbtn === 'long1' }"
+                        (click)="changeStatusLonBuy()"
+                         (click)="changeActiveBtn('long1')
+                        ">
+                        Long Buy
+                      </button> -->
+                      <button
+                        class="desktop-view-login"
+                        *ngIf="selectedTradeType == 'linear'"
+                        [ngClass]="{ active: shotlongbtn === 'long1' }"
+                        (click)="changeActiveBtn('long1')"
+                        (click)="changeStatusLonBuy()"
+                      >
+                        Long Buy
+                      </button>
+
+                      <!-- mobile future-->
+                      <button
+                      class="display-none-desktop put-button-btn"
+                      *ngIf="selectedTradeType == 'linear'"
+                      [ngClass]="{ active: shotlongbtn === 'long1' }"
+                      (click)="changeActiveBtn('long1')"
+                      (click)="changeStatusLonBuy()"
+                      (click)="toggleContentApp(1)"
+                    >
+                      Buy
+                    </button>
+
+                      <button
+                      class="put-button-btn"
+                        *ngIf="selectedTradeType == 'spot'"
+                        [ngClass]="{ active: shotlongbtn === 'long1' }"
+                        (click)="changeStatusLonBuy()"
+                        (click)="changeActiveBtn('long1')"
+                        (click)="toggleContentApp(1)"
+                      >
+                        Buy
+                      </button>
+                    </div>
+                    <div class="col-6">
+                      <!-- <button *ngIf="selectedTradeType == 'linear'" [ngClass]="{ active: shotlongbtn === 'short1' }"
+                        (click)="changeStatusShortSell()" (click)="changeActiveBtn('short1')">
+                        Short sell
+                      </button> -->
+
+                      <button
+                      class="desktop-view-login"
+                        *ngIf="selectedTradeType == 'linear'"
+                        [ngClass]="{ active: shotlongbtn === 'short1' }"
+                        (click)="changeActiveBtn('short1')"
+                        (click)="changeStatusShortSell()"
+                      >
+                        Short sell
+                      </button>
+
+                      <button 
+                      class="display-none-desktop call-button-btn"
+                      *ngIf="selectedTradeType == 'linear'"
+                      [ngClass]="{ active: shotlongbtn === 'short1' }"
+                      (click)="changeActiveBtn('short1')"
+                      (click)="changeStatusShortSell()"
+                      (click)="toggleContentApp(1)"
+                    >
+                      Sell
+                    </button>
+
+                      <button
+                      class="call-button-btn"
+                        *ngIf="selectedTradeType == 'spot'"
+                        [ngClass]="{ active: shotlongbtn === 'short1' }"
+                        (click)="changeStatusShortSell()"
+                        (click)="changeActiveBtn('short1')"
+                        (click)="toggleContentApp(1)"
+                      >
+                        Sell
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="asset-balance-card">
+                    <div class="asset-balance-card-inner">
+                      <label for="">{{ coinone }} Balance</label
+                      ><span>{{ coinonebalance }} {{ coinone }}</span>
+                    </div>
+                    <div class="asset-balance-card-inner">
+                      <label for="">{{ cointwo }} Balance</label
+                      ><span> {{ cointwobalance }} {{ cointwo }}</span>
+                    </div>
+                  </div>
+
+                  <div
+                    class="p-2 transparent-bg-color-style"
+                    style="
+                      border-radius: 6px;
+                      background: #1e2945;
+                      width: 100%;
+                      height: 100px;
+                    "
+                  >
+                    <div
+                      class="flex justify-content-center align-items-center mb-2"
+                    >
+                      <i
+                        class="pi pi-info-circle mr-2"
+                        style="color: #09a247"
+                      ></i>
+                      <p style="color: #09a247">Deposit to trade</p>
+                    </div>
+                    <p-button
+                      label="Add Funds"
+                      (click)="sendCoinToWallet(coinone, 'deposit')"
+                      [style]="{
+                        'border-radius': '6px',
+                        background: '#3C71FB',
+                        color: 'white'
+                      }"
+                    ></p-button>
+                  </div>
+                </div>
+
+              </p-tabPanel>
+
+              <p-tabPanel *ngIf="showBots">
+                <ng-template pTemplate="header">
+                  <div id="sltop">SL</div>
+                </ng-template>
+ 
+                <div class="common-style-SL-SLX-TP for-SL">
+                  <div class="card p-2">
+                    <div class="flex justify-content-between px-2 mt-3 pb-3">
+                      <p>Enabled</p>
+                      <label class="switch">
+                        <input
+                          (change)="setSl($event)"
+                          [checked]="slEnabled"
+                          type="checkbox"
+                        />
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+
+                    <div class="grid trigger-grid-label">
+                      <div class="col-12 flex">
+                        <div
+                          class="col-6 flex align-items-center justify-content-between"
+                        >
+                          <div class="flex-flex-start">
+                            <label style="background: none"
+                              >Trigger by ROI (%)
+                            </label>
+
+                            <div class="tooltip">
+                              <i
+                                class="pi pi-question-circle ml-1"
+                                style="font-size: 12px"
+                              ></i
+                              ><span class="tooltiptext"
+                                >Please enter your desired ROI (%) to calculate
+                                the trigger price of TP/SL.</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6 position-relative-column">
+                          <p-inputNumber
+                            inputId="integeronly"
+                            (onInput)="calculateRoi($event)"
+                            [(ngModel)]="roiValue"
+                            [inputStyle]="{
+                              background: 'none',
+                              'border-radius': '0px',
+                              border: 'none',
+                              'border-bottom': '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                            placeholder="ROI"
+                          >
+                          </p-inputNumber>
+                          <span class="values-right-small">%</span>
+                          <!-- <small
+                            style="color: red"
+                            >Offset is required.</small
+                          > -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="grid trigger-grid-label"
+                      style="margin-top: -22px"
+                    >
+                      <div
+                        class="col-12 flex align-items-center four-input-fields"
+                      >
+                        <div class="col-6 position-relative-column">
+                          <div class="flex-flex-start">
+                            <label style="background: none"
+                              >Trigger by Change %
+                              <div class="tooltip">
+                                <i
+                                  class="pi pi-question-circle ml-1"
+                                  style="font-size: 12px"
+                                ></i
+                                ><span class="tooltiptext">
+                                  The absolute value of SL, which can be set on
+                                  the chart by moving the order with the mouse
+                                  or using the keyboard in this field</span
+                                >
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-6 position-relative-column">
+                          <input
+                          type="number"
+                          (input)="calculatePrice($event)"
+                            placeholder="Decrease"
+                            [(ngModel)]="slChange"
+                            [max]="100"
+                          />
+                          <span class="values-right-small">%</span>
+                          <!-- <small
+                            style="color: red"
+                            >Price is required.</small
+                          > -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="grid trigger-grid-label"
+                      style="margin-top: -22px"
+                    >
+                      <div class="col-12 flex align-items-center">
+                        <div class="col-6">
+                          <div class="flex-flex-start">
+                            <label style="background: none"
+                              >Trigger by P&L, $
+                              <div class="tooltip">
+                                <i
+                                  class="pi pi-question-circle ml-1"
+                                  style="font-size: 12px"
+                                ></i
+                                ><span class="tooltiptext"
+                                  >Please enter your expected profit or loss to
+                                  calculate the trigger price of TP/SL.</span
+                                >
+                              </div>
+                              <!-- <i class="pi pi-question-circle ml-1 " style="font-size: 12px;"   pTooltip="Approximate amount of loss in US dollars, that will be received in SL position closure."></i> -->
+                            </label>
+                          </div>
+                        </div>
+                          <div class="col-6 position-relative-column">
+                            <input
+                            type="number"
+                            id="integeronly"
+                            [(ngModel)]="slpl"
+                            (input)="calculateProfitandLoss($event)"
+                            placeholder="Loss"
+                            [ngStyle]="{
+                              background: 'none',
+                              'border-radius': '0px',
+                              border: 'none',
+                              'border-bottom': '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                          />                        
+                            <span class="values-right-small">USDT</span>
+                            <!-- <small
+                              style="color: red"
+                              >Risk amount is required.</small
+                            > -->
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="grid" style="margin-top: -22px">
+                      <div class="col-12 flex align-items-center">
+                        <div class="col-6">
+                          <label>Order trigger </label>
+                        </div>
+                        <div class="col-6">
+                          <p-dropdown
+                            [options]="orderTig"
+                            optionLabel="name"
+                            optionValue="code"
+                            name="ordertigger"
+                            style="width: 90%"
+                            (onChange)="onOrderTiggerChange($event)"
+                          ></p-dropdown>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                      >
+                        <div class="col-6">
+                          <label>Trigger price</label>
+                        </div>
+                        <div class="col-6">
+                          <input
+                          type="number"
+                          [(ngModel)]="stopLossPrice"
+                            placeholder="Enter price"
+                          />
+                          <small
+                             *ngIf="showslqtyerror" style="color: red"
+                              >Enter a Qty.</small
+                            >
+                            <small
+                            *ngIf="showslpriceerror" style="color: red"
+                             >Enter a Price.</small
+                           >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="grid" style="margin-top: -15px">
+                      <div class="col-12 flex align-item-start">
+                        <div class="col-10">
+                          <label
+                            >Rearrangement of level
+                            <div class="tooltip">
+                              <i
+                                class="pi pi-question-circle ml-1"
+                                style="font-size: 12px"
+                              ></i
+                              ><span class="tooltiptext"
+                                >Rearrangement of the TP level while maintaining
+                                the same distance to the position price after
+                                Averaging Order (DCA) has been filled</span
+                              >
+                            </div>
+                            <!-- <i class="pi pi-question-circle ml-1 " style="font-size: 12px;"   pTooltip="Rearrangement of the TP level while maintaining the same distance to the position price if the position level has changed after averaging or reducing the position"></i>-->
+                          </label>
+                        </div>
+                        <div class="col-2">
+                          <label class="switch">
+                            <input
+                              (change)="onRearrangeChangesl($event)"
+                              name="rearrangeCheckbox"
+                              [checked]="slrearrange === 1"
+                              type="checkbox"
+                            />
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </p-tabPanel>
+<!-- 
+              <p-tabPanel *ngIf="showBots">
+                <ng-template pTemplate="header">
+                  <div>SLX</div>
+                </ng-template>
+
+                <form #slxForm="ngForm" class="common-style-SL-SLX-TP">
+                  <div class="card p-2">
+                    <div class="flex justify-content-between px-2 mt-3 pb-3">
+                      <p>Enabled</p>
+                      <label class="switch">
+                        <input
+                          (change)="setSlx($event)"
+                          [checked]="slxEnabled"
+                          type="checkbox"
+                        />
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+
+
+                    <div class="grid">
+                      <div class="col-12 flex align-items-center">
+                        <div class="col-6">
+                          <label style="background: none"
+                            >Type of order
+                            <div class="tooltip">
+                              <i
+                                class="pi pi-question-circle ml-1"
+                                style="font-size: 12px"
+                              ></i>
+                              <span class="tooltiptext"
+                                >Type of order that closes a position when SLX
+                                is triggered</span
+                              >
+                            </div>
+                          </label>
+                        </div>
+                        <div class="col-6">
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              id="triggerPrice"
+                              [(ngModel)]="slXForm.slxtype"
+                              name="price"
+                              value="price"
+                              (change)="
+                                triggercontent = true; calccontent = false
+                              "
+                              checked
+                            />
+                            <label for="triggerPrice">by trigger price</label>
+                          </div>
+
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              id="executedTP"
+                              [(ngModel)]="slXForm.slxtype"
+                              name="TP"
+                              value="TP"
+                              (change)="
+                                calccontent = true; triggercontent = false
+                              "
+                            />
+                            <label for="executedTP">by executed TP</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="grid" *ngIf="triggercontent">
+                      <div class="col-12 flex justify-content-between"></div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                      >
+                        <div class="col-6">
+                          <label>Place SL at Breakeven</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >upon reaching the estimated price in position
+                              Stop Loss will be set on breakeven price. If the
+                              field is empty, then the setting is disabled.
+                              Indent percentage of indent from the position
+                              price. If the field is empty than the indent is
+                              zero.</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="flex justify-content-between my-2">
+                            <p-inputNumber
+                              inputId="integeronly"
+                              [(ngModel)]="slXForm.profitpercentage"
+                              name="profitpercentage"
+                              [max]="100"
+                              [inputStyle]="{
+                                background: 'none',
+                                'border-radius': '0px',
+                                border: 'none',
+                                'border-bottom': '2px solid #5c6276',
+                                color: 'white'
+                              }"
+                              class="pr-1"
+                              placeholder="100%"
+                            >
+                            </p-inputNumber
+                            >%
+
+                            <p-inputNumber
+                              inputId="integeronly"
+                              [(ngModel)]="slXForm.offset"
+                              name="offset"
+                              [inputStyle]="{
+                                background: 'none',
+                                'border-radius': '0px',
+                                border: 'none',
+                                'border-bottom': '2px solid #5c6276',
+                                color: 'white'
+                              }"
+                              placeholder=""
+                              [max]="100"
+                            >
+                            </p-inputNumber
+                            >%
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                      >
+                        <div class="col-6">
+                          <label>Trailing SL</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >trailing activation upon reaching the estimated
+                              profit percent in position. If the field is empty,
+                              then trailing is disabled. Callbackrate - indent
+                              from the trigger price to the Stop Loss price in
+                              percents.</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="flex justify-content-between my-2">
+                            <p-inputNumber
+                              inputId="integeronly"
+                              [(ngModel)]="slXForm.trailingpercentage"
+                              name="trailingpercentage"
+                              [inputStyle]="{
+                                background: 'none',
+                                'border-radius': '0px',
+                                border: 'none',
+                                'border-bottom': '2px solid #5c6276',
+                                color: 'white'
+                              }"
+                              class="pr-1"
+                              placeholder="100%"
+                            >
+                            </p-inputNumber
+                            >%
+
+                            <p-inputNumber
+                              inputId="integeronly"
+                              [(ngModel)]="slXForm.trailoffset"
+                              name="trailoffset"
+                              [inputStyle]="{
+                                background: 'none',
+                                'border-radius': '0px',
+                                border: 'none',
+                                'border-bottom': '2px solid #5c6276',
+                                color: 'white'
+                              }"
+                              placeholder=""
+                            >
+                            </p-inputNumber
+                            >%
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                      >
+                        <div class="col-6">
+                          <label>Min trailing step</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >"Minimum trailing step between Stop Loss
+                              rearrangements in percents on trigger.</span
+                            >
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <p-inputNumber
+                            inputId="integeronly"
+                            [(ngModel)]="slXForm.trailStep"
+                            name="trailStep"
+                            [inputStyle]="{
+                              background: 'none',
+                              'border-radius': '0px',
+                              border: 'none',
+                              'border-bottom': '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                            >%
+                          </p-inputNumber>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                      >
+                        <div class="col-6">
+                          <label>Min position volume</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >Trailing will not start if the position volume is
+                              less than the specified value. specified and
+                              BTCUSDT has an open position volume of 30 USDT,
+                              trailing will not be triggered, even if the
+                              trailing start % has been reached.</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <p-inputNumber
+                            inputId="integeronly"
+                            [(ngModel)]="slXForm.minvalue"
+                            name="minvalue"
+                            [inputStyle]="{
+                              background: 'none',
+                              'border-radius': '0px',
+                              border: 'none',
+                              'border-bottom': '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                            >%
+                          </p-inputNumber>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                      >
+                        <div class="col-6">
+                          <label>Trigger price</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >Trigger for order rearrangement when the price
+                              deviation exceeds the Callback rate + Minimum
+                              trailing step</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <p-dropdown
+                            [options]="orderTig"
+                            [(ngModel)]="slXForm.orderTrigger"
+                            optionLabel="name"
+                            optionValue="code"
+                          ></p-dropdown>
+                        </div>
+                      </div>
+
+                      <div class="col-12 flex justify-content-between">
+                        <div class="col-6"><label>General Settings</label></div>
+                        <div class="col-6"><p
+                          style="border-bottom: 2px solid rgb(92, 98, 118);
+    padding: 0.75rem;"
+                        ></p></div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -30px"
+                      >
+                        <div class="col-6">
+                          <label style="background: none"
+                            >Type of order
+                            <div class="tooltip">
+                              <i
+                                class="pi pi-question-circle ml-1"
+                                style="font-size: 12px"
+                              ></i>
+                              <span class="tooltiptext"
+                                >Type of order that closes a position when SLX
+                                is triggered</span
+                              >
+                            </div>
+                          </label>
+                        </div>
+                        <div class="col-6">
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              name="slXOrderType"
+                              value="vMarket"
+                              [(ngModel)]="slXForm.slXOrderType"
+                              (change)="slxcontent2 = true"
+                            />
+                            <label>Virtual Market</label>
+                          </div>
+
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              name="slXOrderType"
+                              value="Floating"
+                              [(ngModel)]="slXForm.slXOrderType"
+                              (change)="slxcontent2 = true"
+                            />
+                            <label>Virtual Floating</label>
+                          </div>
+
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              name="slXOrderType"
+                              value="sMarket"
+                              [(ngModel)]="slXForm.slXOrderType"
+                              (change)="slxcontent2 = false"
+                            />
+                            <label>Stop Market</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                        *ngIf="SLXcontent"
+                      >
+                        <div class="col-6">
+                          <label>Order trigger 1</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >Type of trigger used to start virtual orde</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <p-dropdown
+                            [options]="orderTig"
+                            [(ngModel)]="slXForm.slXOrderType"
+                            optionLabel="name"
+                            optionValue="code"
+                          ></p-dropdown>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="grid" *ngIf="calccontent">
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                      >
+                        <div class="col-6">
+                          <label>Activation</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i
+                            ><span class="tooltiptext"
+                              >What Take Profit does the rearrangement to
+                              breakeven begin with and further follow the
+                              fulfilled goals, if it is indicated in the
+                              previous setting</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <p-dropdown
+                            [options]="activation"
+                            [(ngModel)]="slXForm.activation"
+                            name="activation"
+                            optionLabel="label"
+                            optionValue="value"
+                          ></p-dropdown>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -30px"
+                      >
+                        <div class="col-6">
+                          <label style="background: none"
+                            >Type of order
+                            <div class="tooltip">
+                              <i
+                                class="pi pi-question-circle ml-1"
+                                style="font-size: 12px"
+                              ></i>
+                              <span class="tooltiptext"
+                                >Type of order that closes a position when SLX
+                                is triggered</span
+                              >
+                            </div>
+                          </label>
+                        </div>
+                        <div class="col-6">
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              name="slXOrderType"
+                              value="vMarket"
+                              [(ngModel)]="slXForm.slXOrderType"
+                              (change)="slxcontent2 = true"
+                            />
+                            <label>Virtual Market</label>
+                          </div>
+
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              name="slXOrderType"
+                              value="Floating"
+                              [(ngModel)]="slXForm.slXOrderType"
+                              (change)="slxcontent2 = true"
+                            />
+                            <label>Virtual Floating</label>
+                          </div>
+
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              name="slXOrderType"
+                              value="sMarket"
+                              [(ngModel)]="slXForm.slXOrderType"
+                              (change)="slxcontent2 = false"
+                            />
+                            <label>Stop Market</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                        *ngIf="slxcontent2"
+                      >
+                        <div class="col-6">
+                          <label>Order trigger</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >Type of trigger used to start virtual orde</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <p-dropdown
+                            [options]="orderTig"
+                            [(ngModel)]="slXForm.orderTrigger"
+                            optionLabel="name"
+                            optionValue="code"
+                          ></p-dropdown>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </p-tabPanel> -->
+
+              <p-tabPanel *ngIf="showBots" class="tp-tab-class-outer">
+                <ng-template pTemplate="header">
+                  <div class="tp-tab-class-inner">
+                    TP
+                  </div>
+                </ng-template>
+
+                <form #tpForm="ngForm" class="common-style-SL-SLX-TP for-TP">
+                  <div class="card p-2">
+                    <div class="flex justify-content-between px-2 mt-3 pb-3">
+                      <p>Enabled</p>
+                      <label class="switch">
+                        <input
+                          (change)="setTp($event)"
+                          [checked]="tpEnabled"
+                          type="checkbox"
+                        />
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+                    <div class="grid">
+                      <div class="col-12 flex align-items-center">
+                        <div class="col-6">
+                          <label style="background: none"
+                            >Type of order
+                            <div class="tooltip">
+                              <i
+                                class="pi pi-question-circle ml-1"
+                                style="font-size: 12px"
+                              ></i>
+                              <span class="tooltiptext"
+                                >Type of order that used by TP</span
+                              >
+                            </div>
+                          </label>
+                        </div>
+                        <div class="col-6">
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              [(ngModel)]="tPForm.orderType"
+                              [ngModelOptions]="{ standalone: true }"
+                              value="limit"
+                              name="orderType"
+                              (change)="tpcontent = false"
+                              required
+                            />
+                            <label>Limit</label>
+                          </div>
+
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              name="orderType"
+                              value="vMarket"
+                              [(ngModel)]="tPForm.orderType"
+                              [ngModelOptions]="{ standalone: true }"
+                              (change)="tpcontent = true"
+                              required
+                            />
+                            <label>Virtual Market</label>
+                          </div>
+
+                          <div style="width: 100%">
+                            <input
+                              type="radio"
+                              name="orderType"
+                              value="vLimit"
+                              [(ngModel)]="tPForm.orderType"
+                              [ngModelOptions]="{ standalone: true }"
+                              (change)="tpcontent = true"
+                              required
+                            />
+                            <label>Virtual Limit</label>
+                          </div>
+
+                          <small
+                            style="color: red"
+                            *ngIf="!tPForm.orderType && tpForm.submitted"
+                            class="text-danger"
+                          >
+                            Select Type of order.
+                          </small>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                        *ngIf="tpcontent"
+                      >
+                        <div class="col-6">
+                          <label>Order trigger</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >Type of trigger used to start virtual orde</span
+                            >
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <p-dropdown
+                            [options]="orderTig"
+                            [(ngModel)]="tPForm.orderTigger"
+                            optionValue="code"
+                            optionLabel="name"
+                            name="orderTigger"
+                          ></p-dropdown>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                        *ngIf="tpcontent && tPForm.orderType == 'vLimit'"
+                      >
+                        <div class="col-6">
+                          <label>Trigger Price</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i>
+                            <span class="tooltiptext"
+                              >trigger price used to start virtual order</span
+                            >
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <input
+                            (input)="updateTriggerPriceTP($event)"
+                            placeholder="Enter price"
+                          />
+                        </div>
+                      </div>
+                      <!-- grig 1 col end -->
+                      <div
+                        class="col-12 flex align-items-center"
+                        style="margin-top: -20px"
+                      >
+                        <div class="col-6">
+                          <label>Number of orders</label>
+                          <div class="tooltip">
+                            <i
+                              class="pi pi-question-circle ml-1"
+                              style="font-size: 12px"
+                            ></i
+                            ><span class="tooltiptext"
+                              >Number of take profit orders</span
+                            >
+                          </div>
+                          <!-- <i class="pi pi-question-circle ml-1 " style="font-size: 12px;"   pTooltip="Number of take profit orders"></i> -->
+                        </div>
+                        <div class="col-6">
+                          <p-inputNumber
+                            inputId="integeronly"
+                            [(ngModel)]="tpNoo"
+                            name="tpNoo"
+                            [max]="12"
+                            [min]="1"
+                            (ngModelChange)="generateDivs()"
+                            [inputStyle]="{
+                              background: 'none',
+                              'border-radius': '0px',
+                              border: 'none',
+                              'border-bottom': '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                          >
+                          </p-inputNumber>
+                        </div>
+                      </div>
+                      <!-- grig 2 col end -->
+
+                      <div class="col-12 flex" style="margin-top: -20px">
+                        <div class="col-6">
+                          <div class="flex justify-content-between">
+                            <label>Price </label>
+                            <!-- <p>%</p> -->
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="flex justify-content-between">
+                            <label>Amount %</label>
+                            <!-- <p>%</p> -->
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                      <div
+                        class="col-12 flex four-input-fields"
+                        style="margin-top: -20px"
+                        *ngFor="let _ of divArray; let i = index"
+                      >
+                      
+                      <div class="col-6">
+                        <div class="flex justify-content-between my-2">
+                          <input
+                            [placeholder]="priceArray[i].p"
+                            (keyup)="calpercentageTP($event, i)"
+                            [(ngModel)]="priceArray[i].p"
+                            [ngStyle]="{
+                              background: 'none',
+                              'border-radius': '0px',
+                              border: 'none',
+                              'border-bottom': '2px solid #5c6276',
+                              color: 'white'
+                            }"
+                            name="p"
+                            class="pr-1"
+                          />
+                          <!-- <input
+                        class="pr-1"
+                        placeholder="{{ 0.0 }}"
+                        [(ngModel)]="priceArray[i].c"
+                        (keyup)="calpriceTP($event, i)"
+                        name="c"
+                        [ngStyle]="{
+                            'background': 'none',
+                            'border-radius': '0px',
+                            'border': 'none',
+                            'border-bottom': '2px solid #5c6276',
+                            'color': 'white'
+                        }"
+                    >                       -->
+                        </div>
+                      </div>
+                        
+
+                        <div class="col-6">
+                          <div class="flex justify-content-between my-2">
+                            <input
+                              inputId="integeronly"
+                              placeholder="0.0"
+                              name="a"
+                              [(ngModel)]="amountArray[i].a"
+                              [ngStyle]="{
+                                background: 'none',
+                                'border-radius': '0px',
+                                border: 'none',
+                                'border-bottom': '2px solid #5c6276',
+                                color: 'white'
+                              }"
+                              class="pr-1"
+                            />%
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- grig 3 col end -->
+                      <!-- <div class="grid" style="margin-top: -15px"> -->
+                        <div class="col-12 flex align-item-center">
+                          <div class="col-10">
+                            <label
+                              >Rearrangement of level
+                              <div class="tooltip">
+                                <i
+                                  class="pi pi-question-circle ml-1"
+                                  style="font-size: 12px"
+                                ></i
+                                ><span class="tooltiptext"
+                                  >Rearrangement of the TP level while
+                                  maintaining the same distance to the position
+                                  price after Averaging Order (DCA) has been
+                                  filled</span
+                                >
+                              </div>
+                            </label>
+                          </div>
+                          <div class="col-2">
+                            <label class="switch">
+                              <input
+                                type="checkbox"
+                                [checked]="tPForm.rearrange === 1"
+                                (change)="onRearrangeChangetp($event)"
+                                name="rearrangeCheckbox"
+                              />
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                        </div>
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                </form>
+              </p-tabPanel>
+
+            </p-tabView>
+          </p-tabPanel>
+
+          <p-tabPanel header="Exchange">
+            <h5
+              style="
+                margin-top: 10px;
+                color: #fff;
+                font-family: Euclid Circular A;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 140%;
+                padding: 0px 10px;
+              "
+            >
+              Assets
+            </h5>
+            <div class="grid p-2">
+              <div class="col-6">
+                <p-button
+                  label="Deposit"
+                  (click)="sendCoinToWallet(coinone, 'deposit')"
+                  class="Deposit-button-style"
+                ></p-button>
+              </div>
+              <div class="col-6">
+                <p-button
+                  label="Transfer"
+                  (click)="sendCoinToWallet(coinone, 'transfer')"
+                  class="Transfer-button-style"
+                ></p-button>
+              </div>
+            </div>
+            <div class="flex justify-content-between align-items-center my-3">
+              <label> {{ coinone }} Available</label>
+              <p-inputNumber
+                inputId="integeronly"
+                [inputStyle]="{
+                  background: 'none',
+                  'border-radius': '0px',
+                  border: 'none',
+                  'border-bottom': '2px solid #5c6276',
+                  color: 'white'
+                }"
+                [(ngModel)]="coinonebalance"
+                [readonly]="true"
+              >
+              </p-inputNumber>
+            </div>
+            <div class="flex justify-content-between align-items-center my-3">
+              <label> {{ cointwo }} Available</label>
+              <p-inputNumber
+                inputId="integeronly"
+                [inputStyle]="{
+                  background: 'none',
+                  'border-radius': '0px',
+                  border: 'none',
+                  'border-bottom': '2px solid #5c6276',
+                  color: 'white'
+                }"
+                [(ngModel)]="cointwobalance"
+                [readonly]="true"
+              >
+              </p-inputNumber>
+            </div>
+            <HR style="border: 1px dashed #8a93a4" />
+            <div class="flex justify-content-between mt-3">
+              <h5
+                style="
+                  font-family: 'Euclid Circular A';
+                  font-weight: 100;
+                  font-size: 16px;
+                  cursor: pointer;
+                "
+                (click)="sendCoinToWallet(coinone, 'all')"
+              >
+                <i class="pi pi-angle-right"></i> All assets
+              </h5>
+              <h5
+                style="
+                  font-family: 'Euclid Circular A';
+                  font-weight: 100;
+                  font-size: 16px;
+                  cursor: pointer;
+                "
+                (click)="sendCoinToWallet(coinone, 'withdraw')"
+              >
+                <i class="pi pi-angle-right"></i>Withdraw
+              </h5>
+            </div>
+            <!-- <div class="coin-balance-table">
+              <table>
+                <tr>
+                  <th>Coin</th>
+                  <th>Balance</th>
+                </tr>
+                <tr *ngFor="let data of Userbalance">
+                  <td>{{ data.coin }}</td>
+                  <td>{{ data.walletBalance }}</td>
+                </tr>
+              </table>
+            </div> -->
+          </p-tabPanel>
+
+        </p-tabView>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="buy-sell-buttons">
+  <!-- <button (click)="toggleContentApp(1)" class="call-btn">Trade</button> -->
+  <!-- <button (click)="toggleContentApp(1)" class="put-btn">CALL</button> -->
+</div>

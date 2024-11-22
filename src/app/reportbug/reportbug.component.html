@@ -1,0 +1,82 @@
+<div class="contact-form-container">
+  <h2>Report a Bug</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="bugReportForm" class="contact-form">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" placeholder="Your name" />
+      <small *ngIf="bugReportForm.get('email')?.invalid">Please enter your name.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="Your email"
+        required
+      />
+      <small *ngIf="bugReportForm.get('email')?.invalid">Please enter a valid email.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="bugTitle">Bug Title:</label>
+      <input
+        id="bugTitle"
+        type="text"
+        formControlName="bugTitle"
+        placeholder="Short title of the bug"
+        required
+      />
+      <small *ngIf="bugReportForm.get('email')?.invalid">Please enter a bug title.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Detailed description of the bug"
+        rows="4"
+        required
+      ></textarea>
+      <small *ngIf="bugReportForm.get('email')?.invalid">Please report your bug here.</small>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="steps">Steps to Reproduce (Optional):</label>
+      <textarea
+        id="steps"
+        formControlName="steps"
+        placeholder="How to reproduce the issue"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Priority (Optional):</label>
+      <select id="priority" formControlName="priority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="deviceDetails">Browser/Device Details (Optional):</label>
+      <input
+        id="deviceDetails"
+        type="text"
+        formControlName="deviceDetails"
+        placeholder="E.g., Chrome on Windows 10"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="file-upload">Screenshot (Optional):</label>
+      <input type="file" id="file-upload" (change)="onFileSelect($event)" />
+    </div> -->
+
+    <button type="submit" [disabled]="!bugReportForm.valid">Submit</button>
+  </form>
+</div>

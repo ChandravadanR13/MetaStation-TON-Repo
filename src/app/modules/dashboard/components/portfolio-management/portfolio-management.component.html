@@ -1,0 +1,83 @@
+<div class="grid flex common-responsive-card-style-outer">
+
+  <div class="col-12 md:col-12 common-responsive-card-style-inner">
+   <h2 style="background: linear-gradient(83deg, rgba(217, 217, 217, 0.10) 0%, rgba(85, 110, 173, 0.10) 100%);height: 55px;font-weight: 500;color: #fff;line-height: 60px;font-size: 20px;padding-left: 10px;">Portfolio</h2>
+   
+   <div class="portfolio-top-block">
+   <div class=" grid col-12 md:col-12">
+    <div class="col-12 md:col-12 mt-3">
+      <label class="form-label desktop-view-login">Account</label>
+      <p-dropdown optionLabel="name" [options]="accountDP"></p-dropdown>
+    </div>
+    <div class="col-12 md:col-12 portfolio-chart-part-outer">
+      <div class="portfolio-chart-part">
+      <div class="portfolio-chart-part-left">
+      <div class="flex justify-content-between align-items-center">
+        <label class="form-label">Auto balance</label>
+        <i
+          class="pi pi-info-circle desktop-view-login"
+          pTooltip="Information"
+          tooltipPosition="right"
+          style=" font-size: 15px"
+        ></i>
+        <label class="switch desktop-view-login">
+          <input type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <input pInputText placeholder="{{Autobalance}}" />
+      </div>
+      <div class="portfolio-chart-part-right display-none-desktop">
+      <p-chart type="doughnut" width="6rem" height="6rem" [data]="data" [options]="options"></p-chart>
+      </div>
+      </div>
+    </div>
+   </div>
+
+   <!-- Chart start -->
+   <!-- <div class="col-12 md:col-12 flex justify-content-center align-items-center desktop-view-login">
+    <p-chart type="doughnut" width="20rem" height="20rem" [data]="data" [options]="options"></p-chart>
+   </div> -->
+  </div>
+
+   <!-- Chart End -->
+   
+  </div>
+  <!-- left section End -->
+
+  <div class="col-12 md:col-12 responsive-bottom-section">
+    <p-table [value]="subscriptionPlans">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Strategy Source</th>
+          <th>% to divide</th>
+          <th>Bot68421_Rick</th>
+          <th>Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-subscriptionPlans let-index>
+        <tr>
+          <td>
+            <div class="no-border-drop">
+              <p-dropdown [options]="categories"></p-dropdown>
+            </div>
+          <td style="text-align: center;font-size: 14px;">{{ subscriptionPlans.months }}</td>
+          <td style="text-align: center;font-size: 14px;">{{ subscriptionPlans.freeAdditionalMonths }}</td>
+          <td>
+            <div class="flex flex-row justify-content-between align-items-center">
+               <label>{{ subscriptionPlans.fees }} </label>
+               <span class="desktop-view-login"><img src="../../../../../assets/delete.svg" (click)="deltePlan(index)"/></span>
+               <span class="display-none-desktop"><img src="../../../../../assets/delete-icon.png" (click)="deltePlan(index)"/></span>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <!-- Button strat here -->
+    <div class="flex  justify-content-end mt-5 user-bottom-buttons-style">
+      <p-button class="mr-2 first-button">Add Strategy</p-button>
+      <p-button class="second-button">Save</p-button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,23 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<div class="responsive-view-login flex-gap-65px">
+    <label class="sign-header sign-up-header" style="position: relative; top: 0px;font-size: 32px;font-weight: 700;"
+    >Welcome back</label>
+  <div class="login-responsive"><img class="login-responsive" src="../../assets/otpverify-image.png" style="width: 285px;" alt="login-responsive" /></div>
+  <span class="wmu" style="font-size:16px">Enter the <span style="background: var(--cl, linear-gradient(278deg, #AEF197 0%, #35DAC8 100%)) !important; background-clip: text !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important;">OTP</span> sent to your mobile number</span>
+  <div class="otp-container">
+    <input *ngFor="let digit of otpArray; let i = index"
+         class="otp-box"
+         type="text"
+         maxlength="1"
+         [(ngModel)]="otpArray[i]"
+         (input)="onInput($event, i)"
+         (keydown)="onKeyDown($event, i)"
+         (focus)="onFocus($event)">
+  </div>
+  <div class="buttons-common-login">
+    <button class="common-bg-color">Verify</button>
+  </div>
+</div>

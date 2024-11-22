@@ -1,0 +1,274 @@
+<div>
+  
+  <div class="header-container grid desktop-view-login">
+    <div
+      class="col-12 md:col-6 langueg flex justify-content-start align-items-center"
+    >
+      <div class="feature">
+
+        <p-button [hidden]="arrowStatus == false" type="button" class="mr-2 arrowbutton" icon="pi pi-arrow-left"
+          (click)="sendToggle()" (onClick)="changeArrowStatus()"></p-button>
+        <!-- (click)="toggleSidebar.emit()"
+                     (onClick)="changeArrowStatus()" -->
+        <p-button [hidden]="arrowStatus == true" type="button" class="mr-2 arrowbutton" icon="pi pi-arrow-right"
+          (click)="sendToggle()" (onClick)="changeArrowStatus()"></p-button>
+        <!-- (click)="toggleSidebar.emit()"
+                  (onClick)="changeArrowStatus()" -->
+
+
+        <!-- <p-button
+          [hidden]="arrowStatus == false"
+          type="button"
+          class="mr-2 arrowbutton"
+          (click)="toggleSidebar.emit()"
+          (onClick)="changeArrowStatus()"
+          icon="pi pi-arrow-left"
+        ></p-button>
+        <p-button
+          [hidden]="arrowStatus == true"
+          type="button"
+          class="mr-2 arrowbutton"
+          (click)="toggleSidebar.emit()"
+          (onClick)="changeArrowStatus()"
+          icon="pi pi-arrow-right"
+        ></p-button> -->
+        <!-- <p-button type="button" class="mr-2" (click)="toggleSidebar.emit()" icon="pi pi-arrow-left"></p-button> -->
+
+        <p-dropdown
+          [options]="platform"
+          optionLabel="name"
+          [style]="{ 'border-right': '2px solid #68728a' }"
+        ></p-dropdown>
+
+        <!-- <p-dropdown
+          [options]="futures"
+          optionLabel="name"
+          optionValue="code"
+          name="type"
+          (onChange)="changeTradeType($event.value)"
+          [style]="{ 'border-right': '2px solid #68728a' }"
+        ></p-dropdown>
+         -->
+        <!-- <select class="accountset accountset-select" [(ngModel)]="selectedAccountId" (change)="updateRecord()">
+          <option *ngFor="let accountlist of accountlist" [ngValue]="accountlist.subuid" [selected]="accountlist.subuid == selectedAccountId">{{accountlist.label }}</option>
+        </select> -->
+
+        <!-- dropdown for subaccount list-->
+        <!-- <p-dropdown [options]="accountlist" optionLabel="label"   optionValue="subuid" [(ngModel)]="selectedAccountId"  (onChange)="updateRecord($event.value)"></p-dropdown> -->
+      </div>
+    </div>
+
+    <div class="col-12 md:col-6 flex justify-content-end align-items-center">
+      <div class="grid pt-2">
+        <div class="country">
+          <p-dropdown
+            [options]="languegg"
+            optionLabel="name"
+            class="pdrop2 pi pi-globe ml-1"
+          ></p-dropdown>
+
+          <!-- <p-dropdown [options]="crunncy" optionLabel="name"></p-dropdown> -->
+        </div>
+
+        <!-- 
+        <div
+          class="sheild-img-container px-2 flex justify-content-center align-items-center"
+        >
+          <img src="../../../../../assets/shield.svg" />
+        </div> -->
+
+        <!-- <div
+          class="notification px-2 flex justify-content-center align-items-center"
+        >
+          <img
+            src="../../../../../assets/bell.svg"
+            style="cursor: pointer"
+            (click)="op.toggle($event)"
+          />
+        </div> -->
+
+        <div
+          class="user-profile-header px-2 flex justify-content-center align-items-center"
+        >
+          <!-- <img src="../../../../../assets/user-img.svg" /> -->
+          <img
+            *ngIf="imagesrc"
+            style="width: 30px; height: 30px"
+            [src]="imagesrc"
+            alt="Uploaded Image"
+            class="profile-img"
+          />
+          <!-- <img *ngIf="!imageUrl" style="max-width: 60%" [src]="imageUrl" alt="Uploaded Image" class="profile-img" /> -->
+          <div class="without-profile-img" *ngIf="!imagesrc">
+            <img
+              style="width: 30px; height: 30px"
+              src="/assets/Profile-PNG-File.png"
+            />
+          </div>
+
+          <!-- <img src="{{ imagesrc }}" style="width: 30px;height:30px"/> -->
+          <label class="user-profile-lbl ml-2">{{ userName }}</label>
+          <img
+            src="../../../../../assets/down-arrow.svg"
+            (click)="menu.toggle($event)"
+          />
+          <p-menu #menu [model]="items" [popup]="true"></p-menu>
+        </div>
+
+        <!-- <div class="user-profile-header2 px-2 flex justify-content-center align-items-center">
+          <img src="../../../../../assets/user-img.svg" (click)="menu.toggle($event)" />
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="header-container grid display-none-desktop">
+    <div class="col-12 md:col-6 langueg flex justify-content-start align-items-center" style="padding-top:0px !important;padding-bottom:0px !important;">
+      <div class="user-profile-header flex justify-content-center align-items-center" (mouseover)="showCameraIcon = true" (mouseout)="showCameraIcon = false">
+        <img *ngIf="imagesrc"(click)="togglePopup()" style="width: 30px; height: 30px" [src]="imagesrc" alt="Uploaded Image" class="profile-img"/>
+        <div *ngIf="showCameraIcon" class="camera-icon">
+          <i class="fa fa-camera"></i>
+        </div>
+        <div class="popup-menu" *ngIf="showPopup">
+          <label class="upload-label">
+             Upload Image
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden />
+          </label>
+          <label class="upload-label">
+            Remove Image
+          </label>
+        </div>
+      <!-- <img
+        *ngIf="imagesrc"
+        style="width: 30px; height: 30px"
+        [src]="imagesrc"
+        alt="Uploaded Image"
+        class="profile-img"
+      /> -->
+      <div class="without-profile-img" *ngIf="!imagesrc">
+        <img
+          style="width: 30px; height: 30px"
+          src="/assets/login-acc.png"
+        />
+        <img
+        src="../../../../../assets/down-arrow.svg"
+        (click)="menu.toggle($event)"
+      />
+      <p-menu #menu [model]="items" [popup]="true"></p-menu>
+      </div>
+<!-- 
+      <label class="user-profile-lbl ml-2">{{ userName }}</label>
+      <img
+        src="../../../../../assets/down-arrow.svg"
+        (click)="menu.toggle($event)"
+      /> -->
+      
+    </div>
+    </div>
+
+    <div class="col-12 md:col-6 flex justify-content-end align-items-center" style="padding-top:0px !important;padding-bottom:0px !important;">
+      <div class="grid pt-2">
+        <!-- <div class="notification px-2 flex justify-content-center align-items-center">
+          <img
+            src="../../../../../assets/login-history.png"
+            style="cursor: pointer"
+          />
+        </div> -->
+        <div class="notification px-2 flex justify-content-center align-items-center">
+          <i
+          class="pi pi-bell notification-icon"
+          (click)="op.toggle($event)"
+          style="cursor: pointer; font-size: 1.5rem; color: #ffffff"
+        ></i>
+        </div>
+        <!-- <div class="notification px-2 flex justify-content-center align-items-center" style="padding-right:0px !important">
+          <img
+            src="../../../../../assets/search-icon-header.png"
+            style="cursor: pointer;width:40px"
+          />
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PrimeNG Overlay Panel -->
+  <p-overlayPanel #op>
+    <div class="notification-panel">
+      <!-- Header -->
+      <div class="header flex justify-content-between align-items-center">
+        <span class="notification-title">Notifications</span>
+        <span class="mark-all-read">Mark all as read</span>
+      </div>
+
+      <!-- Notification Tabs -->
+      <div class="tabs flex justify-content-around">
+        <div
+          [ngClass]="notificationSection === 0 ? 'tab active' : 'tab'"
+          (click)="onclickNotificationSection(0)"
+        >
+          System <span class="count">{{ notifications.length }}</span>
+        </div>
+        <div
+          [ngClass]="notificationSection === 1 ? 'tab active' : 'tab'"
+          (click)="onclickNotificationSection(1)"
+        >
+          Trade <span class="count">{{ notifications.length }}</span>
+        </div>
+        <div
+          [ngClass]="notificationSection === 2 ? 'tab active' : 'tab'"
+          (click)="onclickNotificationSection(2)"
+        >
+          Private <span class="count">{{ notifications.length }}</span>
+        </div>
+      </div>
+
+      <!-- Notification List -->
+      <div class="notification-list">
+        <p-scrollPanel [style]="{ width: '100%', height: '15rem' }">
+          <div *ngFor="let ele of notifications" class="notification-item">
+            <img
+              [src]="'../../../../../assets/' + ele.notificationType + '.svg'"
+              alt="notification-icon"
+              class="notification-icon-img"
+            />
+            <div class="notification-details">
+              <p>{{ ele.label }}</p>
+              <small>{{ ele.duration }}</small>
+            </div>
+          </div>
+        </p-scrollPanel>
+      </div>
+    </div>
+  </p-overlayPanel>
+
+
+<!-- HTML file of your existing component -->
+<div *ngIf="popupVisible" id="popup" class="modal pop-up-acc-name-body-pp">
+  <div class="modal-content pop-up-acc-name-head">
+    <span class="close" (click)="closePopup()">&times;</span>
+    <p>Add Account</p>
+  </div>
+  <form [formGroup]="CreatesubaccountForm" (ngSubmit)="Createsubaccount()">
+    <div class="pop-up-acc-name">
+      <label>Account Label:</label>
+      <input type="text" formControlName="acc_label" />
+      <div
+        *ngIf="
+          CreatesubaccountForm.get('acc_label')?.invalid &&
+          CreatesubaccountForm.get('acc_label')?.touched
+        "
+        style="color: red"
+      >
+        Account Label is required.
+      </div>
+    </div>
+    <div class="pop-up-acc-btns">
+      <button class="pop-up-acc-btns-cancel" (click)="resetForm()">
+        Cancel
+      </button>
+      <button class="pop-up-acc-btns-create">Create</button>
+    </div>
+  </form>
+</div>
