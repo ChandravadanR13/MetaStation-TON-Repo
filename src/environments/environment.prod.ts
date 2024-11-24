@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
-  siteUrl: 'http://64.227.133.164/',
-  baseUrl: 'http://152.42.224.98/9zXVFYO0pjgqrjB/public/api',
-  tradeUrl: 'http://64.227.133.164/9zXVFYO0pjgqrjB/public/',
-  websocketurl: 'ws://http://64.227.133.164:9090',
-  websocketchaturl: 'ws://http://64.227.133.164:9091',
+  siteUrl: 'https://metastation.fi', // Use the HTTPS version of your site
+  baseUrl: 'https://metastation.fi/api', // Point to your secure backend API
+  tradeUrl: 'https://metastation.fi/9zXVFYO0pjgqrjB/public/', // Secure trade URL
+  websocketurl: 'wss://metastation.fi:9090', // Correct WebSocket URL with "wss" for secure WebSocket
+  websocketchaturl: 'wss://metastation.fi:9091', // Secure WebSocket for chat
   pagination: 10,
 };
